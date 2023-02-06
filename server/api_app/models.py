@@ -14,7 +14,7 @@ it has been  correclty send it's on     SENT     status
 the robot sent a response it's on       SUCCESS  status 
 """
 class Order(models.Model):
-    received_time = models.DateTimeField(null=True)
+    received_time = models.DateTimeField(null=True,blank=True)
     sent_time = models.DateTimeField(null=True)
     topic = models.CharField(max_length=128)
     message = models.CharField(max_length=128)
