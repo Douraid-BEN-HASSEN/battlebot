@@ -1,9 +1,12 @@
 import React from "react";
-import { Grid, List, ListItem, ListItemText } from "@mui/material";
+import { Button, Grid, List, ListItem, ListItemText } from "@mui/material";
 
-interface historiqueProps {}
+interface historiqueProps {
+  datasHistory: Array<string>;
+  handleClearHistory: () => void;
+}
 
-const Historique: React.FC<historiqueProps> = React.memo(({}) => {
+const Historique: React.FC<historiqueProps> = React.memo(({ datasHistory, handleClearHistory }) => {
   return (
     <Grid
       container
@@ -21,40 +24,11 @@ const Historique: React.FC<historiqueProps> = React.memo(({}) => {
           position: "relative",
           marginTop: "20px",
           overflow: "auto",
-          maxHeight: '600px',
+          maxHeight: "600px",
           "& ul": { padding: 0 },
         }}
       >
-        {[
-          "bonjour",
-          "je",
-          "m'appelle",
-          "douraid",
-          "bonjour",
-          "je",
-          "m'appelle",
-          "douraid",
-          "bonjour",
-          "je",
-          "m'appelle",
-          "douraid",
-          "bonjour",
-          "je",
-          "m'appelle",
-          "douraid",
-          "bonjour",
-          "je",
-          "m'appelle",
-          "douraid",
-          "bonjour",
-          "je",
-          "m'appelle",
-          "douraid",
-          "bonjour",
-          "je",
-          "m'appelle",
-          "douraid",
-    ].map((v: string, index: number) => {
+        {datasHistory.map((v: string, index: number) => {
           return (
             <ListItem
               style={{
@@ -72,6 +46,15 @@ const Historique: React.FC<historiqueProps> = React.memo(({}) => {
           );
         })}
       </List>
+      <Grid
+        item
+        xs={12}
+        style={{ borderTop: "2px solid #3f51b5", marginTop: "15px", paddingTop: "15px" }}
+      >
+        <Button onClick={handleClearHistory} variant="contained" color="inherit" style={{ width: "100%" }}>
+          Effacer
+        </Button>
+      </Grid>
     </Grid>
   );
 });
