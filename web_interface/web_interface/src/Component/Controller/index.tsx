@@ -7,7 +7,9 @@ import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
 import CircleIcon from "@mui/icons-material/Circle";
 import { Circle } from "@mui/icons-material";
 
-interface controllerProps {}
+interface controllerProps {
+  handleAddHistory : (value:string) => void 
+}
 
 declare global {
   interface WindowEventMap {
@@ -16,11 +18,14 @@ declare global {
   }
 }
 
-const Controller: React.FC<controllerProps> = React.memo(({}) => {
+const Controller: React.FC<controllerProps> = React.memo(({
+  handleAddHistory
+}) => {
   const handleUserKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     const { key } = event;
     if (key === "z" || key === "q" || key === "s" || key === "d" || key === "o" || key === "p")
       setKeyPressed(key);
+      handleAddHistory(key)
   };
 
   const handleUserKeyRelease = (event: React.KeyboardEvent<HTMLInputElement>) => {
