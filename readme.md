@@ -5,3 +5,13 @@
 # This server is made with python and handle the request with the command then the server send MQTT ordres to the robot
 
 ![Alt text](diag.png "Architecture")
+
+
+### Json sent with HTTP 
+```json 
+{
+    "id"= int,
+    "topic" = str,
+    "message" = str,
+}
+```
