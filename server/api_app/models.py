@@ -14,10 +14,12 @@ it has been  correclty send it's on     SENT     status
 the robot sent a response it's on       SUCCESS  status 
 """
 class Order(models.Model):
-    received_time = models.DateTimeField()
-    sent_time = models.DateTimeField()
+    received_time = models.DateTimeField(null=True)
+    sent_time = models.DateTimeField(null=True)
     topic = models.CharField(max_length=128)
     message = models.CharField(max_length=128)
     status = models.CharField(max_length=128 , choices = EXISTING_STATUS,
 default = 'WAITING')
+    def __str__(self):
+        return "ORDER {} : {} on {}".format(self.id  , self.message,self.topic)
 
