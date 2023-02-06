@@ -9,6 +9,10 @@ const Footer: React.FC<footerProrps> = React.memo(({}) => {
   const [addresse, setAddresse] = useState<string>("");
   const [port, setPort] = useState<number>();
 
+  const confimChoice = () => {
+    console.log(addresse , port)
+  }
+
   return (
     <Box sx={{ flewGrow: 1 }} style={{ position: "fixed", left: "0", bottom: "0", width: "100%" }}>
       <AppBar
@@ -37,7 +41,7 @@ const Footer: React.FC<footerProrps> = React.memo(({}) => {
                   label="Port"
                   type={"number"}
                   onChange={(event: any) => {
-                    setAddresse(event.target.value);
+                    setPort(event.target.value);
                   }}
                 />
               </Box>
@@ -50,8 +54,10 @@ const Footer: React.FC<footerProrps> = React.memo(({}) => {
                     variant="contained"
                     style={{ width: "95%", color: "black", fontWeight: "bold" }}
                     onClick={() => {
-                      if (isUpdate === true) setIsUpdate(false);
-                      else setIsUpdate(true);
+                      if (isUpdate === true) {
+                        setIsUpdate(false);
+                        confimChoice() ;
+                      } else setIsUpdate(true);
                     }}
                   >
                     {isUpdate ? "Confirmer" : "Modifier"}
