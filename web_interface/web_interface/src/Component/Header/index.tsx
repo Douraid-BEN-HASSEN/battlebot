@@ -4,14 +4,25 @@ import { Stack } from "@mui/system";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 import PetsIcon from '@mui/icons-material/Pets';
 
-interface headerProps {}
+type styleType = {
+  backgroundColor : string , 
+  borderColor : string , 
+  borderWidth : string , 
+  borderRadius: string , 
+  fontColor: string 
+}
+interface headerProps {
+  style : styleType 
+}
 
-const Header: React.FC<headerProps> = React.memo(({}) => {
+const Header: React.FC<headerProps> = React.memo(({
+  style
+}) => {
   return (
     <Box sx={{ flewGrow: 1 }}>
       <AppBar
         position="static"
-        style={{ height: "60px", marginBottom: "60px", backgroundColor: "lightblue" , borderBottom:'3px solid #3f51b5' }}
+        style={{ height: "60px", marginBottom: "60px", backgroundColor: style.backgroundColor , borderBottom:style.borderWidth + ' solid ' + style.borderColor }}
       >
         <Toolbar>
           <Grid container spacing={0} justifyContent="center">
@@ -21,7 +32,7 @@ const Header: React.FC<headerProps> = React.memo(({}) => {
                 xs={12}
                 style={{
                   fontWeight: "bold",
-                  color:'black' , 
+                  color: style.fontColor , 
                   fontSize:'30px'
                 }}
               >
