@@ -4,7 +4,7 @@ import Header from "../Header";
 import { Button, Grid } from "@mui/material";
 import Footer from "../Footer";
 import Historique from "../Historique";
-import { sendRequest } from "./functions";
+import { goBack, goFront, sendRequest, turnLeft, turnRight , stopp} from "./functions";
 
 interface mainComponentProps {}
 
@@ -15,6 +15,7 @@ const keyToAction = {
   d: "Ordre : Tourne à droite",
   o: "Ordre : Action 1",
   p: "Ordre : Action 2",
+  a: "Ordre : S'arrêter",
 } as any;
 
 type infos = {
@@ -33,16 +34,19 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
   });
 
   const updateHistory = (action: "add" | "clear", value: string) => {
-    let tmp = datasHistory;
-
     if (action === "clear") {
       setDatasHistory([]);
       setIsChange(true);
     } else if (action === "add") {
       if (value !== "r") {
         let tmp = datasHistory;
-
         if (tmp.length === 0 || (tmp.length > 0 && tmp.at(-1) !== keyToAction[value])) {
+          if (value === "z") goFront(infosRequest.adresse, infosRequest.port, "/test");
+          else if (value === "q") turnLeft(infosRequest.adresse, infosRequest.port, "/test");
+          else if (value === "r") turnRight(infosRequest.adresse, infosRequest.port, "/test");
+          else if (value === "s") goBack(infosRequest.adresse, infosRequest.port, "/test");
+          else if (value === "a") stopp(infosRequest.adresse, infosRequest.port, "/test");
+
           tmp.push(keyToAction[value]);
           setDatasHistory(tmp);
           setIsChange(true);

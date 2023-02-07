@@ -20,7 +20,15 @@ declare global {
 const Controller: React.FC<controllerProps> = React.memo(({ handleAddHistory }) => {
   const handleUserKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     const { key } = event;
-    if (key === "z" || key === "q" || key === "s" || key === "d" || key === "o" || key === "p") {
+    if (
+      key === "z" ||
+      key === "q" ||
+      key === "s" ||
+      key === "d" ||
+      key === "o" ||
+      key === "p" ||
+      key === "a"
+    ) {
       setKeyPressed(key);
       handleAddHistory("add", key);
     } else if (key === "r") {
@@ -40,7 +48,7 @@ const Controller: React.FC<controllerProps> = React.memo(({ handleAddHistory }) 
 
   const [isInversion, setIsInversion] = useState<boolean>(false);
 
-  const [keyPressed, setKeyPressed] = useState<"" | "z" | "q" | "s" | "d" | "o" | "p">("");
+  const [keyPressed, setKeyPressed] = useState<"" | "z" | "q" | "s" | "d" | "o" | "p" | "a">("");
 
   return (
     <Grid
@@ -143,6 +151,17 @@ const Controller: React.FC<controllerProps> = React.memo(({ handleAddHistory }) 
             color={keyPressed === "p" ? "primary" : "inherit"}
           >
             <Circle />
+          </Button>
+        </Box>
+      </Grid>
+      <Grid item xs={12} style={{ marginTop: "25px" }}>
+        <Box display="flex" justifyContent={"center"} alignItems="center">
+          <Button
+            sx={{ borderRadius: 28, fontWeight: "bold" }}
+            variant="contained"
+            color={keyPressed === "a" ? "primary" : "inherit"}
+          >
+            ARRÊT
           </Button>
         </Box>
       </Grid>
