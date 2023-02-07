@@ -6,10 +6,19 @@ interface historiqueProps {
   handleClearHistory: (action: "add" | "clear", value: string) => void;
   hasChange: boolean;
   handleChangeBoolean: () => void;
+  style: styleType;
 }
 
+type styleType = {
+  backgroundColor: string;
+  borderColor: string;
+  borderWidth: string;
+  borderRadius: string;
+  fontColor: string;
+};
+
 const Historique: React.FC<historiqueProps> = React.memo(
-  ({ datasHistory, handleClearHistory, hasChange, handleChangeBoolean }) => {
+  ({ datasHistory, handleClearHistory, hasChange, handleChangeBoolean, style }) => {
     useEffect(() => {
       handleChangeBoolean();
     }, [datasHistory, hasChange]);
@@ -19,10 +28,10 @@ const Historique: React.FC<historiqueProps> = React.memo(
         container
         spacing={0}
         style={{
-          border: "2px solid #3f51b5",
-          borderRadius: "4px",
+          border: style.borderWidth + " solid " + style.borderColor,
+          borderRadius: style.borderRadius,
           padding: "5px",
-          backgroundColor: "lightblue",
+          backgroundColor: style.backgroundColor,
         }}
       >
         <List
@@ -57,7 +66,11 @@ const Historique: React.FC<historiqueProps> = React.memo(
         <Grid
           item
           xs={12}
-          style={{ borderTop: "2px solid #3f51b5", marginTop: "15px", paddingTop: "15px" }}
+          style={{
+            borderTop: style.borderWidth + " solid " + style.borderColor,
+            marginTop: "15px",
+            paddingTop: "15px",
+          }}
         >
           <Button
             onClick={() => {

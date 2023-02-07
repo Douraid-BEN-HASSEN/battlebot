@@ -6,8 +6,17 @@ import ArrowCircleLeftOutlinedIcon from "@mui/icons-material/ArrowCircleLeftOutl
 import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOutlined";
 import ArrowCircleUpOutlinedIcon from "@mui/icons-material/ArrowCircleUpOutlined";
 
+type styleType = {
+  backgroundColor: string;
+  borderColor: string;
+  borderWidth: string;
+  borderRadius: string;
+  fontColor: string;
+};
+
 interface controllerProps {
   handleAddHistory: (action: "add" | "clear", value: string) => void;
+  style : styleType
 }
 
 declare global {
@@ -17,7 +26,7 @@ declare global {
   }
 }
 
-const Controller: React.FC<controllerProps> = React.memo(({ handleAddHistory }) => {
+const Controller: React.FC<controllerProps> = React.memo(({ handleAddHistory , style }) => {
   const handleUserKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     const { key } = event;
     if (
@@ -55,10 +64,10 @@ const Controller: React.FC<controllerProps> = React.memo(({ handleAddHistory }) 
       container
       spacing={0}
       style={{
-        border: "2px solid #3f51b5",
-        borderRadius: "4px",
+        border: style.borderWidth + " solid " + style.borderColor,
+        borderRadius: style.borderRadius,
         padding: "20px",
-        backgroundColor: "lightblue",
+        backgroundColor: style.backgroundColor ,
       }}
     >
       <Grid item xs={12}></Grid>

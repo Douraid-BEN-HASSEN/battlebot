@@ -8,6 +8,14 @@ import { goBack, goFront, sendRequest, turnLeft, turnRight , stopp} from "./func
 
 interface mainComponentProps {}
 
+const customStyle = {
+  backgroundColor : 'lightblue' ,
+  borderColor : '#3f51b5' ,
+  borderWidth: '2px' ,
+  borderRadius : '4px' , 
+  fontColor :'black' ,
+  
+}
 const keyToAction = {
   z: "Ordre : Avance",
   q: "Ordre : Tourne à gauche",
@@ -64,21 +72,11 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
 
   return (
     <>
-      <Button
-        variant="contained"
-        onClick={() =>
-          sendRequest(infosRequest.adresse, infosRequest.port, "test", {
-            name: "douraid",
-            size: "26",
-          })
-        }
-      >
-        test
-      </Button>
-      <Header />
+      <Header style={customStyle} />
       <Grid container spacing={1} style={{ width: "95%", marginLeft: "2.5px" }}>
         <Grid item xs={6}>
           <Historique
+            style={customStyle}
             datasHistory={datasHistory}
             handleClearHistory={updateHistory}
             hasChange={isChange}
@@ -86,10 +84,10 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
           />
         </Grid>
         <Grid item xs={6}>
-          <Controller handleAddHistory={updateHistory} />
+          <Controller handleAddHistory={updateHistory} style={customStyle} />
         </Grid>
       </Grid>
-      <Footer handleChange={handleChangeInfosRequest} />
+      <Footer handleChange={handleChangeInfosRequest}  style={customStyle} />
     </>
   );
 });
