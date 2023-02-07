@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Controller from "../Controller";
 import Header from "../Header";
-import {  Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import Footer from "../Footer";
 import Historique from "../Historique";
-import { goBack, goFront,  turnLeft, turnRight, stopp } from "../../Functions/Request";
+import { goBack, goFront, turnLeft, turnRight, stopp } from "../../Functions/Request";
 import { TYPE_STYLE, TYPE_INFOS_REQUEST } from "../../Constantes/Types";
 import { KEY_TO_ACTION } from "../../Constantes/Values";
 import { DEFAULT_INFOS_REQUEST } from "../../Constantes/Values";
@@ -52,10 +52,17 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
     setInfosRequest(values);
   };
 
+  const handleTest = () => {
+    console.log("handle test ");
+    let tmp = datasHistory;
+    tmp.push("Test lancé sur " + infosRequest.address + ":" + infosRequest.port);
+    setDatasHistory(tmp);
+    setIsChange(true);
+  };
+
   return (
     <>
       <Header style={customStyle} />
-      {infosRequest.address} / {infosRequest.port}
       <Grid container spacing={1} style={{ width: "95%", marginLeft: "2.5px" }}>
         <Grid item xs={6}>
           <Historique
@@ -70,7 +77,12 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
           <Controller handleAddHistory={updateHistory} style={customStyle} />
         </Grid>
       </Grid>
-      <Footer values={infosRequest} handleChange={handleChangeInfosRequest} style={customStyle} />
+      <Footer
+        handleTest={handleTest}
+        values={infosRequest}
+        handleChange={handleChangeInfosRequest}
+        style={customStyle}
+      />
     </>
   );
 });
