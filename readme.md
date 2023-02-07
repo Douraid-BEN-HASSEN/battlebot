@@ -10,7 +10,6 @@
 ### Json sent with HTTP 
 ```json 
 {
-    "id"= int,
     "topic" = str,
     "message" = str,
 }
