@@ -26,7 +26,7 @@ const Header: React.FC<headerProps> = React.memo(({}) => {
                 }}
               >
                 <Stack direction="row" alignItems={"center"} gap={1}>
-                  <LocalFireDepartmentIcon/><PetsIcon /> Pussy Slayer <PetsIcon /> <LocalFireDepartmentIcon/>
+                  <LocalFireDepartmentIcon/><PetsIcon /> Jaw Breaker <PetsIcon /> <LocalFireDepartmentIcon/>
                 </Stack>
               </Grid>
             </Box>

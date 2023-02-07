@@ -7,7 +7,7 @@ import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOu
 import ArrowCircleUpOutlinedIcon from "@mui/icons-material/ArrowCircleUpOutlined";
 
 interface controllerProps {
-  handleAddHistory: (value: string) => void;
+  handleAddHistory: (action: "add" | "clear", value: string) => void;
 }
 
 declare global {
@@ -20,14 +20,13 @@ declare global {
 const Controller: React.FC<controllerProps> = React.memo(({ handleAddHistory }) => {
   const handleUserKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     const { key } = event;
-    if (key === "z" || key === "q" || key === "s" || key === "d" || key === "o" || key === "p")
+    if (key === "z" || key === "q" || key === "s" || key === "d" || key === "o" || key === "p") {
       setKeyPressed(key);
-    else if (key === "r") {
+      handleAddHistory("add", key);
+    } else if (key === "r") {
       if (isInversion) setIsInversion(false);
       else setIsInversion(true);
     }
-
-    handleAddHistory(key);
   };
 
   const handleUserKeyRelease = (event: React.KeyboardEvent<HTMLInputElement>) => {
