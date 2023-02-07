@@ -1,16 +1,21 @@
 import random
 import time
-
+import json
 from paho.mqtt import client as mqtt_client
 
 
 broker = 'broker.emqx.io'
 port = 1883
-topic = "robot"
+topic = "response_order/"
 # generate client ID with pub prefix randomly
 client_id = f'python-mqtt-{random.randint(0, 1000)}'
+
+
 username = 'emqx'
 password = 'public'
+
+MQTT_MSG=json.dumps({"id": 3,
+             "order_id":  3})
 
 def connect_mqtt():
     def on_connect(client, userdata, flags, rc):
@@ -31,11 +36,11 @@ def publish(client):
     while True:
         time.sleep(1)
         msg = f"messages: {msg_count}"
-        result = client.publish(topic, msg)
+        result = client.publish(topic, MQTT_MSG)
         # result: [0, 1]
         status = result[0]
         if status == 0:
-            print(f"Send `{msg}` to topic `{topic}`")
+            print(f"Send `{MQTT_MSG}` to topic `{topic}`")
         else:
             print(f"Failed to send message to topic {topic}")
         msg_count += 1

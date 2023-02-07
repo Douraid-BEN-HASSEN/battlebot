@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 from .views import OrderViewSet, TableView , order_delete
 
 router = DefaultRouter()
-router.register(r"orders", OrderViewSet)
+router.register(r"send_orders", OrderViewSet)
 
 urlpatterns = [
     path("", include(router.urls)),

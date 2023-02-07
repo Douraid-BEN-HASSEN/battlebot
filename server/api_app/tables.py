@@ -4,5 +4,5 @@ class SimpleTable(tables.Table):
 
     class Meta:
         model = Order
-        fields = ['received_time', 'sent_time', 'topic', 'message', 'status']
+        fields = ['id','received_time', 'sent_time', 'topic', 'message', 'status']
         template_name = "django_tables2/bootstrap.html"

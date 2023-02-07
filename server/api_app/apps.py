@@ -1,4 +1,6 @@
 from django.apps import AppConfig
+from subprocess import Popen
+import os
 
 
 class ApiAppConfig(AppConfig):

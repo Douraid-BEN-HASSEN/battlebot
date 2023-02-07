@@ -1,13 +1,9 @@
-# python3.6
-
 import random
-
 from paho.mqtt import client as mqtt_client
-from mqtthandler import handle
-
+from .mqtthandler import handle
 broker = 'broker.emqx.io'
 port = 1883
-topic = "robot"
+topic = "response_order/"
 # generate client ID with pub prefix randomly
 client_id = f'python-mqtt-{random.randint(0, 100)}'
 username = 'emqx'
@@ -36,12 +32,8 @@ def subscribe(client: mqtt_client):
     client.subscribe(topic)
     client.on_message = on_message
 
-
-def run():
+def run_mqtt_listener():
     client = connect_mqtt()
     subscribe(client)
     client.loop_forever()
 
-
-if __name__ == '__main__':
-    run()

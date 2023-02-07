@@ -11,12 +11,7 @@ from .serializers import OrderSerializer
 from .tables import SimpleTable
 
 
-def start_mqtt_listener():
-    subprocess.Popen(["python", "mqttlistener.py"])
-    return HttpResponse("MQTT listener started")
 
-
-start_mqtt_listener()
 def order_delete(request, pk):
     order = get_object_or_404(Order, pk=pk)
     if request.method == 'POST':
