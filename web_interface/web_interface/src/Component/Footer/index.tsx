@@ -1,19 +1,12 @@
 import { Toolbar, Grid, AppBar, Button, Stack, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
-
+import { TYPE_STYLE } from "../../Constantes/Types";
 interface footerProrps {
   handleChange: (field: "adresse" | "port", value: string | number) => void;
-  style: styleType;
+  style: TYPE_STYLE;
 }
 
-type styleType = {
-  backgroundColor: string;
-  borderColor: string;
-  borderWidth: string;
-  borderRadius: string;
-  fontColor: string;
-};
 
 const Footer: React.FC<footerProrps> = React.memo(({ handleChange, style }) => {
   const [isUpdate, setIsUpdate] = useState<boolean>(false);

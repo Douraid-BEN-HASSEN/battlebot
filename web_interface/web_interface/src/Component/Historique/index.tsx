@@ -1,21 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Button, Grid, List, ListItem, ListItemText } from "@mui/material";
-
+import { TYPE_STYLE } from "../../Constantes/Types";
 interface historiqueProps {
   datasHistory: Array<string>;
   handleClearHistory: (action: "add" | "clear", value: string) => void;
   hasChange: boolean;
   handleChangeBoolean: () => void;
-  style: styleType;
+  style: TYPE_STYLE;
 }
-
-type styleType = {
-  backgroundColor: string;
-  borderColor: string;
-  borderWidth: string;
-  borderRadius: string;
-  fontColor: string;
-};
 
 const Historique: React.FC<historiqueProps> = React.memo(
   ({ datasHistory, handleClearHistory, hasChange, handleChangeBoolean, style }) => {
