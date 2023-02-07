@@ -1,33 +1,30 @@
 import React, { useState } from "react";
 import Controller from "../Controller";
 import Header from "../Header";
-import { Button, Grid } from "@mui/material";
+import {  Grid } from "@mui/material";
 import Footer from "../Footer";
 import Historique from "../Historique";
-import { goBack, goFront, sendRequest, turnLeft, turnRight , stopp} from "../../Functions/Request";
-import { TYPE_STYLE , TYPE_INFOS_REQUEST } from "../../Constantes/Types";
+import { goBack, goFront,  turnLeft, turnRight, stopp } from "../../Functions/Request";
+import { TYPE_STYLE, TYPE_INFOS_REQUEST } from "../../Constantes/Types";
 import { KEY_TO_ACTION } from "../../Constantes/Values";
+import { DEFAULT_INFOS_REQUEST } from "../../Constantes/Values";
 
 interface mainComponentProps {}
 
 const customStyle = {
-  backgroundColor : 'lightblue' ,
-  borderColor : '#3f51b5' ,
-  borderWidth: '2px' ,
-  borderRadius : '4px' , 
-  fontColor :'black' ,
-} as TYPE_STYLE
-
+  backgroundColor: "lightblue",
+  borderColor: "#3f51b5",
+  borderWidth: "2px",
+  borderRadius: "4px",
+  fontColor: "black",
+} as TYPE_STYLE;
 
 const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
   const [datasHistory, setDatasHistory] = useState<Array<string>>([]);
 
   const [isChange, setIsChange] = useState<boolean>(false);
 
-  const [infosRequest, setInfosRequest] = useState<TYPE_INFOS_REQUEST>({
-    address: "",
-    port: 0,
-  });
+  const [infosRequest, setInfosRequest] = useState<TYPE_INFOS_REQUEST>(DEFAULT_INFOS_REQUEST);
 
   const updateHistory = (action: "add" | "clear", value: string) => {
     if (action === "clear") {
@@ -51,16 +48,14 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
     }
   };
 
-  const handleChangeInfosRequest = (field: "adresse" | "port", value: number | string) => {
-    let tmp = infosRequest as TYPE_INFOS_REQUEST;
-    if (field === "adresse") tmp.address = value as string;
-    else tmp.port = value as number;
-    setInfosRequest(tmp);
+  const handleChangeInfosRequest = (values: TYPE_INFOS_REQUEST) => {
+    setInfosRequest(values);
   };
 
   return (
     <>
       <Header style={customStyle} />
+      {infosRequest.address} / {infosRequest.port}
       <Grid container spacing={1} style={{ width: "95%", marginLeft: "2.5px" }}>
         <Grid item xs={6}>
           <Historique
@@ -75,7 +70,7 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
           <Controller handleAddHistory={updateHistory} style={customStyle} />
         </Grid>
       </Grid>
-      <Footer handleChange={handleChangeInfosRequest}  style={customStyle} />
+      <Footer values={infosRequest} handleChange={handleChangeInfosRequest} style={customStyle} />
     </>
   );
 });
