@@ -3,16 +3,9 @@ import React from "react";
 import { Stack } from "@mui/system";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 import PetsIcon from '@mui/icons-material/Pets';
-
-type styleType = {
-  backgroundColor : string , 
-  borderColor : string , 
-  borderWidth : string , 
-  borderRadius: string , 
-  fontColor: string 
-}
+import { TYPE_STYLE } from "../../Constantes/Types";
 interface headerProps {
-  style : styleType 
+  style : TYPE_STYLE 
 }
 
 const Header: React.FC<headerProps> = React.memo(({

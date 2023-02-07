@@ -5,18 +5,12 @@ import ArrowCircleDownOutlinedIcon from "@mui/icons-material/ArrowCircleDownOutl
 import ArrowCircleLeftOutlinedIcon from "@mui/icons-material/ArrowCircleLeftOutlined";
 import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOutlined";
 import ArrowCircleUpOutlinedIcon from "@mui/icons-material/ArrowCircleUpOutlined";
+import { TYPE_STYLE } from "../../Constantes/Types";
 
-type styleType = {
-  backgroundColor: string;
-  borderColor: string;
-  borderWidth: string;
-  borderRadius: string;
-  fontColor: string;
-};
 
 interface controllerProps {
   handleAddHistory: (action: "add" | "clear", value: string) => void;
-  style : styleType
+  style : TYPE_STYLE
 }
 
 declare global {

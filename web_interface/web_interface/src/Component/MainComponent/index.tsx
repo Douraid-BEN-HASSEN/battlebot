@@ -4,7 +4,9 @@ import Header from "../Header";
 import { Button, Grid } from "@mui/material";
 import Footer from "../Footer";
 import Historique from "../Historique";
-import { goBack, goFront, sendRequest, turnLeft, turnRight , stopp} from "./functions";
+import { goBack, goFront, sendRequest, turnLeft, turnRight , stopp} from "../../Functions/Request";
+import { TYPE_STYLE , TYPE_INFOS_REQUEST } from "../../Constantes/Types";
+import { KEY_TO_ACTION } from "../../Constantes/Values";
 
 interface mainComponentProps {}
 
@@ -14,30 +16,16 @@ const customStyle = {
   borderWidth: '2px' ,
   borderRadius : '4px' , 
   fontColor :'black' ,
-  
-}
-const keyToAction = {
-  z: "Ordre : Avance",
-  q: "Ordre : Tourne à gauche",
-  s: "Ordre : Recule ",
-  d: "Ordre : Tourne à droite",
-  o: "Ordre : Action 1",
-  p: "Ordre : Action 2",
-  a: "Ordre : S'arrêter",
-} as any;
+} as TYPE_STYLE
 
-type infos = {
-  adresse: string;
-  port: number;
-};
 
 const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
   const [datasHistory, setDatasHistory] = useState<Array<string>>([]);
 
   const [isChange, setIsChange] = useState<boolean>(false);
 
-  const [infosRequest, setInfosRequest] = useState<infos>({
-    adresse: "",
+  const [infosRequest, setInfosRequest] = useState<TYPE_INFOS_REQUEST>({
+    address: "",
     port: 0,
   });
 
@@ -48,14 +36,14 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
     } else if (action === "add") {
       if (value !== "r") {
         let tmp = datasHistory;
-        if (tmp.length === 0 || (tmp.length > 0 && tmp.at(-1) !== keyToAction[value])) {
-          if (value === "z") goFront(infosRequest.adresse, infosRequest.port, "/test");
-          else if (value === "q") turnLeft(infosRequest.adresse, infosRequest.port, "/test");
-          else if (value === "r") turnRight(infosRequest.adresse, infosRequest.port, "/test");
-          else if (value === "s") goBack(infosRequest.adresse, infosRequest.port, "/test");
-          else if (value === "a") stopp(infosRequest.adresse, infosRequest.port, "/test");
+        if (tmp.length === 0 || (tmp.length > 0 && tmp.at(-1) !== KEY_TO_ACTION[value])) {
+          if (value === "z") goFront(infosRequest.address, infosRequest.port, "/test");
+          else if (value === "q") turnLeft(infosRequest.address, infosRequest.port, "/test");
+          else if (value === "r") turnRight(infosRequest.address, infosRequest.port, "/test");
+          else if (value === "s") goBack(infosRequest.address, infosRequest.port, "/test");
+          else if (value === "a") stopp(infosRequest.address, infosRequest.port, "/test");
 
-          tmp.push(keyToAction[value]);
+          tmp.push(KEY_TO_ACTION[value]);
           setDatasHistory(tmp);
           setIsChange(true);
         }
@@ -64,8 +52,8 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
   };
 
   const handleChangeInfosRequest = (field: "adresse" | "port", value: number | string) => {
-    let tmp = infosRequest as infos;
-    if (field === "adresse") tmp.adresse = value as string;
+    let tmp = infosRequest as TYPE_INFOS_REQUEST;
+    if (field === "adresse") tmp.address = value as string;
     else tmp.port = value as number;
     setInfosRequest(tmp);
   };
