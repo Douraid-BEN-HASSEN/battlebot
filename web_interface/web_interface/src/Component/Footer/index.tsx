@@ -1,15 +1,18 @@
 import { Toolbar, Grid, AppBar, Button, Stack, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
-import { TYPE_STYLE } from "../../Constantes/Types";
+import { TYPE_STYLE, TYPE_INFOS_REQUEST } from "../../Constantes/Types";
 interface footerProrps {
-  handleChange: (field: "adresse" | "port", value: string | number) => void;
+  handleChange: (values: TYPE_INFOS_REQUEST) => void;
   style: TYPE_STYLE;
+  values: TYPE_INFOS_REQUEST;
 }
 
-
-const Footer: React.FC<footerProrps> = React.memo(({ handleChange, style }) => {
+const Footer: React.FC<footerProrps> = React.memo(({ handleChange, style, values }) => {
   const [isUpdate, setIsUpdate] = useState<boolean>(false);
+
+  const [addresse, setAddresse] = useState<string>(values.address);
+  const [port, setPort] = useState<number>(values.port);
 
   return (
     <Box sx={{ flewGrow: 1 }} style={{ position: "fixed", left: "0", bottom: "0", width: "100%" }}>
@@ -26,11 +29,12 @@ const Footer: React.FC<footerProrps> = React.memo(({ handleChange, style }) => {
             <Grid item xs={6} style={{ fontWeight: "bold" }}>
               <Box display="flex" justifyContent="center" alignItems="center">
                 <TextField
+                  value={addresse}
                   disabled={!isUpdate}
                   style={{ width: "100%" }}
                   label="Adresse IP"
                   onChange={(event: any) => {
-                    handleChange("adresse", event.target.value);
+                    setAddresse(event.target.value);
                   }}
                 />
               </Box>
@@ -38,12 +42,13 @@ const Footer: React.FC<footerProrps> = React.memo(({ handleChange, style }) => {
             <Grid item xs={3} style={{ fontWeight: "bold" }}>
               <Box display="flex" justifyContent="center" alignItems="center">
                 <TextField
+                  value={port}
                   disabled={!isUpdate}
                   style={{ width: "100%" }}
                   label="Port"
                   type={"number"}
                   onChange={(event: any) => {
-                    handleChange("port", event.target.value);
+                    setPort(event.target.value);
                   }}
                 />
               </Box>
@@ -58,6 +63,10 @@ const Footer: React.FC<footerProrps> = React.memo(({ handleChange, style }) => {
                     onClick={() => {
                       if (isUpdate === true) {
                         setIsUpdate(false);
+                        handleChange({
+                          address: addresse,
+                          port: port,
+                        });
                       } else setIsUpdate(true);
                     }}
                   >
