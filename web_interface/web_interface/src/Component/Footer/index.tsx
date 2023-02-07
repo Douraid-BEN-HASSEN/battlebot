@@ -6,9 +6,10 @@ interface footerProrps {
   handleChange: (values: TYPE_INFOS_REQUEST) => void;
   style: TYPE_STYLE;
   values: TYPE_INFOS_REQUEST;
+  handleTest : () => void
 }
 
-const Footer: React.FC<footerProrps> = React.memo(({ handleChange, style, values }) => {
+const Footer: React.FC<footerProrps> = React.memo(({ handleChange, style, values , handleTest }) => {
   const [isUpdate, setIsUpdate] = useState<boolean>(false);
 
   const [addresse, setAddresse] = useState<string>(values.address);
@@ -77,6 +78,8 @@ const Footer: React.FC<footerProrps> = React.memo(({ handleChange, style, values
               <Grid item xs={12} style={{ fontWeight: "bold", marginTop: "5px" }}>
                 <Box display="flex" justifyContent="center" alignItems="center">
                   <Button
+                    disabled={isUpdate}
+                    onClick={handleTest}
                     color="inherit"
                     variant="contained"
                     style={{ width: "95%", color: style.fontColor, fontWeight: "bold" }}
