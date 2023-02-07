@@ -10,6 +10,8 @@ from rest_framework import viewsets
 from django.shortcuts import render
 from .tables import SimpleTable
 from django.shortcuts import get_object_or_404, redirect
+from django.http import HttpResponseForbidden
+
 
 def order_delete(request, pk):
     order = get_object_or_404(Order, pk=pk)
@@ -17,36 +19,17 @@ def order_delete(request, pk):
         order.delete()
         return redirect('order_list')
 
-class OrdersAPI(APIView):
-    def get(self, request):
-        books = Order.objects.all()
-        serializer = OrderSerializer(books, many=True)
 
-        """return JsonResponse({
-            "orders": serializer.data
-        }, safe=False)"""
-
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
-
-
-    def post(self, request):
-        topic = request.data.get("topic")
-        message = request.data.get("message")
-        data ={
-            "topic":topic,
-            "message":message
-        }
-        serializer = OrderSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.error_messages, status=status.HTTP_201_CREATED)
-        return Response(serializer.error_messages, status=status.HTTP_400_BAD_REQUEST)
 
 
 class OrderViewSet(viewsets.ModelViewSet):
     serializer_class = OrderSerializer
     queryset = Order.objects.all()
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.META['REMOTE_ADDR'] != '127.0.0.1':
+            return HttpResponseForbidden()
+        return super().dispatch(request, *args, **kwargs)
 
 
 class TableView(tables.SingleTableView):
