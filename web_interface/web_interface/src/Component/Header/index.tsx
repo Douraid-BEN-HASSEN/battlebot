@@ -2,6 +2,7 @@ import { AppBar, Box, Grid, Toolbar } from "@mui/material";
 import React from "react";
 import { Stack } from "@mui/system";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
+import PetsIcon from '@mui/icons-material/Pets';
 
 interface headerProps {}
 
@@ -20,10 +21,12 @@ const Header: React.FC<headerProps> = React.memo(({}) => {
                 xs={12}
                 style={{
                   fontWeight: "bold",
+                  color:'black' , 
+                  fontSize:'30px'
                 }}
               >
                 <Stack direction="row" alignItems={"center"} gap={1}>
-                  <LocalFireDepartmentIcon /> Big Boi <LocalFireDepartmentIcon />
+                  <LocalFireDepartmentIcon/><PetsIcon /> Pussy Slayer <PetsIcon /> <LocalFireDepartmentIcon/>
                 </Stack>
               </Grid>
             </Box>

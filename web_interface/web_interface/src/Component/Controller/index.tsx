@@ -1,14 +1,13 @@
 import { Grid, Box, Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
-import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
-import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
-import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
-import CircleIcon from "@mui/icons-material/Circle";
 import { Circle } from "@mui/icons-material";
+import ArrowCircleDownOutlinedIcon from "@mui/icons-material/ArrowCircleDownOutlined";
+import ArrowCircleLeftOutlinedIcon from "@mui/icons-material/ArrowCircleLeftOutlined";
+import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOutlined";
+import ArrowCircleUpOutlinedIcon from "@mui/icons-material/ArrowCircleUpOutlined";
 
 interface controllerProps {
-  handleAddHistory : (value:string) => void 
+  handleAddHistory: (value: string) => void;
 }
 
 declare global {
@@ -18,14 +17,17 @@ declare global {
   }
 }
 
-const Controller: React.FC<controllerProps> = React.memo(({
-  handleAddHistory
-}) => {
+const Controller: React.FC<controllerProps> = React.memo(({ handleAddHistory }) => {
   const handleUserKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     const { key } = event;
     if (key === "z" || key === "q" || key === "s" || key === "d" || key === "o" || key === "p")
       setKeyPressed(key);
-      handleAddHistory(key)
+    else if (key === "r") {
+      if (isInversion) setIsInversion(false);
+      else setIsInversion(true);
+    }
+
+    handleAddHistory(key);
   };
 
   const handleUserKeyRelease = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -37,6 +39,8 @@ const Controller: React.FC<controllerProps> = React.memo(({
     window.addEventListener("keyup", handleUserKeyRelease);
   });
 
+  const [isInversion, setIsInversion] = useState<boolean>(false);
+
   const [keyPressed, setKeyPressed] = useState<"" | "z" | "q" | "s" | "d" | "o" | "p">("");
 
   return (
@@ -45,17 +49,23 @@ const Controller: React.FC<controllerProps> = React.memo(({
       spacing={0}
       style={{
         border: "2px solid #3f51b5",
-        borderRadius:"4px" , 
-        padding:'20px'
+        borderRadius: "4px",
+        padding: "20px",
+        backgroundColor: "lightblue",
       }}
     >
+      <Grid item xs={12}></Grid>
       <Grid item xs={4}>
         <Box display="flex" justifyContent="center" alignItems="center"></Box>
       </Grid>
       <Grid item xs={4}>
         <Box display="flex" justifyContent="center" alignItems="center">
-          <Button variant="contained" color={keyPressed === "z" ? "primary" : "inherit"}>
-            <ArrowCircleUpIcon />
+          <Button
+            sx={{ borderRadius: 28 }}
+            variant="contained"
+            color={keyPressed === "z" ? "primary" : "inherit"}
+          >
+            <ArrowCircleUpOutlinedIcon />
           </Button>
         </Box>
       </Grid>
@@ -64,8 +74,12 @@ const Controller: React.FC<controllerProps> = React.memo(({
       </Grid>
       <Grid item xs={4}>
         <Box display="flex" justifyContent="center" alignItems="center">
-          <Button variant="contained" color={keyPressed === "q" ? "primary" : "inherit"}>
-            <ArrowCircleLeftIcon />
+          <Button
+            sx={{ borderRadius: 28 }}
+            variant="contained"
+            color={keyPressed === "q" ? "primary" : "inherit"}
+          >
+            <ArrowCircleLeftOutlinedIcon />
           </Button>
         </Box>
       </Grid>
@@ -74,8 +88,12 @@ const Controller: React.FC<controllerProps> = React.memo(({
       </Grid>
       <Grid item xs={4}>
         <Box display="flex" justifyContent="center" alignItems="center">
-          <Button variant="contained" color={keyPressed === "d" ? "primary" : "inherit"}>
-            <ArrowCircleRightIcon />
+          <Button
+            sx={{ borderRadius: 28 }}
+            variant="contained"
+            color={keyPressed === "d" ? "primary" : "inherit"}
+          >
+            <ArrowCircleRightOutlinedIcon />
           </Button>
         </Box>
       </Grid>
@@ -84,24 +102,47 @@ const Controller: React.FC<controllerProps> = React.memo(({
       </Grid>
       <Grid item xs={4}>
         <Box display="flex" justifyContent="center" alignItems="center">
-          <Button variant="contained" color={keyPressed === "s" ? "primary" : "inherit"}>
-            <ArrowCircleDownIcon />
+          <Button
+            sx={{ borderRadius: 28 }}
+            variant="contained"
+            color={keyPressed === "s" ? "primary" : "inherit"}
+          >
+            <ArrowCircleDownOutlinedIcon />
           </Button>
         </Box>
       </Grid>
       <Grid item xs={4}>
         <Box display="flex" justifyContent="center" alignItems="center"></Box>
       </Grid>
-      <Grid item xs={6} style={{ marginTop: "50px" }}>
+      <Grid item xs={4} style={{ marginTop: "50px" }}>
         <Box display="flex" justifyContent="center" alignItems="center">
-          <Button variant="contained" color={keyPressed === "o" ? "primary" : "inherit"}>
+          <Button
+            sx={{ borderRadius: 28 }}
+            variant="contained"
+            color={keyPressed === "o" ? "primary" : "inherit"}
+          >
             <Circle />
           </Button>
         </Box>
       </Grid>
-      <Grid item xs={6} style={{ marginTop: "50px" }}>
+      <Grid item xs={4} style={{ marginTop: "50px" }}>
         <Box display="flex" justifyContent="center" alignItems="center">
-          <Button variant="contained" color={keyPressed === "p" ? "primary" : "inherit"}>
+          <Button
+            sx={{ borderRadius: 28, fontWeight: "bold" }}
+            variant="contained"
+            color={isInversion ? "primary" : "inherit"}
+          >
+            INVERSION
+          </Button>
+        </Box>
+      </Grid>
+      <Grid item xs={4} style={{ marginTop: "50px" }}>
+        <Box display="flex" justifyContent="center" alignItems="center">
+          <Button
+            sx={{ borderRadius: 28 }}
+            variant="contained"
+            color={keyPressed === "p" ? "primary" : "inherit"}
+          >
             <Circle />
           </Button>
         </Box>
