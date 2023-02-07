@@ -2,16 +2,15 @@ import { Toolbar, Grid, AppBar, Button, Stack, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
 
-interface footerProrps {}
+interface footerProrps {
+  handleChange: (field: "adresse" | "port", value: string | number) => void;
+}
 
-const Footer: React.FC<footerProrps> = React.memo(({}) => {
+const Footer: React.FC<footerProrps> = React.memo(({
+  handleChange
+}) => {
   const [isUpdate, setIsUpdate] = useState<boolean>(false);
-  const [addresse, setAddresse] = useState<string>("");
-  const [port, setPort] = useState<number>();
 
-  const confimChoice = () => {
-    console.log(addresse , port)
-  }
 
   return (
     <Box sx={{ flewGrow: 1 }} style={{ position: "fixed", left: "0", bottom: "0", width: "100%" }}>
@@ -28,7 +27,7 @@ const Footer: React.FC<footerProrps> = React.memo(({}) => {
                   style={{ width: "100%" }}
                   label="Adresse IP"
                   onChange={(event: any) => {
-                    setAddresse(event.target.value);
+                    handleChange("adresse" , event.target.value);
                   }}
                 />
               </Box>
@@ -41,7 +40,7 @@ const Footer: React.FC<footerProrps> = React.memo(({}) => {
                   label="Port"
                   type={"number"}
                   onChange={(event: any) => {
-                    setPort(event.target.value);
+                    handleChange("port" , event.target.value);
                   }}
                 />
               </Box>
@@ -56,7 +55,6 @@ const Footer: React.FC<footerProrps> = React.memo(({}) => {
                     onClick={() => {
                       if (isUpdate === true) {
                         setIsUpdate(false);
-                        confimChoice() ;
                       } else setIsUpdate(true);
                     }}
                   >

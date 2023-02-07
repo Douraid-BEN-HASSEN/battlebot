@@ -14,7 +14,8 @@ const Historique: React.FC<historiqueProps> = React.memo(({ datasHistory, handle
       style={{
         border: "2px solid #3f51b5",
         borderRadius: "4px",
-        padding: "5px",
+        padding: "5px", 
+        backgroundColor:'lightblue'
       }}
     >
       <List
