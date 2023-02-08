@@ -6,10 +6,10 @@ interface footerProrps {
   handleChange: (values: TYPE_INFOS_REQUEST) => void;
   style: TYPE_STYLE;
   values: TYPE_INFOS_REQUEST;
-  handleTest : () => void
+  handleTest: () => void;
 }
 
-const Footer: React.FC<footerProrps> = React.memo(({ handleChange, style, values , handleTest }) => {
+const Footer: React.FC<footerProrps> = React.memo(({ handleChange, style, values, handleTest }) => {
   const [isUpdate, setIsUpdate] = useState<boolean>(false);
 
   const [addresse, setAddresse] = useState<string>(values.address);
@@ -30,9 +30,13 @@ const Footer: React.FC<footerProrps> = React.memo(({ handleChange, style, values
             <Grid item xs={6} style={{ fontWeight: "bold" }}>
               <Box display="flex" justifyContent="center" alignItems="center">
                 <TextField
+                  InputLabelProps={{
+                    style : { color : 'yellow'}
+                  }}
+                  sx={{ input: { color: "red" } }}
                   value={addresse}
                   disabled={!isUpdate}
-                  style={{ width: "100%" }}
+                  style={{ width: "100%"  }}
                   label="Adresse IP"
                   onChange={(event: any) => {
                     setAddresse(event.target.value);

@@ -11,6 +11,6 @@ export const KEY_TO_ACTION = {
 } as any;
 
 export const DEFAULT_INFOS_REQUEST = {
-  address : '127.0.0.1' , 
+  address : '10.3.2.25' , 
   port : 80
 } as TYPE_INFOS_REQUEST

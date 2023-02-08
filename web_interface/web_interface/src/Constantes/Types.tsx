@@ -4,6 +4,9 @@ export type TYPE_STYLE = {
     borderWidth : string ; 
     borderRadius : string ; 
     fontColor : string ;
+    mainBackgroundColor: string ;
+    borderColorButton : string ;
+    borderWidthButton : string ; 
 }
 
 export type TYPE_INFOS_REQUEST = {

@@ -8,20 +8,35 @@ import { goBack, goFront, turnLeft, turnRight, stopp } from "../../Functions/Req
 import { TYPE_STYLE, TYPE_INFOS_REQUEST } from "../../Constantes/Types";
 import { KEY_TO_ACTION } from "../../Constantes/Values";
 import { DEFAULT_INFOS_REQUEST } from "../../Constantes/Values";
-
 interface mainComponentProps {}
 
 const customStyle = {
   backgroundColor: "lightblue",
   borderColor: "#3f51b5",
-  borderWidth: "2px",
+  borderWidth: "4px",
   borderRadius: "4px",
   fontColor: "black",
+  mainBackgroundColor: "lightgray",
+  borderWidthButton: "2px",
+  borderColorButton: "#3f51b5",
+} as TYPE_STYLE;
+
+const customStylee = {
+  backgroundColor: "black",
+  borderColor: "darkgreen",
+  borderWidth: "3px",
+  borderRadius: "10px",
+  fontColor: "darkgreen",
+  mainBackgroundColor: "black",
+
+  borderColorButton: "darkgreen",
+  borderRadiusButton: "5px",
+  borderWidthButton: "2px",
 } as TYPE_STYLE;
 
 const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
   const [datasHistory, setDatasHistory] = useState<Array<string>>([]);
-
+  const [showHelp, setShowHelp] = useState<boolean>(false);
   const [isChange, setIsChange] = useState<boolean>(false);
 
   const [infosRequest, setInfosRequest] = useState<TYPE_INFOS_REQUEST>(DEFAULT_INFOS_REQUEST);
@@ -36,7 +51,7 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
         if (tmp.length === 0 || (tmp.length > 0 && tmp.at(-1) !== KEY_TO_ACTION[value])) {
           if (value === "z") goFront(infosRequest.address, infosRequest.port, "/test");
           else if (value === "q") turnLeft(infosRequest.address, infosRequest.port, "/test");
-          else if (value === "r") turnRight(infosRequest.address, infosRequest.port, "/test");
+          else if (value === "d") turnRight(infosRequest.address, infosRequest.port, "/test");
           else if (value === "s") goBack(infosRequest.address, infosRequest.port, "/test");
           else if (value === "a") stopp(infosRequest.address, infosRequest.port, "/test");
 
@@ -61,8 +76,17 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
   };
 
   return (
-    <>
-      <Header style={customStyle} />
+    <div
+      style={{
+        height: "100%",
+        position: "absolute",
+        left: "0px",
+        width: "100%",
+        overflow: "hidden",
+        backgroundColor: customStyle.mainBackgroundColor,
+      }}
+    >
+      <Header style={customStyle} showHelp={showHelp} />
       <Grid container spacing={1} style={{ width: "95%", marginLeft: "2.5px" }}>
         <Grid item xs={6}>
           <Historique
@@ -74,7 +98,14 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
           />
         </Grid>
         <Grid item xs={6}>
-          <Controller handleAddHistory={updateHistory} style={customStyle} />
+          <Controller
+            handleClickShowHelp={() => {
+              if (showHelp) setShowHelp(false);
+              else setShowHelp(true);
+            }}
+            handleAddHistory={updateHistory}
+            style={customStyle}
+          />
         </Grid>
       </Grid>
       <Footer
@@ -83,7 +114,7 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
         handleChange={handleChangeInfosRequest}
         style={customStyle}
       />
-    </>
+    </div>
   );
 });
 
