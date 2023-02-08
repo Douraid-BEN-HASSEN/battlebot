@@ -8,11 +8,9 @@ from datetime import datetime
 
 client = mqtt.Client()
 class OrderSerializer(serializers.ModelSerializer):
-    received_time = serializers.DateTimeField(default=datetime.now)
-
     class Meta:
         model = Order
-        fields = ["received_time", "topic", "message"]
+        fields = ["topic", "message"]
 
     def create(self, validated_data):
         received_time = datetime.now().isoformat()
@@ -20,6 +18,5 @@ class OrderSerializer(serializers.ModelSerializer):
         order =  Order.objects.create(**validated_data)
         client.connect("broker.emqx.io", 1883)
         client.publish(order.topic, order.message)
-        # client.disconnect()
         return order
 

@@ -2,17 +2,19 @@ import random
 import time
 import json
 from paho.mqtt import client as mqtt_client
+import paho.mqtt.client as paho
+import paho
+from paho import mqtt
 
-
-broker = 'broker.emqx.io'
-port = 1883
-topic = "response_order/"
+broker = 'beeb3ef0279e4d86985afe740d185f1c.s2.eu.hivemq.cloud'
+port = 8883
+topic = "robot"
 # generate client ID with pub prefix randomly
 client_id = f'python-mqtt-{random.randint(0, 1000)}'
 
 
-username = 'emqx'
-password = 'public'
+username = 'MPbs7eXCKby8HFC'
+password = 'FHNkH2LyRStfWlq'
 
 MQTT_MSG=json.dumps({"id": 3,
              "order_id":  3})
@@ -27,6 +29,7 @@ def connect_mqtt():
     client = mqtt_client.Client(client_id)
     client.username_pw_set(username, password)
     client.on_connect = on_connect
+    client.tls_set(tls_version=mqtt.client.ssl.PROTOCOL_TLS)
     client.connect(broker, port)
     return client
 

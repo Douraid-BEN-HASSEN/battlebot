@@ -3,10 +3,12 @@ from .models import Order
 import json
 
 def handle(topic , message):
-    print("HANDLING ", topic , ":", message)
     # ....
-    message = json.loads(message)
-    if topic=="/robot_information":
+    try :
+        message = json.loads(message)
+    except :
+        pass
+    if topic=="robot_information/":
         # the robot send his information and the backend send it to the front end to show the robot information
         pass
     if topic =="response_order/":

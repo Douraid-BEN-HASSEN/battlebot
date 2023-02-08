@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 import threading
-from api_app.listener2 import  run_mqtt_listener
+from api_app.mqttlistener import  run_mqtt_listener
 import sys
 class Command(BaseCommand):
     help = "Starts the MQTT listener thread"

@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['10.3.2.25']
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'api_app',
     'django_tables2',
+    "django_extensions",
 
 ]
 
