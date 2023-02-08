@@ -8,20 +8,27 @@ const sendRequest = (address, port, path, content) => {
         console.log("Return error")
         return -1
     }
-    axios.post(address + ":" + port + "/" + path, {
+    
+    axios.get("http://" + address + ":" + port + "/api/send_orders", {
+        /*
         headers: {
-
+            
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json',
+            
         },
         content: {
-            topic : content?.topic , 
-            message : content?.message
-        }
+            topic: content?.topic,
+            message: content?.message
+        } */
     }).then((res) => {
         console.log("resultat requete : ", res)
     }).catch((err) => console.log("erreur : ", err));
+    
 }
 
 const turnRight = (address, port, path) => {
+    console.log("turn right")
     sendRequest(address, port, path, {
         topic: 'send_order', message: {
             time: 1,
@@ -33,6 +40,7 @@ const turnRight = (address, port, path) => {
 }
 
 const turnLeft = (address, port, path) => {
+    console.log("turn left")
     console.log("turn left")
     sendRequest(address, port, path, {
         topic: 'send_order', message: {
@@ -74,4 +82,4 @@ const stopp = (address, port, path) => {
     })
 }
 
-export { sendRequest , turnLeft , turnRight , goFront , goBack , stopp }
+export { sendRequest, turnLeft, turnRight, goFront, goBack, stopp }

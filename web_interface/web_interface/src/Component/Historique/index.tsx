@@ -41,10 +41,10 @@ const Historique: React.FC<historiqueProps> = React.memo(
             return (
               <ListItem
                 style={{
-                  border: "1px solid black",
+                  border: "1px solid " + style.borderColor,
                   height: "50px",
                   textAlign: "center",
-                  backgroundColor: index % 2 === 0 ? "white" : "whitesmoke",
+                  backgroundColor: index % 2 === 0 ? "lightgrey" : "grey",
                   width: "100%",
                   fontSize: "20px",
                   fontWeight: "bold",
@@ -70,7 +70,10 @@ const Historique: React.FC<historiqueProps> = React.memo(
             }}
             variant="contained"
             color="inherit"
-            style={{ width: "100%" }}
+            style={{
+              width: "100%",
+              border: style.borderWidthButton + " solid " + style.borderColorButton,
+            }}
           >
             Effacer
           </Button>
