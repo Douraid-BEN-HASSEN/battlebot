@@ -10,7 +10,7 @@ interface historiqueProps {
 }
 
 const Historique: React.FC<historiqueProps> = React.memo(
-  ({ datasHistory, handleClearHistory, hasChange, handleChangeBoolean, style }) => {
+  ({ datasHistory, handleClearHistory, hasChange, handleChangeBoolean, style  }) => {
     useEffect(() => {
       handleChangeBoolean();
     }, [datasHistory, hasChange]);
@@ -33,7 +33,7 @@ const Historique: React.FC<historiqueProps> = React.memo(
             position: "relative",
             marginTop: "20px",
             overflow: "auto",
-            maxHeight: "600px",
+            maxHeight: "450px" ,
             "& ul": { padding: 0 },
           }}
         >
