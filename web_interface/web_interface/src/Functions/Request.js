@@ -9,8 +9,11 @@ const sendRequest = (address, port, path, content) => {
         return -1
     }
     
+    console.log(address , port )
+
+    /*
     axios.get("http://" + address + ":" + port + "/api/send_orders", {
-        /*
+        
         headers: {
             
             'Access-Control-Allow-Origin': '*',
@@ -20,11 +23,11 @@ const sendRequest = (address, port, path, content) => {
         content: {
             topic: content?.topic,
             message: content?.message
-        } */
+        } 
     }).then((res) => {
         console.log("resultat requete : ", res)
     }).catch((err) => console.log("erreur : ", err));
-    
+    */
 }
 
 const turnRight = (address, port, path) => {

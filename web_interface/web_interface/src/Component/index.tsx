@@ -3,5 +3,8 @@ import Controller from "./Controller";
 import Header from "./Header";
 import Footer from "./Footer";
 import Historique from "./Historique";
+import CurrentAction from "./CurrentAction";
+import SwitchMode from "./SwitchMode";
 
-export { MainComponent, Controller, Header, Footer, Historique };
+
+export {SwitchMode ,CurrentAction ,  MainComponent, Controller, Header, Footer, Historique };
