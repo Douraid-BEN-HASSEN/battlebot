@@ -26,9 +26,9 @@ void Robot::accelerer() {
 
 }
 
- void Robot::ralentir() {
+void Robot::ralentir() {
 
- }
+}
 
 
 void Robot::reverseCmd() {
