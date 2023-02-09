@@ -14,6 +14,9 @@ interface headerProps {
 
 const Header: React.FC<headerProps> = React.memo(
   ({ style, showHelp, infosRequest, lastAction, mode }) => {
+
+    console.log("re render header")
+    
     return (
       <>
         <Box sx={{ flewGrow: 1 }}>
