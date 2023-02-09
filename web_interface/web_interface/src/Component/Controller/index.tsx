@@ -12,6 +12,7 @@ interface controllerProps {
   handleAddHistory: (action: "add" | "clear", value: string) => void;
   handleClickShowHelp: () => void;
   style: TYPE_STYLE;
+  mode: "basique" | "avance";
 }
 
 declare global {
@@ -22,7 +23,7 @@ declare global {
 }
 
 const Controller: React.FC<controllerProps> = React.memo(
-  ({ handleAddHistory, style, handleClickShowHelp }) => {
+  ({ handleAddHistory, style, handleClickShowHelp, mode }) => {
     const handleUserKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
       const { key } = event;
       if (
@@ -68,7 +69,9 @@ const Controller: React.FC<controllerProps> = React.memo(
       >
         <Grid item xs={10}></Grid>
         <Grid item xs={2}>
-          <HelpIcon onClick={handleClickShowHelp} style={{ cursor: "pointer" }} />{" "}
+          {mode === "avance" && (
+            <HelpIcon onClick={handleClickShowHelp} style={{ cursor: "pointer" }} />
+          )}
         </Grid>
         <Grid item xs={4}>
           <Box display="flex" justifyContent="center" alignItems="center"></Box>
