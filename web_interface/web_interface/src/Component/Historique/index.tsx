@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Button, Grid, List, ListItem, ListItemText } from "@mui/material";
 import { TYPE_STYLE } from "../../Constantes/Types";
 interface historiqueProps {
@@ -11,6 +11,7 @@ interface historiqueProps {
 
 const Historique: React.FC<historiqueProps> = React.memo(
   ({ datasHistory, handleClearHistory, hasChange, handleChangeBoolean, style  }) => {
+    
     useEffect(() => {
       handleChangeBoolean();
     }, [datasHistory, hasChange]);

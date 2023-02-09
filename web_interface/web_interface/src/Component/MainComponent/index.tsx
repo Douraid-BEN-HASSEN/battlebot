@@ -31,6 +31,7 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
   const [infosRequest, setInfosRequest] = useState<TYPE_INFOS_REQUEST>(DEFAULT_INFOS_REQUEST);
   const [lastAction, setLastAction] = useState<string>("");
   const [mode, setMode] = useState<"basique" | "avance">("avance");
+  const [powerValue, setPowerValue] = useState<number>(50);
 
   const updateHistory = (action: "add" | "clear", value: string) => {
     if (action === "clear") {
@@ -67,78 +68,6 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
     setIsChange(true);
   };
 
-  const renderHistorique = useMemo(() => {
-    return (
-      <Grid item xs={mode === "basique" ? 12 : 6}>
-        <Grid item xs={12}>
-          <SwitchMode
-            handleChangeMode={(mode: "avance" | "basique") => {
-              setMode(mode);
-            }}
-            style={customStyle}
-          />
-        </Grid>
-        {mode === "avance" && (
-          <Grid item xs={12}>
-            <Historique
-              style={customStyle}
-              datasHistory={datasHistory}
-              handleClearHistory={updateHistory}
-              hasChange={isChange}
-              handleChangeBoolean={() => setIsChange(false)}
-            />
-          </Grid>
-        )}
-      </Grid>
-    );
-  }, [datasHistory, isChange, mode]);
-
-  const renderController = useMemo(() => {
-    return (
-      <Grid item xs={mode === "avance" ? 6 : 12}>
-        <Grid item xs={12}>
-          <Controller
-            mode={mode}
-            handleClickShowHelp={() => {
-              if (showHelp) setShowHelp(false);
-              else setShowHelp(true);
-            }}
-            handleAddHistory={updateHistory}
-            style={customStyle}
-          />
-        </Grid>
-        {mode === "avance" && (
-          <Grid item xs={12}>
-            <CurrentAction style={customStyle} action={lastAction} />
-          </Grid>
-        )}
-      </Grid>
-    );
-  }, [showHelp, lastAction, mode]);
-
-  const renderFooter = useMemo(() => {
-    return (
-      <Footer
-        handleTest={handleTest}
-        values={infosRequest}
-        handleChange={handleChangeInfosRequest}
-        style={customStyle}
-      />
-    );
-  }, [infosRequest]);
-
-  const renderHeader = useMemo(() => {
-    return (
-      <Header
-        style={customStyle}
-        showHelp={showHelp}
-        infosRequest={infosRequest}
-        lastAction={lastAction}
-        mode={mode}
-      />
-    );
-  }, [showHelp, infosRequest, lastAction, mode]);
-
   return (
     <div
       style={{
@@ -150,12 +79,65 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
         backgroundColor: customStyle.mainBackgroundColor,
       }}
     >
-      {renderHeader}
+      <Header
+        style={customStyle}
+        showHelp={showHelp}
+        infosRequest={infosRequest}
+        lastAction={lastAction}
+        mode={mode}
+      />
       <Grid container spacing={2} style={{ width: "98%", marginLeft: "1%" }}>
-        {renderHistorique}
-        {renderController}
+        <Grid item xs={mode === "basique" ? 12 : 6}>
+          <Grid item xs={12}>
+            <SwitchMode
+              handleChangeMode={(mode: "avance" | "basique") => {
+                setMode(mode);
+              }}
+              style={customStyle}
+            />
+          </Grid>
+          {mode === "avance" && (
+            <Grid item xs={12}>
+              <Historique
+                style={customStyle}
+                datasHistory={datasHistory}
+                handleClearHistory={updateHistory}
+                hasChange={isChange}
+                handleChangeBoolean={() => setIsChange(false)}
+              />
+            </Grid>
+          )}
+        </Grid>
+        <Grid item xs={mode === "avance" ? 6 : 12}>
+          <Grid item xs={12}>
+            <Controller
+              handleChangePower={(value: number) => {
+                setPowerValue(value);
+              }}
+              mode={mode}
+              handleClickShowHelp={() => {
+                if (showHelp) setShowHelp(false);
+                else setShowHelp(true);
+              }}
+              handleAddHistory={updateHistory}
+              style={customStyle}
+            />
+          </Grid>
+          {mode === "avance" && (
+            <Grid item xs={12}>
+              <CurrentAction style={customStyle} action={lastAction} />
+            </Grid>
+          )}
+        </Grid>
       </Grid>
-      {mode === "avance" && renderFooter}
+      {mode === "avance" && (
+        <Footer
+          handleTest={handleTest}
+          values={infosRequest}
+          handleChange={handleChangeInfosRequest}
+          style={customStyle}
+        />
+      )}
     </div>
   );
 });

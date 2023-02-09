@@ -1,4 +1,4 @@
-import { Grid, Box, Button } from "@mui/material";
+import { Grid, Box, Button, Slider } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Circle } from "@mui/icons-material";
 import ArrowCircleDownOutlinedIcon from "@mui/icons-material/ArrowCircleDownOutlined";
@@ -13,6 +13,7 @@ interface controllerProps {
   handleClickShowHelp: () => void;
   style: TYPE_STYLE;
   mode: "basique" | "avance";
+  handleChangePower: (value: number) => void;
 }
 
 declare global {
@@ -23,7 +24,7 @@ declare global {
 }
 
 const Controller: React.FC<controllerProps> = React.memo(
-  ({ handleAddHistory, style, handleClickShowHelp, mode }) => {
+  ({ handleAddHistory, style, handleClickShowHelp, mode, handleChangePower }) => {
     const handleUserKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
       const { key } = event;
       if (
@@ -53,9 +54,8 @@ const Controller: React.FC<controllerProps> = React.memo(
     });
 
     const [isInversion, setIsInversion] = useState<boolean>(false);
-
     const [keyPressed, setKeyPressed] = useState<"" | "z" | "q" | "s" | "d" | "o" | "p" | "a">("");
-
+    const [powerValue, setPowerValue] = useState<number>(50);
     return (
       <Grid
         container
@@ -198,6 +198,27 @@ const Controller: React.FC<controllerProps> = React.memo(
             >
               ARRÊT
             </Button>
+          </Box>
+        </Grid>
+        <Grid item xs={12} style={{ marginTop: "25px" }}>
+          <Box display="flex" justifyContent={"center"} alignItems="center">
+            PUISSANCE : {powerValue}
+          </Box>
+        </Grid>
+        <Grid item xs={12} style={{ marginTop: "25px" }}>
+          <Box display="flex" justifyContent={"center"} alignItems="center">
+            <Slider
+              min={0}
+              max={100}
+              step={1}
+              defaultValue={powerValue}
+              valueLabelDisplay="auto"
+              //value={powerValue}
+              onChange={(value: any) => {
+                setPowerValue(value.target.value);
+                handleChangePower(value.target.value);
+              }}
+            />
           </Box>
         </Grid>
       </Grid>
