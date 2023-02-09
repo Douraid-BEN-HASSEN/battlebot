@@ -98,6 +98,7 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
       <Grid item xs={mode === "avance" ? 6 : 12}>
         <Grid item xs={12}>
           <Controller
+            mode={mode}
             handleClickShowHelp={() => {
               if (showHelp) setShowHelp(false);
               else setShowHelp(true);
@@ -127,8 +128,16 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
   }, [infosRequest]);
 
   const renderHeader = useMemo(() => {
-    return <Header style={customStyle} showHelp={showHelp} />;
-  }, [showHelp]);
+    return (
+      <Header
+        style={customStyle}
+        showHelp={showHelp}
+        infosRequest={infosRequest}
+        lastAction={lastAction}
+        mode={mode}
+      />
+    );
+  }, [showHelp, infosRequest, lastAction, mode]);
 
   return (
     <div
@@ -142,7 +151,7 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
       }}
     >
       {renderHeader}
-      <Grid container spacing={1} style={{ width: "95%", marginLeft: "2.5px" }}>
+      <Grid container spacing={2} style={{ width: "98%", marginLeft: "1%" }}>
         {renderHistorique}
         {renderController}
       </Grid>
