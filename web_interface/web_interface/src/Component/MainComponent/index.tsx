@@ -33,6 +33,8 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
   const [mode, setMode] = useState<"basique" | "avance">("avance");
   const [powerValue, setPowerValue] = useState<number>(50);
 
+  console.log("re render main component ")
+  
   const updateHistory = (action: "add" | "clear", value: string) => {
     if (action === "clear") {
       setDatasHistory([]);
@@ -42,7 +44,6 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
       if (value !== "r") {
         let tmp = datasHistory;
         if (tmp.length === 0 || (tmp.length > 0 && tmp.at(-1) !== KEY_TO_ACTION[value])) {
-          console.log("infosRequest : ", infosRequest);
           if (value === "z") goFront(infosRequest.address, infosRequest.port, "/test");
           else if (value === "q") turnLeft(infosRequest.address, infosRequest.port, "/test");
           else if (value === "d") turnRight(infosRequest.address, infosRequest.port, "/test");
@@ -111,6 +112,10 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
         <Grid item xs={mode === "avance" ? 6 : 12}>
           <Grid item xs={12}>
             <Controller
+              handleReleaseButton={(key: string) => {
+                if (key === "z" || key === "q" || key === "s" || key === "d")
+                  stopp(infosRequest.address, infosRequest.port, "/test");
+              }}
               handleChangePower={(value: number) => {
                 setPowerValue(value);
               }}

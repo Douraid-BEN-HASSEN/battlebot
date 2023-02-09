@@ -14,6 +14,7 @@ interface controllerProps {
   style: TYPE_STYLE;
   mode: "basique" | "avance";
   handleChangePower: (value: number) => void;
+  handleReleaseButton: (key: string) => void;
 }
 
 declare global {
@@ -24,7 +25,14 @@ declare global {
 }
 
 const Controller: React.FC<controllerProps> = React.memo(
-  ({ handleAddHistory, style, handleClickShowHelp, mode, handleChangePower }) => {
+  ({
+    handleAddHistory,
+    style,
+    handleClickShowHelp,
+    mode,
+    handleChangePower,
+    handleReleaseButton,
+  }) => {
     const handleUserKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
       const { key } = event;
       if (
@@ -45,6 +53,7 @@ const Controller: React.FC<controllerProps> = React.memo(
     };
 
     const handleUserKeyRelease = (event: React.KeyboardEvent<HTMLInputElement>) => {
+      handleReleaseButton(keyPressed);
       setKeyPressed("");
     };
 
@@ -52,7 +61,7 @@ const Controller: React.FC<controllerProps> = React.memo(
       window.addEventListener("keydown", handleUserKeyPress);
       window.addEventListener("keyup", handleUserKeyRelease);
     });
-
+    console.log("re render controller")
     const [isInversion, setIsInversion] = useState<boolean>(false);
     const [keyPressed, setKeyPressed] = useState<"" | "z" | "q" | "s" | "d" | "o" | "p" | "a">("");
     const [powerValue, setPowerValue] = useState<number>(50);

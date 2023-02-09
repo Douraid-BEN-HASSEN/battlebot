@@ -11,7 +11,7 @@ const sendRequest = (address, port, path, content) => {
     
     console.log(address , port )
 
-    /*
+    
     axios.get("http://" + address + ":" + port + "/api/send_orders", {
         
         headers: {
@@ -27,7 +27,7 @@ const sendRequest = (address, port, path, content) => {
     }).then((res) => {
         console.log("resultat requete : ", res)
     }).catch((err) => console.log("erreur : ", err));
-    */
+    
 }
 
 const turnRight = (address, port, path) => {
