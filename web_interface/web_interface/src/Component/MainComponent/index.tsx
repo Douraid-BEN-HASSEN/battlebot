@@ -69,30 +69,33 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
 
   const renderHistorique = useMemo(() => {
     return (
-      <Grid item xs={6}>
+      <Grid item xs={mode === "basique" ? 12 : 6}>
         <Grid item xs={12}>
-          <SwitchMode 
-          handleChangeMode={(mode : 'avance'|'basique') =>  {
-            setMode(mode)
-          }}  
-          style={customStyle} />
-        </Grid>
-        <Grid item xs={12}>
-          <Historique
+          <SwitchMode
+            handleChangeMode={(mode: "avance" | "basique") => {
+              setMode(mode);
+            }}
             style={customStyle}
-            datasHistory={datasHistory}
-            handleClearHistory={updateHistory}
-            hasChange={isChange}
-            handleChangeBoolean={() => setIsChange(false)}
           />
         </Grid>
+        {mode === "avance" && (
+          <Grid item xs={12}>
+            <Historique
+              style={customStyle}
+              datasHistory={datasHistory}
+              handleClearHistory={updateHistory}
+              hasChange={isChange}
+              handleChangeBoolean={() => setIsChange(false)}
+            />
+          </Grid>
+        )}
       </Grid>
     );
-  }, [datasHistory, isChange]);
+  }, [datasHistory, isChange, mode]);
 
   const renderController = useMemo(() => {
     return (
-      <Grid item xs={6}>
+      <Grid item xs={mode === "avance" ? 6 : 12}>
         <Grid item xs={12}>
           <Controller
             handleClickShowHelp={() => {
@@ -103,12 +106,14 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
             style={customStyle}
           />
         </Grid>
-        <Grid item xs={12}>
-          <CurrentAction style={customStyle} action={lastAction} />
-        </Grid>
+        {mode === "avance" && (
+          <Grid item xs={12}>
+            <CurrentAction style={customStyle} action={lastAction} />
+          </Grid>
+        )}
       </Grid>
     );
-  }, [showHelp, lastAction]);
+  }, [showHelp, lastAction, mode]);
 
   const renderFooter = useMemo(() => {
     return (
@@ -136,13 +141,12 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
         backgroundColor: customStyle.mainBackgroundColor,
       }}
     >
-      {mode}
       {renderHeader}
       <Grid container spacing={1} style={{ width: "95%", marginLeft: "2.5px" }}>
         {renderHistorique}
         {renderController}
       </Grid>
-      {renderFooter}
+      {mode === "avance" && renderFooter}
     </div>
   );
 });
