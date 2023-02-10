@@ -5,8 +5,8 @@ export const KEY_TO_ACTION = {
   q: "Ordre : Tourne à gauche",
   s: "Ordre : Recule ",
   d: "Ordre : Tourne à droite",
-  o: "Ordre : Action 1",
-  p: "Ordre : Action 2",
+  o: "Ordre : Baisse la pelle",
+  p: "Ordre : Lève la pelle",
   a: "Ordre : S'arrêter",
 } as any;
 

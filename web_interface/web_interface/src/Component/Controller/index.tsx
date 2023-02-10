@@ -89,6 +89,7 @@ const Controller: React.FC<controllerProps> = React.memo(
             <HelpIcon onClick={handleClickShowHelp} style={{ cursor: "pointer" }} />
           )}
         </Grid>
+
         <Grid item xs={4}>
           <Box display="flex" justifyContent="center" alignItems="center"></Box>
         </Grid>
@@ -109,6 +110,7 @@ const Controller: React.FC<controllerProps> = React.memo(
         <Grid item xs={4}>
           <Box display="flex" justifyContent="center" alignItems="center"></Box>
         </Grid>
+
         <Grid item xs={4}>
           <Box display="flex" justifyContent="center" alignItems="center">
             <Button
@@ -140,6 +142,7 @@ const Controller: React.FC<controllerProps> = React.memo(
             </Button>
           </Box>
         </Grid>
+
         <Grid item xs={4}>
           <Box display="flex" justifyContent="center" alignItems="center"></Box>
         </Grid>
@@ -160,21 +163,8 @@ const Controller: React.FC<controllerProps> = React.memo(
         <Grid item xs={4}>
           <Box display="flex" justifyContent="center" alignItems="center"></Box>
         </Grid>
-        <Grid item xs={4} style={{ marginTop: "50px" }}>
-          <Box display="flex" justifyContent="center" alignItems="center">
-            <Button
-              style={{
-                border: style.borderWidthButton + " solid " + style.borderColorButton,
-              }}
-              sx={{ borderRadius: 28 }}
-              variant="contained"
-              color={keyPressed === "o" ? "primary" : "inherit"}
-            >
-              <Circle />
-            </Button>
-          </Box>
-        </Grid>
-        <Grid item xs={4} style={{ marginTop: "50px" }}>
+
+        <Grid item xs={6} style={{ marginTop: "25px" }}>
           <Box display="flex" justifyContent="center" alignItems="center">
             <Button
               style={{
@@ -188,21 +178,8 @@ const Controller: React.FC<controllerProps> = React.memo(
             </Button>
           </Box>
         </Grid>
-        <Grid item xs={4} style={{ marginTop: "50px" }}>
-          <Box display="flex" justifyContent="center" alignItems="center">
-            <Button
-              style={{
-                border: style.borderWidthButton + " solid " + style.borderColorButton,
-              }}
-              sx={{ borderRadius: 28 }}
-              variant="contained"
-              color={keyPressed === "p" ? "primary" : "inherit"}
-            >
-              <Circle />
-            </Button>
-          </Box>
-        </Grid>
-        <Grid item xs={12} style={{ marginTop: "25px" }}>
+
+        <Grid item xs={6} style={{ marginTop: "25px" }}>
           <Box display="flex" justifyContent={"center"} alignItems="center">
             <Button
               style={{
@@ -216,6 +193,41 @@ const Controller: React.FC<controllerProps> = React.memo(
             </Button>
           </Box>
         </Grid>
+
+        <Grid item xs={4} style={{ marginTop: "25px" }}>
+          <Box display="flex" justifyContent="center" alignItems="center">
+            PELLE :
+          </Box>
+        </Grid>
+        <Grid item xs={4} style={{ marginTop: "25px" }}>
+          <Box display="flex" justifyContent="center" alignItems="center">
+            <Button
+              sx={{ borderRadius: 28 }}
+              variant="contained"
+              style={{
+                border: style.borderWidthButton + " solid " + style.borderColorButton,
+              }}
+              color={keyPressed === "o" ? "primary" : "inherit"}
+            >
+              <ArrowCircleUpOutlinedIcon />
+            </Button>
+          </Box>
+        </Grid>
+        <Grid item xs={4} style={{ marginTop: "25px" }}>
+          <Box display="flex" justifyContent="center" alignItems="center">
+            <Button
+              sx={{ borderRadius: 28 }}
+              variant="contained"
+              style={{
+                border: style.borderWidthButton + " solid " + style.borderColorButton,
+              }}
+              color={keyPressed === "p" ? "primary" : "inherit"}
+            >
+              <ArrowCircleDownOutlinedIcon />
+            </Button>
+          </Box>
+        </Grid>
+
         <Grid item xs={12} style={{ marginTop: "25px" }}>
           <Box display="flex" justifyContent={"center"} alignItems="center">
             PUISSANCE : {powerValue}
