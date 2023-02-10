@@ -186,9 +186,7 @@ void setup()
 
 void loop()
 {
-  delay(1000);
   /*mqttClient.publish(MQTT_TOPIC_INFORMATION, MQTT_QOS, false, "{ \"sensor\": \"sensor_1\", \"time\": \"100@100\", \"data\": \"{ ""data1"": 123, ""data2"": ""data2val"" }\" }");
   mqttClient.publish(MQTT_TOPIC_RESPONSE_ORDER, MQTT_QOS, false, "{ \"status\": true, \"time\": \"100@100\", \"order_id\": 999 }");
   mqttClient.publish(MQTT_TOPIC_SEND_ORDER, MQTT_QOS, false, "{ \"time\": 1, \"left_wheel\": 0, \"right_wheel\": 0, \"order_id\": 1 }");*/
-
 }

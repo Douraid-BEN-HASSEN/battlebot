@@ -14,7 +14,7 @@
 #define MQTTT_CLIENT_ID "ESP8266Client - MyClient"
 #define MQTT_USERNAME "emqx"
 #define MQTT_PASSWORD "public"
-#define MQTT_QOS 0
+#define MQTT_QOS 2
 #define MQTT_TOPIC_INFORMATION "robot_information/"
 #define MQTT_TOPIC_RESPONSE_ORDER "response_order/"
 #define MQTT_TOPIC_SEND_ORDER "send_order/"
