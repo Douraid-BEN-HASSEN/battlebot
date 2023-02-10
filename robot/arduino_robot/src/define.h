@@ -8,8 +8,6 @@
 // --- WIFI ---
 #define WIFI_SSID "IMERIR_IoT"
 #define WIFI_PASSWORD "kohWoong5oox"
-/*#define WIFI_SSID "iPhone"
-#define WIFI_PASSWORD "ap483qh!"*/
 
 // --- MQTT ---
 #define MQTT_HOST "beeb3ef0279e4d86985afe740d185f1c.s2.eu.hivemq.cloud"
