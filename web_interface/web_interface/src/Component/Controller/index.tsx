@@ -14,7 +14,7 @@ interface controllerProps {
   mode: "basique" | "avance";
   handleChangePower: (value: number) => void;
   handleReleaseButton: (key: string) => void;
-  handleAddHistory: (action: "add" | "clear", value: string) => void;
+  handleAddHistory: (action: "add" | "clear", value: string , isInversed : boolean ) => void;
   handleClickShowHelp: () => void;
 }
 
@@ -36,7 +36,6 @@ const Controller: React.FC<controllerProps> = React.memo(
   }) => {
     const handleUserKeyPress = useMemoizedFn((event: React.KeyboardEvent<HTMLInputElement>) => {
       const { key } = event;
-      console.log("handle on press ", key);
       if (
         key === "z" ||
         key === "q" ||
@@ -46,9 +45,8 @@ const Controller: React.FC<controllerProps> = React.memo(
         key === "p" ||
         key === "a"
       ) {
-        console.log("set key pressed : ", key);
         setKeyPressed(key);
-        handleAddHistory("add", key);
+        handleAddHistory("add", key , isInversion) ;
       } else if (key === "r") {
         if (isInversion) setIsInversion(false);
         else setIsInversion(true);

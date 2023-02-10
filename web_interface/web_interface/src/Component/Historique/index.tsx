@@ -3,7 +3,7 @@ import { Button, Grid, List, ListItem, ListItemText } from "@mui/material";
 import { TYPE_STYLE } from "../../Constantes/Types";
 interface historiqueProps {
   datasHistory: Array<string>;
-  handleClearHistory: (action: "add" | "clear", value: string) => void;
+  handleClearHistory: (action: "add" | "clear", value: string, isInversed : boolean ) => void;
   hasChange: boolean;
   handleChangeBoolean: () => void;
   style: TYPE_STYLE;
@@ -67,7 +67,7 @@ const Historique: React.FC<historiqueProps> = React.memo(
         >
           <Button
             onClick={() => {
-              handleClearHistory("clear", "");
+              handleClearHistory("clear", "" , false);
             }}
             variant="contained"
             color="inherit"

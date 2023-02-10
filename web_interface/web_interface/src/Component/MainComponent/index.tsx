@@ -52,8 +52,7 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
   const [mode, setMode] = useState<"basique" | "avance">("avance");
   const [powerValue, setPowerValue] = useState<number>(50);
 
-  const updateHistory = (action: "add" | "clear", value: string) => {
-    console.log("update history : ", action, value);
+  const updateHistory = (action: "add" | "clear", value: string, isInversed: boolean) => {
     if (action === "clear") {
       setDatasHistory([]);
       setLastAction("");
@@ -63,8 +62,8 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
         let tmp = datasHistory;
         if (tmp.length === 0 || (tmp.length > 0 && tmp.at(-1) !== KEY_TO_ACTION[value])) {
           if (value === "z") goFront(infosRequest.address, infosRequest.port, "/test");
-          else if (value === "q") turnLeft(infosRequest.address, infosRequest.port, "/test");
-          else if (value === "d") turnRight(infosRequest.address, infosRequest.port, "/test");
+          else if (value === "q") turnLeft(infosRequest.address, infosRequest.port, "/test" , isInversed);
+          else if (value === "d") turnRight(infosRequest.address, infosRequest.port, "/test" , isInversed);
           else if (value === "s") goBack(infosRequest.address, infosRequest.port, "/test");
           else if (value === "a") stopp(infosRequest.address, infosRequest.port, "/test");
           else if (value === "o") downShovel(infosRequest.address, infosRequest.port, "/test");
@@ -78,9 +77,7 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
   };
 
   const handleReleaseButton = (key: string) => {
-    console.log("handle release button dans main component , key : ", key);
     if (key === "z" || key === "q" || key === "s" || key === "d" || key === "o" || key === "p") {
-      console.log("send request stop ");
       stopp(infosRequest.address, infosRequest.port, "/test");
     }
   };

@@ -14,31 +14,28 @@ const sendRequest = (address, port, path, content) => {
         message: content?.message
     }).then((res) => {
         //console.log("resultat requete : ", res)
-    }).catch((err) => console.log("erreur : ", err));
+    })/*.catch((err) => console.log("erreur : ", err));*/
 
 }
 
-const turnRight = (address, port, path) => {
-    //console.log("turn right")
+const turnRight = (address, port, path , isInversed) => {
     sendRequest(address, port, path, {
         topic: 'send_order', message: {
             time: 1,
-            left_wheel: 1,
-            right_wheel: -1,
+            left_wheel: isInversed ? -1 :  1,
+            right_wheel: isInversed ? 1 : -1,
             order_id: 1 , 
             shovel : -2 
         }
     })
 }
 
-const turnLeft = (address, port, path) => {
-    //console.log("turn left")
-    //console.log("turn left")
+const turnLeft = (address, port, path , isInversed) => {
     sendRequest(address, port, path, {
         topic: 'send_order', message: {
             time: 1,
-            left_wheel: -1,
-            right_wheel: +1,
+            left_wheel: isInversed ? 1 :  -1,
+            right_wheel: isInversed ? -1 :  +1,
             order_id: 1 ,
             shovel : -2 
         }
