@@ -2,8 +2,8 @@
 #include <ESP8266WiFi.h>
 #include <Ticker.h>
 #include <AsyncMqttClient.h>
-#include <ArduinoJson.h>
 #include "define.h"
+#include "Robot.h"
 
 // --- MQTT VARS ---
 AsyncMqttClient mqttClient;
@@ -15,7 +15,7 @@ WiFiEventHandler wifiDisconnectHandler;
 Ticker wifiReconnectTimer;
 
 // --- VARS ---
-DynamicJsonDocument doc(1024);
+Robot robot;
 
 void connectToMqtt();
 
@@ -60,27 +60,24 @@ void onMqttConnect(bool sessionPresent)
   Serial.print(MQTT_HOST);
   Serial.print(", port: ");
   Serial.println(MQTT_PORT);
-  Serial.print("MQTT_TOPIC: ");
-  Serial.println(MQTT_TOPIC);
+  Serial.print("MQTT_TOPICs: ");
+  Serial.print(MQTT_TOPIC_INFORMATION); Serial.print(", "); Serial.print(MQTT_TOPIC_RESPONSE_ORDER); Serial.print(", "); Serial.print(MQTT_TOPIC_SEND_ORDER); Serial.println("\n");
 
   printSeparationLine();
   Serial.print("Session present: ");
   Serial.println(sessionPresent);
 
-  uint16_t packetIdSub = mqttClient.subscribe(MQTT_TOPIC, 2);
-  Serial.print("Subscribing at QoS 2, packetId: ");
-  Serial.println(packetIdSub);
+  uint16_t packetIdSubTopicInformation = mqttClient.subscribe(MQTT_TOPIC_INFORMATION, MQTT_QOS);
+  Serial.print("Subscribing at QoS "); Serial.print(MQTT_QOS); Serial.print(" packetId: ");
+  Serial.println(packetIdSubTopicInformation);
 
-  mqttClient.publish(MQTT_TOPIC, 0, true, "{\"sensor\":\"gps\",\"time\":1351824120,\"data\":[48.756080,2.302038]}");
-  Serial.println("Publishing at QoS 0");
+  uint16_t packetIdSubTopicResponseOrder = mqttClient.subscribe(MQTT_TOPIC_RESPONSE_ORDER, MQTT_QOS);
+  Serial.print("Subscribing at QoS "); Serial.print(MQTT_QOS); Serial.print(" packetId: ");
+  Serial.println(packetIdSubTopicResponseOrder);
 
-  uint16_t packetIdPub1 = mqttClient.publish(MQTT_TOPIC, 1, true, "{\"sensor\":\"gps\",\"time\":1351824120,\"data\":[48.756080,2.302038]}");
-  Serial.print("Publishing at QoS 1, packetId: ");
-  Serial.println(packetIdPub1);
-
-  uint16_t packetIdPub2 = mqttClient.publish(MQTT_TOPIC, 2, true, "{\"sensor\":\"gps\",\"time\":1351824120,\"data\":[48.756080,2.302038]}");
-  Serial.print("Publishing at QoS 2, packetId: ");
-  Serial.println(packetIdPub2);
+  uint16_t packetIdSubTopicSendOrder = mqttClient.subscribe(MQTT_TOPIC_SEND_ORDER, MQTT_QOS);
+  Serial.print("Subscribing at QoS "); Serial.print(MQTT_QOS); Serial.print(" packetId: ");
+  Serial.println(packetIdSubTopicSendOrder);
 
   printSeparationLine();
 }
@@ -117,25 +114,13 @@ void onMqttUnsubscribe(const uint16_t& packetId)
 void onMqttMessage(char* topic, char* payload, const AsyncMqttClientMessageProperties& properties, const size_t& len, const size_t& index, const size_t& total)
 {
   (void) payload;
-  Serial.println("Publish received.");
-  /*Serial.print("  topic: ");
-  Serial.println(topic);
-  Serial.print("  qos: ");
-  Serial.println(properties.qos);
-  Serial.print("  dup: ");
-  Serial.println(properties.dup);
-  Serial.print("  retain: ");
-  Serial.println(properties.retain);
-  Serial.print("  len: ");
-  Serial.println(len);
-  Serial.print("  index: ");
-  Serial.println(index);
-  Serial.print("  total: ");
-  Serial.println(total);*/
-  Serial.print(" message: "); Serial.println(payload);
-  deserializeJson(doc, payload);
-  const char* sensor = doc["sensor"];
-  Serial.println(sensor);
+  if(String(topic) == String("robot_information/"))   robot.parseInformation(payload);
+  else if(String(topic) == String("response_order/")) robot.parseResponseOrder(payload);
+  else if(String(topic) == String("send_order/"))     robot.parseSendOrder(payload);
+  else {
+    Serial.println("Topic inconnu"); Serial.print(topic);
+  }
+  
 }
 
 void onMqttPublish(const uint16_t& packetId)
@@ -165,6 +150,14 @@ void setup()
 {
   Serial.begin(9600);
 
+  // === pinMode ===
+  pinMode(D1, OUTPUT);
+  pinMode(D2, OUTPUT);
+  pinMode(D3, OUTPUT);
+  pinMode(D4, OUTPUT);
+  pinMode(D5, OUTPUT);
+  pinMode(D6, OUTPUT);
+  
   while (!Serial && millis() < 5000);
 
   delay(300);
@@ -194,5 +187,8 @@ void setup()
 void loop()
 {
   delay(1000);
-  mqttClient.publish(MQTT_TOPIC, 0, true, "{\"sensor\":\"gps\",\"time\":1351824120,\"data\":[48.756080,2.302038]}");
+  /*mqttClient.publish(MQTT_TOPIC_INFORMATION, MQTT_QOS, false, "{ \"sensor\": \"sensor_1\", \"time\": \"100@100\", \"data\": \"{ ""data1"": 123, ""data2"": ""data2val"" }\" }");
+  mqttClient.publish(MQTT_TOPIC_RESPONSE_ORDER, MQTT_QOS, false, "{ \"status\": true, \"time\": \"100@100\", \"order_id\": 999 }");
+  mqttClient.publish(MQTT_TOPIC_SEND_ORDER, MQTT_QOS, false, "{ \"time\": 1, \"left_wheel\": 0, \"right_wheel\": 0, \"order_id\": 1 }");*/
+
 }

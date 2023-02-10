@@ -10,7 +10,15 @@
 #define WIFI_PASSWORD "kohWoong5oox"
 
 // --- MQTT ---
-#define MQTT_HOST "beeb3ef0279e4d86985afe740d185f1c.s2.eu.hivemq.cloud"
+#define MQTT_HOST "broker.emqx.io"
+#define MQTTT_CLIENT_ID "ESP8266Client - MyClient"
+#define MQTT_USERNAME "emqx"
+#define MQTT_PASSWORD "public"
+#define MQTT_QOS 0
+#define MQTT_TOPIC_INFORMATION "robot_information/"
+#define MQTT_TOPIC_RESPONSE_ORDER "response_order/"
+#define MQTT_TOPIC_SEND_ORDER "send_order/"
+
 #if ASYNC_TCP_SSL_ENABLED
 #define MQTT_SECURE true
 #define MQTT_SERVER_FINGERPRINT {0x7e, 0x36, 0x22, 0x01, 0xf9, 0x7e, 0x99, 0x2f, 0xc5, 0xdb, 0x3d, 0xbe, 0xac, 0x48, 0x67, 0x5b, 0x5d, 0x47, 0x94, 0xd2}
@@ -18,11 +26,6 @@
 #else
 #define MQTT_PORT 1883
 #endif
-#define MQTTT_CLIENT_ID "ESP8266Client - MyClient"
-#define MQTT_USERNAME "MPbs7eXCKby8HFC"
-#define MQTT_PASSWORD "FHNkH2LyRStfWlq"
-#define MQTT_TOPIC_INFORMATION "robot_information/"
-#define MQTT_TOPIC "robot_information/"
 
 #define D1 5
 #define D2 4

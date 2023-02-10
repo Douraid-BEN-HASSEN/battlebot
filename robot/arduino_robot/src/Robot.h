@@ -1,7 +1,10 @@
+#ifndef ROBOT_H
+#define ROBOT_H
 // +---------------------------------+
 // | Classe pour la gestion du Robot |
 // +---------------------------------+
 #include <Arduino.h>
+#include <ArduinoJson.h>
 
 struct ROBOT_INFORMATION {
     String sensor;
@@ -10,7 +13,7 @@ struct ROBOT_INFORMATION {
 };
 
 struct RESPONSE_ORDER {
-    bool message;
+    bool status;
     String time;
     int order_id;
 };
@@ -31,6 +34,10 @@ class Robot {
     ~Robot();
 
     // --- UTILS ---
+    void parseInformation(char* pPayload);
+    void parseResponseOrder(char* pPayload);
+    void parseSendOrder(char* pPayload);
+
     void avancer();
     void gauche();
     void droite();
@@ -49,5 +56,9 @@ class Robot {
 
   private:
     bool _reversedCmd;
-
+    ROBOT_INFORMATION _information;
+    RESPONSE_ORDER _responseOrder;
+    SEND_ORDER _sendOrder;
 };
+
+#endif
