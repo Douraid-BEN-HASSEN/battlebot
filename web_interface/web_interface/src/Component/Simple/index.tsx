@@ -34,7 +34,6 @@ const style = {
 const Simple: React.FC<simpleProps> = React.memo(({}) => {
   const [isPushed, setIsPushed] = useState<boolean>(false);
   const handleUserKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    console.log("handle pres button ");
     const { key } = event;
     if (
       key === "z" ||
@@ -71,8 +70,7 @@ const Simple: React.FC<simpleProps> = React.memo(({}) => {
         key === "p" ||
         key === "a")
     ) {
-      console.log("handle release button ");
-      console.log("key released : ", key);
+
       handleReleaseButton(key);
       setKeyPressed("");
       setIsPushed(false);

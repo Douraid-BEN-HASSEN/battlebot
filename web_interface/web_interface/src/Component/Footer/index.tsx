@@ -12,7 +12,6 @@ interface footerProps {
 
 const Footer: React.FC<footerProps> = React.memo(({ handleChange, style, values, handleTest }) => {
   
-  console.log("re render footer ")
   const [isUpdate, setIsUpdate] = useState<boolean>(false);
   const [addresse, setAddresse] = useState<string>(values.address);
   const [port, setPort] = useState<number>(values.port);

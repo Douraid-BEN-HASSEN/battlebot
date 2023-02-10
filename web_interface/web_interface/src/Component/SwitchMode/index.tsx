@@ -8,9 +8,7 @@ interface switchModeProps {
 }
 
 const SwitchMode: React.FC<switchModeProps> = React.memo(({ style, handleChangeMode }) => {
-  
   const [mode, setMode] = useState<"basique" | "avance">("avance");
-  console.log("re render switch mode ")
   return (
     <Grid
       container
