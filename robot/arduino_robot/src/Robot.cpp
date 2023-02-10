@@ -20,6 +20,7 @@ Robot::Robot() {
     "-",
     -1,
     -1,
+    -1,
     -1
   };
 }
@@ -78,6 +79,7 @@ void Robot::parseSendOrder(char* pPayload) {
     time: doc["time"],
     left_wheel: doc["left_wheel"],
     right_wheel: doc["right_wheel"],
+    shovel: doc["shovel"],
     order_id: doc["order_id"]
   };
 
@@ -93,12 +95,19 @@ void Robot::parseSendOrder(char* pPayload) {
   Serial.println("\n");
   
   // TODO: action à faire...
+  // gestion movements direction
   if(this->_sendOrder.left_wheel == -1 && this->_sendOrder.right_wheel == -1) this->arr();
   if(this->_sendOrder.left_wheel == 0 && this->_sendOrder.right_wheel == 0) this->stope();
   if(this->_sendOrder.left_wheel == 1 && this->_sendOrder.right_wheel == 1) this->avancer();
   if(this->_sendOrder.left_wheel == 1 && this->_sendOrder.right_wheel == -1) this->gauche();
   if(this->_sendOrder.left_wheel == -1 && this->_sendOrder.right_wheel == 1) this->droite();
 
+  // gestion movements pelle
+  if(this->_sendOrder.shovel == -1) this->pelleB();
+  if(this->_sendOrder.shovel == 0) this->pelleS();
+  if(this->_sendOrder.shovel == 1) this->pelleH();
+
+  // order traité, informer le serveur 
 }
 
 void Robot::avancer(){

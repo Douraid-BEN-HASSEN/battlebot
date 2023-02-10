@@ -22,6 +22,7 @@ struct SEND_ORDER {
     String time;
     int left_wheel;
     int right_wheel;
+    int shovel;
     int order_id;
 };
 
