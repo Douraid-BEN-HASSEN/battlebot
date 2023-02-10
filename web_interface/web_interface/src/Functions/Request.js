@@ -1,15 +1,15 @@
 import axios from "axios"
 
 const sendRequest = (address, port, path, content) => {
-    console.log("function sendRequest", address, port, path, content)
-    console.log(typeof (address))
-    console.log(typeof (port))
+    //console.log("function sendRequest", address, port, path, content)
+    //console.log(typeof (address))
+    //console.log(typeof (port))
     if (address instanceof String || port instanceof String) {
-        console.log("Return error")
+        //console.log("Return error")
         return -1
     }
     
-    console.log(address , port )
+    //console.log(address , port )
 
     
     axios.get("http://" + address + ":" + port + "/api/send_orders", {
@@ -25,13 +25,13 @@ const sendRequest = (address, port, path, content) => {
             message: content?.message
         } 
     }).then((res) => {
-        console.log("resultat requete : ", res)
+        //console.log("resultat requete : ", res)
     }).catch((err) => console.log("erreur : ", err));
     
 }
 
 const turnRight = (address, port, path) => {
-    console.log("turn right")
+    //console.log("turn right")
     sendRequest(address, port, path, {
         topic: 'send_order', message: {
             time: 1,
@@ -43,8 +43,8 @@ const turnRight = (address, port, path) => {
 }
 
 const turnLeft = (address, port, path) => {
-    console.log("turn left")
-    console.log("turn left")
+    //console.log("turn left")
+    //console.log("turn left")
     sendRequest(address, port, path, {
         topic: 'send_order', message: {
             time: 1,
