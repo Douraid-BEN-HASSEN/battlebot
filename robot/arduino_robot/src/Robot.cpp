@@ -93,6 +93,12 @@ void Robot::parseSendOrder(char* pPayload) {
   Serial.println("\n");
   
   // TODO: action à faire...
+  if(this->_sendOrder.left_wheel == -1 && this->_sendOrder.right_wheel == -1) this->arr();
+  if(this->_sendOrder.left_wheel == 0 && this->_sendOrder.right_wheel == 0) this->stope();
+  if(this->_sendOrder.left_wheel == 1 && this->_sendOrder.right_wheel == 1) this->avancer();
+  if(this->_sendOrder.left_wheel == 1 && this->_sendOrder.right_wheel == -1) this->gauche();
+  if(this->_sendOrder.left_wheel == -1 && this->_sendOrder.right_wheel == 1) this->droite();
+
 }
 
 void Robot::avancer(){
