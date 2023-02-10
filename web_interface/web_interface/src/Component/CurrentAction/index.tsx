@@ -8,7 +8,6 @@ interface currentActionProps {
 }
 
 const CurrentAction: React.FC<currentActionProps> = React.memo(({ action, style }) => {
-  console.log("re render current action")
   return (
     <Grid
       container

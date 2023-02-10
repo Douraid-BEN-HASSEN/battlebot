@@ -13,7 +13,7 @@ import SwitchMode from "../SwitchMode";
 
 interface mainComponentProps {}
 
-const customStyle = {
+const customStylee = {
   backgroundColor: "lightblue",
   borderColor: "#3f51b5",
   borderWidth: "4px",
@@ -22,6 +22,17 @@ const customStyle = {
   mainBackgroundColor: "lightgray",
   borderWidthButton: "2px",
   borderColorButton: "#3f51b5",
+} as TYPE_STYLE;
+
+const customStyle = {
+  backgroundColor: "white",
+  borderColor: "black",
+  borderWidth: "2px",
+  borderRadius: "4px",
+  fontColor: "black",
+  mainBackgroundColor: "whitesmoke",
+  borderWidthButton: "2px",
+  borderColorButton: "black",
 } as TYPE_STYLE;
 
 const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
@@ -33,9 +44,8 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
   const [mode, setMode] = useState<"basique" | "avance">("avance");
   const [powerValue, setPowerValue] = useState<number>(50);
 
-  console.log("re render main component ")
-  
   const updateHistory = (action: "add" | "clear", value: string) => {
+    console.log("update history : ", action, value);
     if (action === "clear") {
       setDatasHistory([]);
       setLastAction("");
@@ -50,11 +60,18 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
           else if (value === "s") goBack(infosRequest.address, infosRequest.port, "/test");
           else if (value === "a") stopp(infosRequest.address, infosRequest.port, "/test");
           tmp.push(KEY_TO_ACTION[value]);
-          setLastAction(KEY_TO_ACTION[value].split(":")[1]);
           setDatasHistory(tmp);
-          setIsChange(true);
+          setLastAction(KEY_TO_ACTION[value].split(":")[1]);
         }
       }
+    }
+  };
+
+  const handleReleaseButton = (key: string) => {
+    console.log("handle release button dans main component , key : ", key);
+    if (key === "z" || key === "q" || key === "s" || key === "d") {
+      console.log("send request stop ");
+      stopp(infosRequest.address, infosRequest.port, "/test");
     }
   };
 
@@ -113,8 +130,7 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
           <Grid item xs={12}>
             <Controller
               handleReleaseButton={(key: string) => {
-                if (key === "z" || key === "q" || key === "s" || key === "d")
-                  stopp(infosRequest.address, infosRequest.port, "/test");
+                handleReleaseButton(key);
               }}
               handleChangePower={(value: number) => {
                 setPowerValue(value);

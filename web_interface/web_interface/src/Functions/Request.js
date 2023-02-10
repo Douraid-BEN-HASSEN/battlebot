@@ -8,26 +8,31 @@ const sendRequest = (address, port, path, content) => {
         //console.log("Return error")
         return -1
     }
-    
+
     //console.log(address , port )
 
-    
-    axios.get("http://" + address + ":" + port + "/api/send_orders", {
-        
+    /*
+    axios.get("http://10.3.2.25:80/orders_list", {
         headers: {
-            
-            'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application/json',
-            
+            "Content-Type": "application/json",
         },
-        content: {
-            topic: content?.topic,
-            message: content?.message
-        } 
+    }).then((res) => {
+        console.log("marche")
+    }).catch((err) => {
+        console.log("marche pas ")
+    }) */
+
+
+    axios.post("http://" + address + ":" + port + "/api/send_orders", {
+        headers: {
+            "Content-Type": "application/json",
+        },
+        topic: content?.topic,
+        message: content?.message
     }).then((res) => {
         //console.log("resultat requete : ", res)
     }).catch((err) => console.log("erreur : ", err));
-    
+
 }
 
 const turnRight = (address, port, path) => {

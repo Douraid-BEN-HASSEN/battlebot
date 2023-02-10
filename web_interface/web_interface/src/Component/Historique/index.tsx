@@ -12,7 +12,6 @@ interface historiqueProps {
 const Historique: React.FC<historiqueProps> = React.memo(
   ({ datasHistory, handleClearHistory, hasChange, handleChangeBoolean, style  }) => {
     
-    console.log("re render historique ")
     useEffect(() => {
       handleChangeBoolean();
     }, [datasHistory, hasChange]);

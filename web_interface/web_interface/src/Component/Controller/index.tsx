@@ -7,14 +7,15 @@ import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOu
 import ArrowCircleUpOutlinedIcon from "@mui/icons-material/ArrowCircleUpOutlined";
 import { TYPE_STYLE } from "../../Constantes/Types";
 import HelpIcon from "@mui/icons-material/Help";
+import { useMemoizedFn } from "ahooks";
 
 interface controllerProps {
-  handleAddHistory: (action: "add" | "clear", value: string) => void;
-  handleClickShowHelp: () => void;
   style: TYPE_STYLE;
   mode: "basique" | "avance";
   handleChangePower: (value: number) => void;
   handleReleaseButton: (key: string) => void;
+  handleAddHistory: (action: "add" | "clear", value: string) => void;
+  handleClickShowHelp: () => void;
 }
 
 declare global {
@@ -33,8 +34,9 @@ const Controller: React.FC<controllerProps> = React.memo(
     handleChangePower,
     handleReleaseButton,
   }) => {
-    const handleUserKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    const handleUserKeyPress = useMemoizedFn((event: React.KeyboardEvent<HTMLInputElement>) => {
       const { key } = event;
+      console.log("handle on press ", key);
       if (
         key === "z" ||
         key === "q" ||
@@ -44,26 +46,29 @@ const Controller: React.FC<controllerProps> = React.memo(
         key === "p" ||
         key === "a"
       ) {
+        console.log("set key pressed : ", key);
         setKeyPressed(key);
         handleAddHistory("add", key);
       } else if (key === "r") {
         if (isInversion) setIsInversion(false);
         else setIsInversion(true);
       }
-    };
+    });
 
     const handleUserKeyRelease = (event: React.KeyboardEvent<HTMLInputElement>) => {
-      handleReleaseButton(keyPressed);
-      setKeyPressed("");
+      handleReleaseButton(event.key);
     };
 
     useEffect(() => {
       window.addEventListener("keydown", handleUserKeyPress);
-      window.addEventListener("keyup", handleUserKeyRelease);
-
-      return () => window.removeEventListener("keydown" , handleUserKeyPress)
+      return () => window.removeEventListener("keydown", handleUserKeyPress);
     }, []);
-    console.log("re render controller")
+
+    useEffect(() => {
+      window.addEventListener("keyup", handleUserKeyRelease);
+      return () => window.removeEventListener("keyup", handleUserKeyRelease);
+    }, []);
+
     const [isInversion, setIsInversion] = useState<boolean>(false);
     const [keyPressed, setKeyPressed] = useState<"" | "z" | "q" | "s" | "d" | "o" | "p" | "a">("");
     const [powerValue, setPowerValue] = useState<number>(50);
