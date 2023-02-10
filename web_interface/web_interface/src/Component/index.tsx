@@ -5,6 +5,6 @@ import Footer from "./Footer";
 import Historique from "./Historique";
 import CurrentAction from "./CurrentAction";
 import SwitchMode from "./SwitchMode";
+import Simple from "./Simple";
 
-
-export {SwitchMode ,CurrentAction ,  MainComponent, Controller, Header, Footer, Historique };
+export { Simple, SwitchMode, CurrentAction, MainComponent, Controller, Header, Footer, Historique };
