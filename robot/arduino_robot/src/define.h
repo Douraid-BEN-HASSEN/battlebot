@@ -26,10 +26,11 @@
 #define MQTT_TOPIC_INFORMATION "robot_information/"
 #define MQTT_TOPIC "robot_information/"
 
-/*#define MQTT_HOST "broker.emqx.io"
-#define MQTT_PORT 1883
-#define MQTT_USERNAME ""
-#define MQTT_PASSWORD ""
-#define MQTT_TOPIC "async-mqtt/ESP8266_Pub69140"*/
+#define D1 5
+#define D2 4
+#define D3 0
+#define D4 2
+#define D5 14
+#define D6 12
 
 #endif

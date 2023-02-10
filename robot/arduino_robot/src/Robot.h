@@ -31,14 +31,16 @@ class Robot {
     ~Robot();
 
     // --- UTILS ---
-    void right(); // méthode pour aller vers la droite
-    void left(); // méthode pour aller vers la gauche
-    void up(); // méthode pour aller vers le haut
-    void down(); // méthode pour aller vers le bas
-    void accelerer();
-    void ralentir();
-    void reverseCmd(); // méthode pour inverser les commandes
-
+    void avancer();
+    void gauche();
+    void droite();
+    void arr();
+    void stope();
+    void pelleS();
+    void pelleH();
+    void pelleB();
+    void reverseCmd();
+    
     // --- GETTER ---
     bool isReversedCmd();
 
