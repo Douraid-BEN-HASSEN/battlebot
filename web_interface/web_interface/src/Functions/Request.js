@@ -1,27 +1,10 @@
 import axios from "axios"
 
 const sendRequest = (address, port, path, content) => {
-    //console.log("function sendRequest", address, port, path, content)
-    //console.log(typeof (address))
-    //console.log(typeof (port))
     if (address instanceof String || port instanceof String) {
         //console.log("Return error")
         return -1
     }
-
-    //console.log(address , port )
-
-    /*
-    axios.get("http://10.3.2.25:80/orders_list", {
-        headers: {
-            "Content-Type": "application/json",
-        },
-    }).then((res) => {
-        console.log("marche")
-    }).catch((err) => {
-        console.log("marche pas ")
-    }) */
-
 
     axios.post("http://" + address + ":" + port + "/api/send_orders", {
         headers: {
@@ -42,7 +25,8 @@ const turnRight = (address, port, path) => {
             time: 1,
             left_wheel: 1,
             right_wheel: -1,
-            order_id: 1
+            order_id: 1 , 
+            shovel : -2 
         }
     })
 }
@@ -55,7 +39,8 @@ const turnLeft = (address, port, path) => {
             time: 1,
             left_wheel: -1,
             right_wheel: +1,
-            order_id: 1
+            order_id: 1 ,
+            shovel : -2 
         }
     })
 }
@@ -65,7 +50,8 @@ const goFront = (address, port, path) => {
             time: 1,
             left_wheel: 1,
             right_wheel: 1,
-            order_id: 1
+            order_id: 1,
+            shovel : -2 
         }
     })
 }
@@ -75,7 +61,8 @@ const goBack = (address, port, path) => {
             time: 1,
             left_wheel: -1,
             right_wheel: -1,
-            order_id: 1
+            order_id: 1,
+            shovel : -2 
         }
     })
 }
@@ -85,9 +72,34 @@ const stopp = (address, port, path) => {
             time: 1,
             left_wheel: 0,
             right_wheel: 0,
-            order_id: 1
+            order_id: 1 ,
+            shovel : 0 
         }
     })
 }
 
-export { sendRequest, turnLeft, turnRight, goFront, goBack, stopp }
+const upShovel = (address, port, path) => {
+    sendRequest(address, port, path, {
+        topic : 'send_order' , message: {
+            time : 1 ,
+            left_wheel : 0 , 
+            right_wheel : 0 ,
+            order_id : 1 ,
+            shovel : +1 
+        }
+    })
+}
+
+const downShovel =(address, port,path) => {
+    sendRequest(address , port, path , {
+        topic : 'send_order' , message: {
+            time : 1 , 
+            left_wheel : 0 , 
+            right_wheel : 0 ,
+            order_id : 1 , 
+            shovel : -1 
+        }
+    })
+}
+
+export { sendRequest, turnLeft, turnRight, goFront, goBack, stopp , upShovel , downShovel }

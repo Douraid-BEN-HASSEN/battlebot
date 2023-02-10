@@ -81,7 +81,7 @@ const Header: React.FC<headerProps> = React.memo(
             </Grid>
             <Grid item xs={3}>
               <Box display="flex" justifyContent="center" alignItems="center">
-                Actions : OP
+                Lever/Baisser la pelle  : P O 
               </Box>
             </Grid>
           </Grid>

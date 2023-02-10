@@ -4,7 +4,15 @@ import Header from "../Header";
 import { Grid } from "@mui/material";
 import Footer from "../Footer";
 import Historique from "../Historique";
-import { goBack, goFront, turnLeft, turnRight, stopp } from "../../Functions/Request";
+import {
+  goBack,
+  goFront,
+  turnLeft,
+  turnRight,
+  stopp,
+  upShovel,
+  downShovel,
+} from "../../Functions/Request";
 import { TYPE_STYLE, TYPE_INFOS_REQUEST } from "../../Constantes/Types";
 import { KEY_TO_ACTION } from "../../Constantes/Values";
 import { DEFAULT_INFOS_REQUEST } from "../../Constantes/Values";
@@ -59,6 +67,8 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
           else if (value === "d") turnRight(infosRequest.address, infosRequest.port, "/test");
           else if (value === "s") goBack(infosRequest.address, infosRequest.port, "/test");
           else if (value === "a") stopp(infosRequest.address, infosRequest.port, "/test");
+          else if (value === "o") downShovel(infosRequest.address, infosRequest.port, "/test");
+          else if (value === "p") upShovel(infosRequest.address, infosRequest.port, "/test");
           tmp.push(KEY_TO_ACTION[value]);
           setDatasHistory(tmp);
           setLastAction(KEY_TO_ACTION[value].split(":")[1]);
@@ -69,7 +79,7 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
 
   const handleReleaseButton = (key: string) => {
     console.log("handle release button dans main component , key : ", key);
-    if (key === "z" || key === "q" || key === "s" || key === "d") {
+    if (key === "z" || key === "q" || key === "s" || key === "d" || key === "o" || key === "p") {
       console.log("send request stop ");
       stopp(infosRequest.address, infosRequest.port, "/test");
     }
