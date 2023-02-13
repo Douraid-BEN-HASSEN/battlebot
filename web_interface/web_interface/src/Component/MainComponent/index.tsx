@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import Controller from "../Controller";
 import Header from "../Header";
-import { Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import Footer from "../Footer";
 import Historique from "../Historique";
 import {
@@ -12,6 +12,7 @@ import {
   stopp,
   upShovel,
   downShovel,
+  sendRequest,
 } from "../../Functions/Request";
 import { TYPE_STYLE, TYPE_INFOS_REQUEST } from "../../Constantes/Types";
 import { KEY_TO_ACTION } from "../../Constantes/Values";
@@ -21,7 +22,7 @@ import SwitchMode from "../SwitchMode";
 
 interface mainComponentProps {}
 
-const customStylee= {
+const customStylee = {
   backgroundColor: "lightblue",
   borderColor: "#3f51b5",
   borderWidth: "4px",
@@ -30,7 +31,6 @@ const customStylee= {
   mainBackgroundColor: "lightgray",
   borderWidthButton: "2px",
   borderColorButton: "#3f51b5",
-
 } as TYPE_STYLE;
 
 const customStyle = {
@@ -42,10 +42,10 @@ const customStyle = {
   mainBackgroundColor: "black",
   borderWidthButton: "2px",
   borderColorButton: "black",
-  primaryBackgroundColorList: "whitesmoke",
-  secondaryBackgroundColorList: "white",
-  backgroundColorButton : '#ffa500' ,
-  buttonFontColor : 'black'
+  primaryBackgroundColorList: "#ffa500",
+  secondaryBackgroundColorList: "#808080",
+  backgroundColorButton: "#ffa500",
+  buttonFontColor: "black",
 } as TYPE_STYLE;
 
 const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
@@ -111,6 +111,13 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
         backgroundColor: customStyle.mainBackgroundColor,
       }}
     >
+      <Button
+        onClick={() => {
+          sendRequest(infosRequest.address, infosRequest.port, "");
+        }}
+      >
+        test
+      </Button>
       <Header
         style={customStyle}
         showHelp={showHelp}

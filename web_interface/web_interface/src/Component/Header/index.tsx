@@ -6,7 +6,7 @@ import PetsIcon from "@mui/icons-material/Pets";
 import { TYPE_INFOS_REQUEST, TYPE_STYLE } from "../../Constantes/Types";
 import Logo from "../../Assets/Logo.png";
 import useSound from "use-sound";
-import song from "../../Assets/Song.mp3"
+import song from "../../Assets/Song.mp3";
 
 interface headerProps {
   style: TYPE_STYLE;
@@ -18,23 +18,19 @@ interface headerProps {
 
 const Header: React.FC<headerProps> = React.memo(
   ({ style, showHelp, infosRequest, lastAction, mode }) => {
-    
-    const [playSound] = useSound(song)
+    const [playSound] = useSound(song);
 
     const onClickLogo = () => {
-      console.log("on click logo");
       playSound();
-      console.log("eee")
     };
 
-    
     return (
       <>
         <Box sx={{ flewGrow: 1 }}>
           <AppBar
             position="static"
             style={{
-              height: "80px",
+              height: "65px",
               backgroundColor: style.backgroundColor,
               borderBottom: style.borderWidth + " solid " + style.borderColor,
               marginBottom: mode === "avance" && showHelp === false ? "60px" : "0px",
