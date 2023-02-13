@@ -3,7 +3,7 @@ from paho.mqtt import client as mqtt_client
 from .mqtthandler import handle
 broker = 'broker.emqx.io'
 port = 1883
-topic = "robot"
+topic = "robot_information/"
 # generate client ID with pub prefix randomly
 client_id = f'python-mqtt-{random.randint(0, 100)}'
 username = 'emqx'

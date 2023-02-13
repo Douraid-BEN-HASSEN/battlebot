@@ -1,17 +1,18 @@
-from .models import Order
-import subprocess
-
 import django_tables2 as tables
-from django.http import HttpResponseForbidden, HttpResponse
-from django.shortcuts import get_object_or_404, redirect, render
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, redirect
 from rest_framework import viewsets
 
 from .models import Order
 from .serializers import OrderSerializer
 from .tables import SimpleTable
 
+
 def index(request):
-    return render(request, "main.html")
+    print("METHOD :",request.method , "FROM {}".format(request.META['REMOTE_ADDR']))
+
+    print("BODY :",request.body.decode('utf-8'))
+    return HttpResponse(200)
 
 def order_delete(request, pk):
     order = get_object_or_404(Order, pk=pk)
@@ -20,8 +21,17 @@ def order_delete(request, pk):
         return redirect('order_list')
 
 
-
-
+def send_orders_view(request):
+    print("METHOD :", request.method, "FROM {}".format(request.META['REMOTE_ADDR']))
+    if request.method =="POST":
+        topic = request.POST['topic']
+        message = request.POST['message']
+        order = Order(message = message , topic = topic)
+        order.save()
+        order.send()
+        return HttpResponse(201)
+    else :
+        return HttpResponse(200)
 class OrderViewSet(viewsets.ModelViewSet):
     serializer_class = OrderSerializer
     queryset = Order.objects.all()

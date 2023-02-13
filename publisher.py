@@ -8,7 +8,7 @@ from paho import mqtt
 
 broker = 'beeb3ef0279e4d86985afe740d185f1c.s2.eu.hivemq.cloud'
 port = 8883
-topic = "robot"
+topic = "robot_information/"
 # generate client ID with pub prefix randomly
 client_id = f'python-mqtt-{random.randint(0, 1000)}'
 

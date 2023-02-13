@@ -1,15 +1,17 @@
 import os
 
 from pathlib import Path
+from dotenv import load_dotenv
+from pathlib import Path
+import environ
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
 
-try :
-    import environ
+dotenv_path = Path('.env')
 
-    env = environ.Env()
-    environ.Env.read_env()
-    SECRET_KEY = env('SECRET_KEY')
-except:
-    SECRET_KEY ="zJMeUyrQKV9W6XJ2hdGf"
+
+SECRET_KEY = env('SECRET_KEY')
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['10.3.2.25']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -41,21 +43,56 @@ INSTALLED_APPS = [
     'api_app',
     'django_tables2',
     "django_extensions",
+    'corsheaders',
 
 ]
+CSRF_COOKIE_SECURE =False
+SESSION_COOKIE_SECURE  = False
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    ''
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'server.urls'
+CORS_ALLOWED_ORIGINS = [
+"https://domain.com",
+"https://api.domain.com",
+"http://localhost:80",
+"http://127.0.0.1:80",
+    "http://10.3.2.25:80",
+    "http://10.3.2.75:80"
+]
+CORS_ALLOW_METHODS = [
+'DELETE',
+'GET',
+'OPTIONS',
+'PATCH',
+'POST',
+'PUT',
+]
 
+CORS_ALLOW_HEADERS = [
+'accept',
+'accept-encoding',
+'authorization',
+'content-type',
+'dnt',
+'origin',
+'user-agent',
+'x-csrftoken',
+'x-requested-with',
+]
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_URLS_REGEX = r'^/api/*$'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

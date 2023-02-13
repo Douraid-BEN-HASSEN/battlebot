@@ -15,12 +15,13 @@ load_dotenv(dotenv_path=dotenv_path)
 
 broker = 'broker.emqx.io'
 port = 1883
-topic = "response_order/"
-topic="robot"
+
 username = os.getenv('HIVE_USERNAME')
 password = os.getenv('HIVE_PASSWORD')
 host = os.getenv('HIVE_BROKER')
 port = int(os.getenv('HIVE_PORT'))
+
+MQTT_TOPIC = [("robot_information/",0),("response_order/",0),("send_order/",0)]
 
 
 def connect_mqtt() -> mqtt_client:
@@ -48,7 +49,7 @@ def subscribe(client: mqtt_client):
         # print("CLIENT ID ",msg.payload.decode())
         handle(msg.topic ,msg.payload.decode() )
 
-    client.subscribe(topic)
+    client.subscribe(MQTT_TOPIC)
     client.on_message = on_message
 
 def run_mqtt_listener():
