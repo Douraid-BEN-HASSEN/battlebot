@@ -37,7 +37,7 @@ password = os.getenv('HIVE_PASSWORD')
 host = os.getenv('HIVE_BROKER')
 port = int(os.getenv('HIVE_PORT'))
 
-topics = ["robot_information/", "robot_sensors/", "robot_movements/"]
+topics = ["robot_information/", "send_order/", "robot_movements/"]
 # generate client ID with pub prefix randomly
 username = 'emqx'
 password = 'public'

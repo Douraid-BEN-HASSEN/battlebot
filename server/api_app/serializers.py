@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 from pathlib import Path
 import os
 import random
-
+import json
 dotenv_path = Path('server/server/.env')
 
 load_dotenv(dotenv_path=dotenv_path)
@@ -30,9 +30,17 @@ class OrderSerializer(serializers.ModelSerializer):
         fields = ["topic", "message"]
 
     def create(self, validated_data):
+        print("RECEIVED DATA :" , validated_data)
         received_time = datetime.now().isoformat()
-        validated_data["received_time"] = datetime.fromisoformat(received_time)
-        order =  Order.objects.create(**validated_data)
+        # validated_data["received_time"] = datetime.fromisoformat(received_time)
+        # Do something with the message dictionary here, for example:
+        """validated_data["order_id"] = message.get("order_id")
+        validated_data["left_wheel"] = message.get("left_wheel")
+        validated_data["right_wheel"] = message.get("right_wheel")
+        validated_data["shovel"] = message.get("shovel")"""
+
+        order = Order.objects.create(**validated_data)
+        print("ORDER CREATED", order)
         client.connect(host, port)
         client.username_pw_set(username, password)
         client.connect("broker.emqx.io", 1883)
