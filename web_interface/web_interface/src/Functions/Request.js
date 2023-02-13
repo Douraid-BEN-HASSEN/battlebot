@@ -10,7 +10,6 @@ const sendRequest = (address, port, path, content) => {
             message: "message_test"
         })
     }
-
     fetch("http://" + address + ":" + port + "/api/test/", requestOptions).then(response => console.log(response))
 }
 
