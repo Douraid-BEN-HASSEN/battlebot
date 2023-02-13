@@ -130,22 +130,6 @@ void onMqttPublish(const uint16_t& packetId)
   Serial.println(packetId);
 }
 
-// --- MAE UTILS ---
-void MAE() {
-  int v = 0;
-  int b = 0;
-  switch(v) {
-    case 0:
-      b = 0;
-      break;
-    case 1:
-      b = 0;
-      break;
-    default:
-      b = 0;
-  }
-}
-
 void setup()
 {
   Serial.begin(9600);

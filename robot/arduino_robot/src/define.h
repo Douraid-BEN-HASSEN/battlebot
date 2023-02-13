@@ -1,9 +1,9 @@
+#ifndef DEFINE_H
+#define DEFINE_H
+
 // +------------+
 // | Constantes |
 // +------------+
-
-#ifndef DEFINE_H
-#define DEFINE_H
 
 // --- WIFI ---
 #define WIFI_SSID "IMERIR_IoT"
