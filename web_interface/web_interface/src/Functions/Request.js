@@ -1,16 +1,18 @@
 import axios from "axios"
 
 const sendRequest = (address, port, path, content) => {
+    //let eee = cookie.get('csrftoken');
+    console.log("enculé ")
     const requestOptions = {
         method: 'POST',
-        mode :'cors',
-        headers: { 'Content-Type': 'application/json', "Access-Control-Allow-Origin": "*" },
+        mode : 'cors',
+        headers: { 'Content-Type': 'application/json', "Access-Control-Allow-Origin": "*", "X-CSRFToken": "test123" },
         body: JSON.stringify({
             topic: 'robot_information',
             message: "message_test"
         })
     }
-    fetch("http://" + address + ":" + port + "/api/test/", requestOptions).then(response => console.log(response))
+    fetch("http://10.3.2.25:80/api/test", requestOptions).then(response => console.log(response))
 }
 
 const sendRequests = (address, port, path, content) => {
