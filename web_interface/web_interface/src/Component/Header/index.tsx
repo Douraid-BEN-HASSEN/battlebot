@@ -21,6 +21,7 @@ const Header: React.FC<headerProps> = React.memo(
     const [playSound] = useSound(song);
 
     const onClickLogo = () => {
+      console.log("Félicitations, vous avez trouvé l'easter egg ;)")
       playSound();
     };
 

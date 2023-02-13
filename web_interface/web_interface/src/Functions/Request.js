@@ -1,18 +1,16 @@
 import axios from "axios"
 
 const sendRequest = (address, port, path, content) => {
-    //let eee = cookie.get('csrftoken');
-    console.log("enculé ")
     const requestOptions = {
         method: 'POST',
-        mode : 'cors',
-        headers: { 'Content-Type': 'application/json', "Access-Control-Allow-Origin": "*", "X-CSRFToken": "test123" },
+        mode: 'cors',
+        headers: { 'Content-Type': 'application/json', "Access-Control-Allow-Origin": "*" },
         body: JSON.stringify({
             topic: 'robot_information',
             message: "message_test"
         })
     }
-    fetch("http://10.3.2.25:80/api/test", requestOptions).then(response => console.log(response))
+    fetch("http://10.3.2.25:80/api/send_orders/", requestOptions).then(response => console.log(response))
 }
 
 const sendRequests = (address, port, path, content) => {
@@ -21,6 +19,15 @@ const sendRequests = (address, port, path, content) => {
         return -1
     }
 
+    const requestOptions = {
+        method : 'POST' , 
+        mode : 'cors' , 
+        headers: { 'Content-Type': 'application/json', "Access-Control-Allow-Origin": "*" }, 
+        body : JSON.stringify(content)
+    }
+
+    fetch("http//"+address+":"+port+"/api/send_orders/")
+    /*
     axios.options("http://" + address + ":" + port + "/api/test/", {
         params: {
             topic: "robot_information",
@@ -29,8 +36,8 @@ const sendRequests = (address, port, path, content) => {
     }
     ).then((res) => {
         //console.log("resultat requete : ", res)
-    })/*.catch((err) => console.log("erreur : ", err));*/
-
+    }).catch((err) => console.log("erreur : ", err));
+    */
 }
 
 const turnRight = (address, port, path, isInversed) => {
