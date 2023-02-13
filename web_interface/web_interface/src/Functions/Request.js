@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const sendRequest = (address, port, path, content) => {
+const sendRequests = (address, port, path, content) => {
     const requestOptions = {
         method: 'POST',
         mode: 'cors',
@@ -13,31 +13,21 @@ const sendRequest = (address, port, path, content) => {
     fetch("http://10.3.2.25:80/api/send_orders/", requestOptions).then(response => console.log(response))
 }
 
-const sendRequests = (address, port, path, content) => {
+const sendRequest = (address, port, path, content) => {
     if (address instanceof String || port instanceof String) {
         //console.log("Return error")
         return -1
     }
 
     const requestOptions = {
-        method : 'POST' , 
-        mode : 'cors' , 
-        headers: { 'Content-Type': 'application/json', "Access-Control-Allow-Origin": "*" }, 
-        body : JSON.stringify(content)
+        method: 'POST',
+        mode: 'cors',
+        headers: { 'Content-Type': 'application/json', "Access-Control-Allow-Origin": "*" },
+        body: JSON.stringify(content)
     }
 
-    fetch("http//"+address+":"+port+"/api/send_orders/")
-    /*
-    axios.options("http://" + address + ":" + port + "/api/test/", {
-        params: {
-            topic: "robot_information",
-            message: "message_test"
-        },
-    }
-    ).then((res) => {
-        //console.log("resultat requete : ", res)
-    }).catch((err) => console.log("erreur : ", err));
-    */
+    fetch("http//" + address + ":" + port + "/api/send_orders/")
+
 }
 
 const turnRight = (address, port, path, isInversed) => {
@@ -122,3 +112,16 @@ const downShovel = (address, port, path) => {
 }
 
 export { sendRequest, turnLeft, turnRight, goFront, goBack, stopp, upShovel, downShovel }
+
+
+/*
+axios.options("http://" + address + ":" + port + "/api/test/", {
+    params: {
+        topic: "robot_information",
+        message: "message_test"
+    },
+}
+).then((res) => {
+    //console.log("resultat requete : ", res)
+}).catch((err) => console.log("erreur : ", err));
+*/
