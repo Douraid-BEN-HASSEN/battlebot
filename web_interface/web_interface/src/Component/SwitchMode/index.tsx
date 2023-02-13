@@ -37,6 +37,7 @@ const SwitchMode: React.FC<switchModeProps> = React.memo(({ style, handleChangeM
           style={{
             width: "100%",
             border: style.borderWidthButton + " solid " + style.borderColorButton,
+            backgroundColor:style.backgroundColorButton
           }}
         >
           Passe en mode {mode === "avance" ? "Basique" : "Avancé"}

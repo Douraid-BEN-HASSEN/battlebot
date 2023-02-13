@@ -45,7 +45,7 @@ const Historique: React.FC<historiqueProps> = React.memo(
                   border: "1px solid " + style.borderColor,
                   height: "50px",
                   textAlign: "center",
-                  backgroundColor: index % 2 === 0 ? "lightgrey" : "grey",
+                  backgroundColor: index % 2 === 0 ? style.primaryBackgroundColorList : style.secondaryBackgroundColorList,
                   width: "100%",
                   fontSize: "20px",
                   fontWeight: "bold",
@@ -74,6 +74,7 @@ const Historique: React.FC<historiqueProps> = React.memo(
             style={{
               width: "100%",
               border: style.borderWidthButton + " solid " + style.borderColorButton,
+              backgroundColor:style.backgroundColorButton
             }}
           >
             Effacer

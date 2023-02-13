@@ -21,7 +21,7 @@ import SwitchMode from "../SwitchMode";
 
 interface mainComponentProps {}
 
-const customStylee = {
+const customStylee= {
   backgroundColor: "lightblue",
   borderColor: "#3f51b5",
   borderWidth: "4px",
@@ -30,17 +30,22 @@ const customStylee = {
   mainBackgroundColor: "lightgray",
   borderWidthButton: "2px",
   borderColorButton: "#3f51b5",
+
 } as TYPE_STYLE;
 
 const customStyle = {
-  backgroundColor: "white",
-  borderColor: "black",
-  borderWidth: "2px",
-  borderRadius: "4px",
-  fontColor: "black",
-  mainBackgroundColor: "whitesmoke",
+  backgroundColor: "black",
+  borderColor: "#808080",
+  borderWidth: "1px",
+  borderRadius: "0px",
+  fontColor: "white",
+  mainBackgroundColor: "black",
   borderWidthButton: "2px",
   borderColorButton: "black",
+  primaryBackgroundColorList: "whitesmoke",
+  secondaryBackgroundColorList: "white",
+  backgroundColorButton : '#ffa500' ,
+  buttonFontColor : 'black'
 } as TYPE_STYLE;
 
 const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
@@ -62,8 +67,10 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
         let tmp = datasHistory;
         if (tmp.length === 0 || (tmp.length > 0 && tmp.at(-1) !== KEY_TO_ACTION[value])) {
           if (value === "z") goFront(infosRequest.address, infosRequest.port, "/test");
-          else if (value === "q") turnLeft(infosRequest.address, infosRequest.port, "/test" , isInversed);
-          else if (value === "d") turnRight(infosRequest.address, infosRequest.port, "/test" , isInversed);
+          else if (value === "q")
+            turnLeft(infosRequest.address, infosRequest.port, "/test", isInversed);
+          else if (value === "d")
+            turnRight(infosRequest.address, infosRequest.port, "/test", isInversed);
           else if (value === "s") goBack(infosRequest.address, infosRequest.port, "/test");
           else if (value === "a") stopp(infosRequest.address, infosRequest.port, "/test");
           else if (value === "o") downShovel(infosRequest.address, infosRequest.port, "/test");

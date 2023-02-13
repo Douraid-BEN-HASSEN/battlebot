@@ -7,6 +7,10 @@ export type TYPE_STYLE = {
     mainBackgroundColor: string ;
     borderColorButton : string ;
     borderWidthButton : string ; 
+    primaryBackgroundColorList : string ; 
+    secondaryBackgroundColorList : string ; 
+    backgroundColorButton : string ; 
+    buttonFontColor : string ; 
 }
 
 export type TYPE_INFOS_REQUEST = {

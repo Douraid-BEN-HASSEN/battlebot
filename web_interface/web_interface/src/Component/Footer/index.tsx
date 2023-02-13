@@ -11,7 +11,6 @@ interface footerProps {
 }
 
 const Footer: React.FC<footerProps> = React.memo(({ handleChange, style, values, handleTest }) => {
-  
   const [isUpdate, setIsUpdate] = useState<boolean>(false);
   const [addresse, setAddresse] = useState<string>(values.address);
   const [port, setPort] = useState<number>(values.port);
@@ -33,7 +32,7 @@ const Footer: React.FC<footerProps> = React.memo(({ handleChange, style, values,
                 <TextField
                   value={addresse}
                   disabled={!isUpdate}
-                  style={{ width: "100%" }}
+                  style={{ width: "100%", backgroundColor: style.backgroundColorButton }}
                   label="Adresse IP"
                   onChange={(event: any) => {
                     setAddresse(event.target.value);
@@ -46,7 +45,7 @@ const Footer: React.FC<footerProps> = React.memo(({ handleChange, style, values,
                 <TextField
                   value={port}
                   disabled={!isUpdate}
-                  style={{ width: "100%" }}
+                  style={{ width: "100%", backgroundColor: style.backgroundColorButton }}
                   label="Port"
                   type={"number"}
                   onChange={(event: any) => {
@@ -61,7 +60,12 @@ const Footer: React.FC<footerProps> = React.memo(({ handleChange, style, values,
                   <Button
                     color="inherit"
                     variant="contained"
-                    style={{ width: "95%", color: style.fontColor, fontWeight: "bold" }}
+                    style={{
+                      width: "95%",
+                      color: style.fontColor,
+                      fontWeight: "bold",
+                      backgroundColor: style.backgroundColorButton,
+                    }}
                     onClick={() => {
                       if (isUpdate === true) {
                         setIsUpdate(false);
@@ -83,7 +87,12 @@ const Footer: React.FC<footerProps> = React.memo(({ handleChange, style, values,
                     onClick={handleTest}
                     color="inherit"
                     variant="contained"
-                    style={{ width: "95%", color: style.fontColor, fontWeight: "bold" }}
+                    style={{
+                      width: "95%",
+                      color: style.fontColor,
+                      fontWeight: "bold",
+                      backgroundColor: style.backgroundColorButton,
+                    }}
                   >
                     Tester
                   </Button>

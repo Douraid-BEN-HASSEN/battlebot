@@ -4,6 +4,10 @@ import { Stack } from "@mui/system";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 import PetsIcon from "@mui/icons-material/Pets";
 import { TYPE_INFOS_REQUEST, TYPE_STYLE } from "../../Constantes/Types";
+import Logo from "../../Assets/Logo.png";
+import useSound from "use-sound";
+import song from "../../Assets/Song.mp3"
+
 interface headerProps {
   style: TYPE_STYLE;
   showHelp: boolean;
@@ -15,22 +19,30 @@ interface headerProps {
 const Header: React.FC<headerProps> = React.memo(
   ({ style, showHelp, infosRequest, lastAction, mode }) => {
     
+    const [playSound] = useSound(song)
+
+    const onClickLogo = () => {
+      console.log("on click logo");
+      playSound();
+      console.log("eee")
+    };
+
+    
     return (
       <>
         <Box sx={{ flewGrow: 1 }}>
           <AppBar
             position="static"
             style={{
-              height: "60px",
+              height: "80px",
               backgroundColor: style.backgroundColor,
               borderBottom: style.borderWidth + " solid " + style.borderColor,
-              marginBottom: mode === "avance" && showHelp === false ? "60px" : "0px"
+              marginBottom: mode === "avance" && showHelp === false ? "60px" : "0px",
             }}
           >
-            <Toolbar
-            >
-              <Grid container spacing={0} justifyContent="center" >
-                <Box display="flex" justifyContent="center" alignItems="center">
+            <Toolbar>
+              <Grid container spacing={0} justifyContent="center">
+                <Box display="flex" justifyContent="start" alignItems="center">
                   <Grid
                     item
                     xs={12}
@@ -41,8 +53,19 @@ const Header: React.FC<headerProps> = React.memo(
                     }}
                   >
                     <Stack direction="row" alignItems={"center"} gap={1}>
+                      <img
+                        onClick={onClickLogo}
+                        style={{ cursor: "pointer" }}
+                        src={Logo}
+                        srcSet={Logo}
+                        alt={"Jaw Breaker"}
+                        loading={"lazy"}
+                      />
+
+                      {/*
                       <LocalFireDepartmentIcon />
                       <PetsIcon /> Jaw Breaker <PetsIcon /> <LocalFireDepartmentIcon />
+                  */}
                     </Stack>
                   </Grid>
                 </Box>
@@ -60,8 +83,9 @@ const Header: React.FC<headerProps> = React.memo(
               backgroundColor: style.backgroundColor,
               borderBottom: style.borderWidth + " solid " + style.borderColor,
               padding: "5px 0 5px 0",
-              fontWeight: "bold",
               marginBottom: mode === "avance" && showHelp === true ? "60px" : "0px",
+              fontWeight: "bold",
+              color: style.fontColor,
             }}
           >
             <Grid item xs={3}>
@@ -81,7 +105,7 @@ const Header: React.FC<headerProps> = React.memo(
             </Grid>
             <Grid item xs={3}>
               <Box display="flex" justifyContent="center" alignItems="center">
-                Lever/Baisser la pelle  : P O 
+                Lever/Baisser la pelle : P O
               </Box>
             </Grid>
           </Grid>
@@ -98,6 +122,7 @@ const Header: React.FC<headerProps> = React.memo(
                 borderBottom: style.borderWidth + " solid " + style.borderColor,
                 padding: "5px 0 5px 0",
                 fontWeight: "bold",
+                color: style.fontColor,
               }}
             >
               <Grid item xs={6}>
@@ -121,10 +146,11 @@ const Header: React.FC<headerProps> = React.memo(
                 borderBottom: style.borderWidth + " solid " + style.borderColor,
                 padding: "5px 0 5px 0",
                 fontWeight: "bold",
-                marginBottom: mode === "basique" ? "60px" : "0px"
+                marginBottom: mode === "basique" ? "60px" : "0px",
+                color: style.fontColor,
               }}
             >
-              <Grid item xs={12}   >
+              <Grid item xs={12}>
                 <Box display="flex" justifyContent="center" alignItems="center">
                   Dernière action : {lastAction}
                 </Box>

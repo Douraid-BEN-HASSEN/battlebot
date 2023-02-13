@@ -18,6 +18,8 @@ const CurrentAction: React.FC<currentActionProps> = React.memo(({ action, style 
         borderRadius: style.borderRadius,
         padding: "20px",
         backgroundColor: style.backgroundColor,
+        color: style.fontColor , 
+        fontWeight:'bold'
       }}
     >
       <Grid item xs={12} style={{ fontWeight: "bold", fontSize: "20px" }}>

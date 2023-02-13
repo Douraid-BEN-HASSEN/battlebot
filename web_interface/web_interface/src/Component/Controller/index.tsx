@@ -14,7 +14,7 @@ interface controllerProps {
   mode: "basique" | "avance";
   handleChangePower: (value: number) => void;
   handleReleaseButton: (key: string) => void;
-  handleAddHistory: (action: "add" | "clear", value: string , isInversed : boolean ) => void;
+  handleAddHistory: (action: "add" | "clear", value: string, isInversed: boolean) => void;
   handleClickShowHelp: () => void;
 }
 
@@ -46,7 +46,7 @@ const Controller: React.FC<controllerProps> = React.memo(
         key === "a"
       ) {
         setKeyPressed(key);
-        handleAddHistory("add", key , isInversion) ;
+        handleAddHistory("add", key, isInversion);
       } else if (key === "r") {
         if (isInversion) setIsInversion(false);
         else setIsInversion(true);
@@ -84,7 +84,7 @@ const Controller: React.FC<controllerProps> = React.memo(
         <Grid item xs={10}></Grid>
         <Grid item xs={2}>
           {mode === "avance" && (
-            <HelpIcon onClick={handleClickShowHelp} style={{ cursor: "pointer" }} />
+            <HelpIcon onClick={handleClickShowHelp} style={{ cursor: "pointer" , color:style.backgroundColorButton}} />
           )}
         </Grid>
 
@@ -94,7 +94,7 @@ const Controller: React.FC<controllerProps> = React.memo(
         <Grid item xs={4}>
           <Box display="flex" justifyContent="center" alignItems="center">
             <Button
-              sx={{ borderRadius: 28 }}
+              sx={{ borderRadius: 28, backgroundColor: style.backgroundColorButton }}
               variant="contained"
               style={{
                 border: style.borderWidthButton + " solid " + style.borderColorButton,
@@ -114,6 +114,7 @@ const Controller: React.FC<controllerProps> = React.memo(
             <Button
               style={{
                 border: style.borderWidthButton + " solid " + style.borderColorButton,
+                backgroundColor: style.backgroundColorButton,
               }}
               sx={{ borderRadius: 28 }}
               variant="contained"
@@ -131,6 +132,7 @@ const Controller: React.FC<controllerProps> = React.memo(
             <Button
               style={{
                 border: style.borderWidthButton + " solid " + style.borderColorButton,
+                backgroundColor: style.backgroundColorButton,
               }}
               sx={{ borderRadius: 28 }}
               variant="contained"
@@ -149,6 +151,7 @@ const Controller: React.FC<controllerProps> = React.memo(
             <Button
               style={{
                 border: style.borderWidthButton + " solid " + style.borderColorButton,
+                backgroundColor: style.backgroundColorButton,
               }}
               sx={{ borderRadius: 28 }}
               variant="contained"
@@ -167,6 +170,7 @@ const Controller: React.FC<controllerProps> = React.memo(
             <Button
               style={{
                 border: style.borderWidthButton + " solid " + style.borderColorButton,
+                backgroundColor: style.backgroundColorButton,
               }}
               sx={{ borderRadius: 28, fontWeight: "bold" }}
               variant="contained"
@@ -182,6 +186,7 @@ const Controller: React.FC<controllerProps> = React.memo(
             <Button
               style={{
                 border: style.borderWidthButton + " solid " + style.borderColorButton,
+                backgroundColor: style.backgroundColorButton,
               }}
               sx={{ borderRadius: 28, fontWeight: "bold" }}
               variant="contained"
@@ -193,7 +198,12 @@ const Controller: React.FC<controllerProps> = React.memo(
         </Grid>
 
         <Grid item xs={4} style={{ marginTop: "25px" }}>
-          <Box display="flex" justifyContent="center" alignItems="center">
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            style={{ fontWeight: "bold", color: style.fontColor }}
+          >
             PELLE :
           </Box>
         </Grid>
@@ -204,6 +214,7 @@ const Controller: React.FC<controllerProps> = React.memo(
               variant="contained"
               style={{
                 border: style.borderWidthButton + " solid " + style.borderColorButton,
+                backgroundColor: style.backgroundColorButton,
               }}
               color={keyPressed === "o" ? "primary" : "inherit"}
             >
@@ -218,6 +229,7 @@ const Controller: React.FC<controllerProps> = React.memo(
               variant="contained"
               style={{
                 border: style.borderWidthButton + " solid " + style.borderColorButton,
+                backgroundColor: style.backgroundColorButton,
               }}
               color={keyPressed === "p" ? "primary" : "inherit"}
             >
@@ -227,7 +239,15 @@ const Controller: React.FC<controllerProps> = React.memo(
         </Grid>
 
         <Grid item xs={12} style={{ marginTop: "25px" }}>
-          <Box display="flex" justifyContent={"center"} alignItems="center">
+          <Box
+            display="flex"
+            justifyContent={"center"}
+            alignItems="center"
+            style={{
+              color: style.fontColor,
+              fontWeight: "bold",
+            }}
+          >
             PUISSANCE : {powerValue}
           </Box>
         </Grid>
