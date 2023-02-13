@@ -1,32 +1,17 @@
-import axios from "axios"
-
-const sendRequests = (address, port, path, content) => {
-    const requestOptions = {
-        method: 'POST',
-        mode: 'cors',
-        headers: { 'Content-Type': 'application/json', "Access-Control-Allow-Origin": "*" },
-        body: JSON.stringify({
-            topic: 'robot_information',
-            message: "message_test"
-        })
-    }
-    fetch("http://10.3.2.25:80/api/send_orders/", requestOptions).then(response => console.log(response))
-}
-
 const sendRequest = (address, port, path, content) => {
     if (address instanceof String || port instanceof String) {
-        //console.log("Return error")
         return -1
     }
 
+    console.log("test : ", content)
     const requestOptions = {
         method: 'POST',
         mode: 'cors',
         headers: { 'Content-Type': 'application/json', "Access-Control-Allow-Origin": "*" },
-        body: JSON.stringify(content)
+        body: JSON.stringify({ topic: content.topic, message: content.message })
     }
 
-    fetch("http//" + address + ":" + port + "/api/send_orders/")
+    fetch("http://10.3.2.25:80/api/send_orders/", requestOptions).then(response => console.log(response))
 
 }
 

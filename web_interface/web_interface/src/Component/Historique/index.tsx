@@ -30,7 +30,7 @@ const Historique: React.FC<historiqueProps> = React.memo(
         <List
           sx={{
             width: "100%",
-            bgcolor: "background.paper",
+            bgcolor: style.backgroundColor,
             position: "relative",
             marginTop: "20px",
             overflow: "auto",

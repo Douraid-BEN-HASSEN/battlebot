@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import Controller from "../Controller";
 import Header from "../Header";
-import { Button, Grid } from "@mui/material";
+import {  Grid } from "@mui/material";
 import Footer from "../Footer";
 import Historique from "../Historique";
 import {
@@ -12,7 +12,6 @@ import {
   stopp,
   upShovel,
   downShovel,
-  sendRequest,
 } from "../../Functions/Request";
 import { TYPE_STYLE, TYPE_INFOS_REQUEST } from "../../Constantes/Types";
 import { KEY_TO_ACTION } from "../../Constantes/Values";
@@ -111,13 +110,6 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
         backgroundColor: customStyle.mainBackgroundColor,
       }}
     >
-      <Button
-        onClick={() => {
-          sendRequest(infosRequest.address, infosRequest.port, "");
-        }}
-      >
-        test
-      </Button>
       <Header
         style={customStyle}
         showHelp={showHelp}
