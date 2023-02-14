@@ -1,6 +1,4 @@
-import axios from "axios"
-
-const sendRequest = (address, port, path, content) => {
+    const sendRequest = (content) => {
     console.log(content)
 
     const requestOptions = {
@@ -13,12 +11,12 @@ const sendRequest = (address, port, path, content) => {
         })
     }
     fetch("http://10.3.2.25:80/api/send_orders/", requestOptions).then(response => console.log(response))
-    
+
 }
 
 
-const turnRight = (address, port, path, isInversed) => {
-    sendRequest(address, port, path, {
+const turnRight = (isInversed) => {
+    sendRequest({
         topic: 'send_order', message: {
             time: 1,
             left_wheel: isInversed ? -1 : 1,
@@ -29,8 +27,8 @@ const turnRight = (address, port, path, isInversed) => {
     })
 }
 
-const turnLeft = (address, port, path, isInversed) => {
-    sendRequest(address, port, path, {
+const turnLeft = (isInversed) => {
+    sendRequest({
         topic: 'send_order', message: {
             time: 1,
             left_wheel: isInversed ? 1 : -1,
@@ -40,8 +38,8 @@ const turnLeft = (address, port, path, isInversed) => {
         }
     })
 }
-const goFront = (address, port, path) => {
-    sendRequest(address, port, path, {
+const goFront = () => {
+    sendRequest({
         topic: 'send_order', message: {
             time: 1,
             left_wheel: 1 /*1 */,
@@ -51,8 +49,8 @@ const goFront = (address, port, path) => {
         }
     })
 }
-const goBack = (address, port, path) => {
-    sendRequest(address, port, path, {
+const goBack = () => {
+    sendRequest({
         topic: 'send_order', message: {
             time: 1,
             left_wheel: -1,
@@ -62,8 +60,8 @@ const goBack = (address, port, path) => {
         }
     })
 }
-const stopp = (address, port, path) => {
-    sendRequest(address, port, path, {
+const stopp = () => {
+    sendRequest({
         topic: 'send_order', message: {
             time: 1,
             left_wheel: 0,
@@ -74,8 +72,8 @@ const stopp = (address, port, path) => {
     })
 }
 
-const upShovel = (address, port, path) => {
-    sendRequest(address, port, path, {
+const upShovel = () => {
+    sendRequest({
         topic: 'send_order', message: {
             time: 1,
             left_wheel: 0,
@@ -86,8 +84,8 @@ const upShovel = (address, port, path) => {
     })
 }
 
-const downShovel = (address, port, path) => {
-    sendRequest(address, port, path, {
+const downShovel = () => {
+    sendRequest({
         topic: 'send_order', message: {
             time: 1,
             left_wheel: 0,
@@ -99,16 +97,3 @@ const downShovel = (address, port, path) => {
 }
 
 export { sendRequest, turnLeft, turnRight, goFront, goBack, stopp, upShovel, downShovel }
-
-
-/*
-axios.options("http://" + address + ":" + port + "/api/test/", {
-    params: {
-        topic: "robot_information",
-        message: "message_test"
-    },
-}
-).then((res) => {
-    //console.log("resultat requete : ", res)
-}).catch((err) => console.log("erreur : ", err));
-*/

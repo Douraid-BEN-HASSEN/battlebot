@@ -34,19 +34,13 @@ const MainComponentMobile: React.FC<mainComponentMobileProps> = React.memo(({}) 
   };
 
   const sendRequest = (value: "z" | "q" | "s" | "d" | "o" | "p" | "a") => {
-    if (value === "z") goFront(DEFAULT_INFOS_REQUEST.address, DEFAULT_INFOS_REQUEST.port, "/test");
-    else if (value === "s")
-      goBack(DEFAULT_INFOS_REQUEST.address, DEFAULT_INFOS_REQUEST.port, "/test");
-    else if (value === "a")
-      stopp(DEFAULT_INFOS_REQUEST.address, DEFAULT_INFOS_REQUEST.port, "/test");
-    else if (value === "o")
-      downShovel(DEFAULT_INFOS_REQUEST.address, DEFAULT_INFOS_REQUEST.port, "/test");
-    else if (value === "p")
-      upShovel(DEFAULT_INFOS_REQUEST.address, DEFAULT_INFOS_REQUEST.port, "/test");
-    else if (value === "q")
-      turnLeft(DEFAULT_INFOS_REQUEST.address, DEFAULT_INFOS_REQUEST.port, "/test", isInversion);
-    else if (value === "d")
-      turnRight(DEFAULT_INFOS_REQUEST.address, DEFAULT_INFOS_REQUEST.port, "/test", isInversion);
+    if (value === "z") goFront();
+    else if (value === "s") goBack();
+    else if (value === "a") stopp();
+    else if (value === "o") downShovel();
+    else if (value === "p") upShovel();
+    else if (value === "q") turnLeft(isInversion);
+    else if (value === "d") turnRight(isInversion);
   };
 
   return (

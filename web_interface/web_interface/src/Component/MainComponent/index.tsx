@@ -40,15 +40,15 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
       if (value !== "r") {
         let tmp = datasHistory;
         if (tmp.length === 0 || (tmp.length > 0 && tmp.at(-1) !== KEY_TO_ACTION[value])) {
-          if (value === "z") goFront(infosRequest.address, infosRequest.port, "/test");
+          if (value === "z") goFront();
           else if (value === "q")
-            turnLeft(infosRequest.address, infosRequest.port, "/test", isInversed);
+            turnLeft(isInversed);
           else if (value === "d")
-            turnRight(infosRequest.address, infosRequest.port, "/test", isInversed);
-          else if (value === "s") goBack(infosRequest.address, infosRequest.port, "/test");
-          else if (value === "a") stopp(infosRequest.address, infosRequest.port, "/test");
-          else if (value === "o") downShovel(infosRequest.address, infosRequest.port, "/test");
-          else if (value === "p") upShovel(infosRequest.address, infosRequest.port, "/test");
+            turnRight( isInversed);
+          else if (value === "s") goBack();
+          else if (value === "a") stopp();
+          else if (value === "o") downShovel();
+          else if (value === "p") upShovel();
           tmp.push(KEY_TO_ACTION[value]);
           setDatasHistory(tmp);
           setLastAction(KEY_TO_ACTION[value].split(":")[1]);
@@ -59,7 +59,7 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
 
   const handleReleaseButton = (key: string) => {
     if (key === "z" || key === "q" || key === "s" || key === "d" || key === "o" || key === "p") {
-      stopp(infosRequest.address, infosRequest.port, "/test");
+      stopp();
     }
   };
 

@@ -2,7 +2,7 @@ import { Toolbar, Grid, AppBar, Button, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
 import { CUSTOM_STYLE } from "../../Constantes/Style";
-import { TYPE_STYLE, TYPE_INFOS_REQUEST } from "../../Constantes/Types";
+import {  TYPE_INFOS_REQUEST } from "../../Constantes/Types";
 
 interface footerProps {
   handleChange: (values: TYPE_INFOS_REQUEST) => void;
