@@ -2,6 +2,7 @@ import axios from "axios"
 
 const sendRequest = (address, port, path, content) => {
     console.log(content)
+
     const requestOptions = {
         method: 'POST',
         mode: 'cors',
@@ -12,6 +13,7 @@ const sendRequest = (address, port, path, content) => {
         })
     }
     fetch("http://10.3.2.25:80/api/send_orders/", requestOptions).then(response => console.log(response))
+    
 }
 
 
@@ -42,7 +44,7 @@ const goFront = (address, port, path) => {
     sendRequest(address, port, path, {
         topic: 'send_order', message: {
             time: 1,
-            left_wheel: 1,
+            left_wheel: 1 /*1 */,
             right_wheel: 1,
             order_id: 1,
             shovel: -2
