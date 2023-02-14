@@ -1,24 +1,24 @@
 import React from "react";
 import { TYPE_STYLE } from "../../Constantes/Types";
 import { Grid } from "@mui/material";
+import { CUSTOM_STYLE } from "../../Constantes/Style";
 
 interface currentActionProps {
   action: string;
-  style: TYPE_STYLE;
 }
 
-const CurrentAction: React.FC<currentActionProps> = React.memo(({ action, style }) => {
+const CurrentAction: React.FC<currentActionProps> = React.memo(({ action }) => {
   return (
     <Grid
       container
       spacing={0}
       style={{
         marginTop: "30px",
-        border: style.borderWidth + " solid " + style.borderColor,
-        borderRadius: style.borderRadius,
+        border: CUSTOM_STYLE.borderWidth + " solid " + CUSTOM_STYLE.borderColor,
+        borderRadius: CUSTOM_STYLE.borderRadius,
         padding: "20px",
-        backgroundColor: style.backgroundColor,
-        color: style.fontColor , 
+        backgroundColor: CUSTOM_STYLE.backgroundColor,
+        color: CUSTOM_STYLE.fontColor , 
         fontWeight:'bold'
       }}
     >

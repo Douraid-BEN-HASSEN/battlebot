@@ -60,9 +60,7 @@ const MainComponentMobile: React.FC<mainComponentMobileProps> = React.memo(({}) 
         backgroundColor: CUSTOM_STYLE.mainBackgroundColor,
       }}
     >
-      {String(isInversion)}
       <Header
-        style={CUSTOM_STYLE}
         showHelp={false}
         infosRequest={{ address: "", port: 0 }}
         lastAction={""}
@@ -75,8 +73,8 @@ const MainComponentMobile: React.FC<mainComponentMobileProps> = React.memo(({}) 
           border: CUSTOM_STYLE.borderWidth + " solid " + CUSTOM_STYLE.borderColor,
           borderRadius: CUSTOM_STYLE.borderRadius,
           padding: "20px",
-          width: "98%",
-          borderLeft: "1%",
+          width: "97%",
+          marginLeft: "1.5%",
           backgroundColor: CUSTOM_STYLE.backgroundColor,
         }}
       >

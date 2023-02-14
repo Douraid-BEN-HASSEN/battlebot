@@ -1,16 +1,16 @@
 import { Toolbar, Grid, AppBar, Button, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
+import { CUSTOM_STYLE } from "../../Constantes/Style";
 import { TYPE_STYLE, TYPE_INFOS_REQUEST } from "../../Constantes/Types";
 
 interface footerProps {
   handleChange: (values: TYPE_INFOS_REQUEST) => void;
-  style: TYPE_STYLE;
   values: TYPE_INFOS_REQUEST;
   handleTest: () => void;
 }
 
-const Footer: React.FC<footerProps> = React.memo(({ handleChange, style, values, handleTest }) => {
+const Footer: React.FC<footerProps> = React.memo(({ handleChange,  values, handleTest }) => {
   const [isUpdate, setIsUpdate] = useState<boolean>(false);
   const [addresse, setAddresse] = useState<string>(values.address);
   const [port, setPort] = useState<number>(values.port);
@@ -20,8 +20,8 @@ const Footer: React.FC<footerProps> = React.memo(({ handleChange, style, values,
       <AppBar
         position="sticky"
         style={{
-          backgroundColor: style.backgroundColor,
-          borderTop: style.borderWidth + " solid " + style.borderColor,
+          backgroundColor: CUSTOM_STYLE.backgroundColor,
+          borderTop: CUSTOM_STYLE.borderWidth + " solid " + CUSTOM_STYLE.borderColor,
           padding: "10px",
         }}
       >
@@ -32,7 +32,7 @@ const Footer: React.FC<footerProps> = React.memo(({ handleChange, style, values,
                 <TextField
                   value={addresse}
                   disabled={!isUpdate}
-                  style={{ width: "100%", backgroundColor: style.backgroundColorButton }}
+                  style={{ width: "100%", backgroundColor: CUSTOM_STYLE.backgroundColorButton }}
                   label="Adresse IP"
                   onChange={(event: any) => {
                     setAddresse(event.target.value);
@@ -45,7 +45,7 @@ const Footer: React.FC<footerProps> = React.memo(({ handleChange, style, values,
                 <TextField
                   value={port}
                   disabled={!isUpdate}
-                  style={{ width: "100%", backgroundColor: style.backgroundColorButton }}
+                  style={{ width: "100%", backgroundColor: CUSTOM_STYLE.backgroundColorButton }}
                   label="Port"
                   type={"number"}
                   onChange={(event: any) => {
@@ -62,9 +62,9 @@ const Footer: React.FC<footerProps> = React.memo(({ handleChange, style, values,
                     variant="contained"
                     style={{
                       width: "95%",
-                      color: style.fontColor,
+                      color: CUSTOM_STYLE.fontColor,
                       fontWeight: "bold",
-                      backgroundColor: style.backgroundColorButton,
+                      backgroundColor: CUSTOM_STYLE.backgroundColorButton,
                     }}
                     onClick={() => {
                       if (isUpdate === true) {
@@ -89,9 +89,9 @@ const Footer: React.FC<footerProps> = React.memo(({ handleChange, style, values,
                     variant="contained"
                     style={{
                       width: "95%",
-                      color: style.fontColor,
+                      color: CUSTOM_STYLE.fontColor,
                       fontWeight: "bold",
-                      backgroundColor: style.backgroundColorButton,
+                      backgroundColor: CUSTOM_STYLE.backgroundColorButton,
                     }}
                   >
                     Tester

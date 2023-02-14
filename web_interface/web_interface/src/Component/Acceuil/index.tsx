@@ -18,7 +18,6 @@ const Acceuil: React.FC<acceuilProps> = React.memo(({}) => {
       }}
     >
       <Header
-        style={CUSTOM_STYLE}
         showHelp={false}
         infosRequest={{ address: "", port: 0 }}
         lastAction={""}

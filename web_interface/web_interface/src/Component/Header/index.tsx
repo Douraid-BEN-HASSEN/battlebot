@@ -7,9 +7,9 @@ import { TYPE_INFOS_REQUEST, TYPE_STYLE } from "../../Constantes/Types";
 import Logo from "../../Assets/Logo.png";
 import useSound from "use-sound";
 import song from "../../Assets/Song.mp3";
+import { CUSTOM_STYLE } from "../../Constantes/Style";
 
 interface headerProps {
-  style: TYPE_STYLE;
   showHelp: boolean;
   infosRequest: TYPE_INFOS_REQUEST;
   lastAction: string;
@@ -17,12 +17,12 @@ interface headerProps {
 }
 
 const Header: React.FC<headerProps> = React.memo(
-  ({ style, showHelp, infosRequest, lastAction, mode }) => {
+  ({  showHelp, infosRequest, lastAction, mode }) => {
     const [playSound] = useSound(song);
 
     const onClickLogo = () => {
-      console.log("Félicitations, vous avez trouvé l'easter egg ;)");
       playSound();
+      console.log("Félicitations, vous avez trouvé l'easter egg ;)");
     };
 
     return (
@@ -32,8 +32,8 @@ const Header: React.FC<headerProps> = React.memo(
             position="static"
             style={{
               height: "65px",
-              backgroundColor: style.backgroundColor,
-              borderBottom: style.borderWidth + " solid " + style.borderColor,
+              backgroundColor: CUSTOM_STYLE.backgroundColor,
+              borderBottom: CUSTOM_STYLE.borderWidth + " solid " + CUSTOM_STYLE.borderColor,
               marginBottom: mode === "avance" && showHelp === false ? "60px" : "0px",
             }}
           >
@@ -45,7 +45,7 @@ const Header: React.FC<headerProps> = React.memo(
                     xs={12}
                     style={{
                       fontWeight: "bold",
-                      color: style.fontColor,
+                      color: CUSTOM_STYLE.fontColor,
                       fontSize: "30px",
                     }}
                   >
@@ -77,12 +77,12 @@ const Header: React.FC<headerProps> = React.memo(
             justifyContent="center"
             style={{
               width: "100%",
-              backgroundColor: style.backgroundColor,
-              borderBottom: style.borderWidth + " solid " + style.borderColor,
+              backgroundColor: CUSTOM_STYLE.backgroundColor,
+              borderBottom: CUSTOM_STYLE.borderWidth + " solid " + CUSTOM_STYLE.borderColor,
               padding: "5px 0 5px 0",
               marginBottom: mode === "avance" && showHelp === true ? "60px" : "0px",
               fontWeight: "bold",
-              color: style.fontColor,
+              color: CUSTOM_STYLE.fontColor,
             }}
           >
             <Grid item xs={3}>
@@ -115,11 +115,11 @@ const Header: React.FC<headerProps> = React.memo(
               justifyContent="center"
               style={{
                 width: "100%",
-                backgroundColor: style.backgroundColor,
-                borderBottom: style.borderWidth + " solid " + style.borderColor,
+                backgroundColor: CUSTOM_STYLE.backgroundColor,
+                borderBottom: CUSTOM_STYLE.borderWidth + " solid " + CUSTOM_STYLE.borderColor,
                 padding: "5px 0 5px 0",
                 fontWeight: "bold",
-                color: style.fontColor,
+                color: CUSTOM_STYLE.fontColor,
               }}
             >
               <Grid item xs={6}>
@@ -139,12 +139,12 @@ const Header: React.FC<headerProps> = React.memo(
               justifyContent="center"
               style={{
                 width: "100%",
-                backgroundColor: style.backgroundColor,
-                borderBottom: style.borderWidth + " solid " + style.borderColor,
+                backgroundColor: CUSTOM_STYLE.backgroundColor,
+                borderBottom: CUSTOM_STYLE.borderWidth + " solid " + CUSTOM_STYLE.borderColor,
                 padding: "5px 0 5px 0",
                 fontWeight: "bold",
                 marginBottom: mode === "basique" ? "60px" : "0px",
-                color: style.fontColor,
+                color: CUSTOM_STYLE.fontColor,
               }}
             >
               <Grid item xs={12}>

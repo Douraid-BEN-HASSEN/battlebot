@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import Controller from "../Controller";
 import Header from "../Header";
-import {  Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import Footer from "../Footer";
 import Historique from "../Historique";
 import {
@@ -18,34 +18,9 @@ import { KEY_TO_ACTION } from "../../Constantes/Values";
 import { DEFAULT_INFOS_REQUEST } from "../../Constantes/Values";
 import CurrentAction from "../CurrentAction";
 import SwitchMode from "../SwitchMode";
+import { CUSTOM_STYLE } from "../../Constantes/Style";
 
 interface mainComponentProps {}
-
-const customStylee = {
-  backgroundColor: "lightblue",
-  borderColor: "#3f51b5",
-  borderWidth: "4px",
-  borderRadius: "4px",
-  fontColor: "black",
-  mainBackgroundColor: "lightgray",
-  borderWidthButton: "2px",
-  borderColorButton: "#3f51b5",
-} as TYPE_STYLE;
-
-const customStyle = {
-  backgroundColor: "black",
-  borderColor: "#808080",
-  borderWidth: "1px",
-  borderRadius: "0px",
-  fontColor: "white",
-  mainBackgroundColor: "black",
-  borderWidthButton: "2px",
-  borderColorButton: "black",
-  primaryBackgroundColorList: "#ffa500",
-  secondaryBackgroundColorList: "#808080",
-  backgroundColorButton: "#ffa500",
-  buttonFontColor: "black",
-} as TYPE_STYLE;
 
 const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
   const [datasHistory, setDatasHistory] = useState<Array<string>>([]);
@@ -107,16 +82,10 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
         left: "0px",
         width: "100%",
         overflow: "hidden",
-        backgroundColor: customStyle.mainBackgroundColor,
+        backgroundColor: CUSTOM_STYLE.mainBackgroundColor,
       }}
     >
-      <Header
-        style={customStyle}
-        showHelp={showHelp}
-        infosRequest={infosRequest}
-        lastAction={lastAction}
-        mode={mode}
-      />
+      <Header showHelp={showHelp} infosRequest={infosRequest} lastAction={lastAction} mode={mode} />
       <Grid container spacing={2} style={{ width: "98%", marginLeft: "1%" }}>
         <Grid item xs={mode === "basique" ? 12 : 6}>
           <Grid item xs={12}>
@@ -124,13 +93,11 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
               handleChangeMode={(mode: "avance" | "basique") => {
                 setMode(mode);
               }}
-              style={customStyle}
             />
           </Grid>
           {mode === "avance" && (
             <Grid item xs={12}>
               <Historique
-                style={customStyle}
                 datasHistory={datasHistory}
                 handleClearHistory={updateHistory}
                 hasChange={isChange}
@@ -154,12 +121,11 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
                 else setShowHelp(true);
               }}
               handleAddHistory={updateHistory}
-              style={customStyle}
             />
           </Grid>
           {mode === "avance" && (
             <Grid item xs={12}>
-              <CurrentAction style={customStyle} action={lastAction} />
+              <CurrentAction action={lastAction} />
             </Grid>
           )}
         </Grid>
@@ -169,7 +135,6 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
           handleTest={handleTest}
           values={infosRequest}
           handleChange={handleChangeInfosRequest}
-          style={customStyle}
         />
       )}
     </div>

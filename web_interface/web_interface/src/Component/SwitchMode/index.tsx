@@ -1,24 +1,24 @@
 import { Button, Grid } from "@mui/material";
 import React, { useState } from "react";
+import { CUSTOM_STYLE } from "../../Constantes/Style";
 import { TYPE_STYLE } from "../../Constantes/Types";
 
 interface switchModeProps {
-  style: TYPE_STYLE;
   handleChangeMode: (mode: "avance" | "basique") => void;
 }
 
-const SwitchMode: React.FC<switchModeProps> = React.memo(({ style, handleChangeMode }) => {
+const SwitchMode: React.FC<switchModeProps> = React.memo(({ handleChangeMode }) => {
   const [mode, setMode] = useState<"basique" | "avance">("avance");
   return (
     <Grid
       container
       spacing={0}
       style={{
-        border: style.borderWidth + " solid " + style.borderColor,
-        borderRadius: style.borderRadius,
+        border: CUSTOM_STYLE.borderWidth + " solid " + CUSTOM_STYLE.borderColor,
+        borderRadius: CUSTOM_STYLE.borderRadius,
         padding: "20px",
         marginBottom: "30px",
-        backgroundColor: style.backgroundColor,
+        backgroundColor: CUSTOM_STYLE.backgroundColor,
       }}
     >
       <Grid item xs={12}>
@@ -36,8 +36,8 @@ const SwitchMode: React.FC<switchModeProps> = React.memo(({ style, handleChangeM
           color="inherit"
           style={{
             width: "100%",
-            border: style.borderWidthButton + " solid " + style.borderColorButton,
-            backgroundColor:style.backgroundColorButton
+            border: CUSTOM_STYLE.borderWidthButton + " solid " + CUSTOM_STYLE.borderColorButton,
+            backgroundColor:CUSTOM_STYLE.backgroundColorButton
           }}
         >
           Passe en mode {mode === "avance" ? "Basique" : "Avancé"}

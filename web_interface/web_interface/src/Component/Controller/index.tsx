@@ -8,9 +8,9 @@ import ArrowCircleUpOutlinedIcon from "@mui/icons-material/ArrowCircleUpOutlined
 import { TYPE_STYLE } from "../../Constantes/Types";
 import HelpIcon from "@mui/icons-material/Help";
 import { useMemoizedFn } from "ahooks";
+import { CUSTOM_STYLE } from "../../Constantes/Style";
 
 interface controllerProps {
-  style: TYPE_STYLE;
   mode: "basique" | "avance";
   handleChangePower: (value: number) => void;
   handleReleaseButton: (key: string) => void;
@@ -26,14 +26,7 @@ declare global {
 }
 
 const Controller: React.FC<controllerProps> = React.memo(
-  ({
-    handleAddHistory,
-    style,
-    handleClickShowHelp,
-    mode,
-    handleChangePower,
-    handleReleaseButton,
-  }) => {
+  ({ handleAddHistory, handleClickShowHelp, mode, handleChangePower, handleReleaseButton }) => {
     const handleUserKeyPress = useMemoizedFn((event: React.KeyboardEvent<HTMLInputElement>) => {
       const { key } = event;
       if (
@@ -75,16 +68,19 @@ const Controller: React.FC<controllerProps> = React.memo(
         container
         spacing={0}
         style={{
-          border: style.borderWidth + " solid " + style.borderColor,
-          borderRadius: style.borderRadius,
+          border: CUSTOM_STYLE.borderWidth + " solid " + CUSTOM_STYLE.borderColor,
+          borderRadius: CUSTOM_STYLE.borderRadius,
           padding: "20px",
-          backgroundColor: style.backgroundColor,
+          backgroundColor: CUSTOM_STYLE.backgroundColor,
         }}
       >
         <Grid item xs={10}></Grid>
         <Grid item xs={2}>
           {mode === "avance" && (
-            <HelpIcon onClick={handleClickShowHelp} style={{ cursor: "pointer" , color:style.backgroundColorButton}} />
+            <HelpIcon
+              onClick={handleClickShowHelp}
+              style={{ cursor: "pointer", color: CUSTOM_STYLE.backgroundColorButton }}
+            />
           )}
         </Grid>
 
@@ -94,10 +90,10 @@ const Controller: React.FC<controllerProps> = React.memo(
         <Grid item xs={4}>
           <Box display="flex" justifyContent="center" alignItems="center">
             <Button
-              sx={{ borderRadius: 28, backgroundColor: style.backgroundColorButton }}
+              sx={{ borderRadius: 28, backgroundColor: CUSTOM_STYLE.backgroundColorButton }}
               variant="contained"
               style={{
-                border: style.borderWidthButton + " solid " + style.borderColorButton,
+                border: CUSTOM_STYLE.borderWidthButton + " solid " + CUSTOM_STYLE.borderColorButton,
               }}
               color={keyPressed === "z" ? "primary" : "inherit"}
             >
@@ -113,8 +109,8 @@ const Controller: React.FC<controllerProps> = React.memo(
           <Box display="flex" justifyContent="center" alignItems="center">
             <Button
               style={{
-                border: style.borderWidthButton + " solid " + style.borderColorButton,
-                backgroundColor: style.backgroundColorButton,
+                border: CUSTOM_STYLE.borderWidthButton + " solid " + CUSTOM_STYLE.borderColorButton,
+                backgroundColor: CUSTOM_STYLE.backgroundColorButton,
               }}
               sx={{ borderRadius: 28 }}
               variant="contained"
@@ -131,8 +127,8 @@ const Controller: React.FC<controllerProps> = React.memo(
           <Box display="flex" justifyContent="center" alignItems="center">
             <Button
               style={{
-                border: style.borderWidthButton + " solid " + style.borderColorButton,
-                backgroundColor: style.backgroundColorButton,
+                border: CUSTOM_STYLE.borderWidthButton + " solid " + CUSTOM_STYLE.borderColorButton,
+                backgroundColor: CUSTOM_STYLE.backgroundColorButton,
               }}
               sx={{ borderRadius: 28 }}
               variant="contained"
@@ -150,8 +146,8 @@ const Controller: React.FC<controllerProps> = React.memo(
           <Box display="flex" justifyContent="center" alignItems="center">
             <Button
               style={{
-                border: style.borderWidthButton + " solid " + style.borderColorButton,
-                backgroundColor: style.backgroundColorButton,
+                border: CUSTOM_STYLE.borderWidthButton + " solid " + CUSTOM_STYLE.borderColorButton,
+                backgroundColor: CUSTOM_STYLE.backgroundColorButton,
               }}
               sx={{ borderRadius: 28 }}
               variant="contained"
@@ -169,8 +165,8 @@ const Controller: React.FC<controllerProps> = React.memo(
           <Box display="flex" justifyContent="center" alignItems="center">
             <Button
               style={{
-                border: style.borderWidthButton + " solid " + style.borderColorButton,
-                backgroundColor: style.backgroundColorButton,
+                border: CUSTOM_STYLE.borderWidthButton + " solid " + CUSTOM_STYLE.borderColorButton,
+                backgroundColor: CUSTOM_STYLE.backgroundColorButton,
               }}
               sx={{ borderRadius: 28, fontWeight: "bold" }}
               variant="contained"
@@ -185,8 +181,8 @@ const Controller: React.FC<controllerProps> = React.memo(
           <Box display="flex" justifyContent={"center"} alignItems="center">
             <Button
               style={{
-                border: style.borderWidthButton + " solid " + style.borderColorButton,
-                backgroundColor: style.backgroundColorButton,
+                border: CUSTOM_STYLE.borderWidthButton + " solid " + CUSTOM_STYLE.borderColorButton,
+                backgroundColor: CUSTOM_STYLE.backgroundColorButton,
               }}
               sx={{ borderRadius: 28, fontWeight: "bold" }}
               variant="contained"
@@ -202,7 +198,7 @@ const Controller: React.FC<controllerProps> = React.memo(
             display="flex"
             justifyContent="center"
             alignItems="center"
-            style={{ fontWeight: "bold", color: style.fontColor }}
+            style={{ fontWeight: "bold", color: CUSTOM_STYLE.fontColor }}
           >
             PELLE :
           </Box>
@@ -213,8 +209,8 @@ const Controller: React.FC<controllerProps> = React.memo(
               sx={{ borderRadius: 28 }}
               variant="contained"
               style={{
-                border: style.borderWidthButton + " solid " + style.borderColorButton,
-                backgroundColor: style.backgroundColorButton,
+                border: CUSTOM_STYLE.borderWidthButton + " solid " + CUSTOM_STYLE.borderColorButton,
+                backgroundColor: CUSTOM_STYLE.backgroundColorButton,
               }}
               color={keyPressed === "o" ? "primary" : "inherit"}
             >
@@ -228,8 +224,8 @@ const Controller: React.FC<controllerProps> = React.memo(
               sx={{ borderRadius: 28 }}
               variant="contained"
               style={{
-                border: style.borderWidthButton + " solid " + style.borderColorButton,
-                backgroundColor: style.backgroundColorButton,
+                border: CUSTOM_STYLE.borderWidthButton + " solid " + CUSTOM_STYLE.borderColorButton,
+                backgroundColor: CUSTOM_STYLE.backgroundColorButton,
               }}
               color={keyPressed === "p" ? "primary" : "inherit"}
             >
@@ -244,7 +240,7 @@ const Controller: React.FC<controllerProps> = React.memo(
             justifyContent={"center"}
             alignItems="center"
             style={{
-              color: style.fontColor,
+              color: CUSTOM_STYLE.fontColor,
               fontWeight: "bold",
             }}
           >
