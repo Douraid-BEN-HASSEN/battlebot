@@ -137,7 +137,7 @@ void Robot::avancer(){
   digitalWrite(D2, HIGH);
 
   digitalWrite(D3, HIGH);
-  digitalWrite(D4, LOW);
+  digitalWrite(D4, HIGH);
 }
 
 void Robot::gauche(){
@@ -145,7 +145,7 @@ void Robot::gauche(){
   digitalWrite(D2, HIGH);
 
   digitalWrite(D3, HIGH);
-  digitalWrite(D4, HIGH);
+  digitalWrite(D4, LOW);
 }
 
 void Robot::droite(){
@@ -153,7 +153,7 @@ void Robot::droite(){
   digitalWrite(D2, HIGH);
 
   digitalWrite(D3, LOW);
-  digitalWrite(D4, LOW);
+  digitalWrite(D4, HIGH);
 }
 
 void Robot::arr(){
@@ -161,7 +161,7 @@ void Robot::arr(){
   digitalWrite(D2, HIGH);
 
   digitalWrite(D3, LOW);
-  digitalWrite(D4, HIGH);
+  digitalWrite(D4, LOW);
 }
 
 void Robot::stope(){
