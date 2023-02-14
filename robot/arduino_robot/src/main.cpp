@@ -63,6 +63,11 @@ void onMqttConnect(bool sessionPresent)
   Serial.print("MQTT_TOPICs: ");
   Serial.print(MQTT_TOPIC_INFORMATION); Serial.print(", "); Serial.print(MQTT_TOPIC_RESPONSE_ORDER); Serial.print(", "); Serial.print(MQTT_TOPIC_SEND_ORDER); Serial.println("\n");
 
+  // reset retained messages
+  mqttClient.publish(MQTT_TOPIC_INFORMATION, MQTT_QOS, false, "-");
+  mqttClient.publish(MQTT_TOPIC_RESPONSE_ORDER, MQTT_QOS, false, "-");
+  mqttClient.publish(MQTT_TOPIC_SEND_ORDER, MQTT_QOS, false, "-");
+
   printSeparationLine();
   Serial.print("Session present: ");
   Serial.println(sessionPresent);

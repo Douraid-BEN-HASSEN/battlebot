@@ -60,6 +60,9 @@ class Robot {
     ROBOT_INFORMATION _information;
     RESPONSE_ORDER _responseOrder;
     SEND_ORDER _sendOrder;
+    bool _retainInformationAlreadyRecieved;
+    bool _retainResponseOrderAlreadyRecieved;
+    bool _retainSendOrderAlreadyRecieved;
 };
 
 #endif

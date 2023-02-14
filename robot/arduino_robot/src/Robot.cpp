@@ -23,10 +23,20 @@ Robot::Robot() {
     -1,
     -1
   };
+
+  this->_retainInformationAlreadyRecieved = false;
+  this->_retainResponseOrderAlreadyRecieved = false;
+  this->_retainSendOrderAlreadyRecieved = false;
+  
 }
 
 // --- UTILS ---
 void Robot::parseInformation(char* pPayload) {
+  if(!this->_retainInformationAlreadyRecieved || pPayload == "-") {
+    this->_retainInformationAlreadyRecieved = true;
+    return;
+  }
+
   DynamicJsonDocument doc(1024);
   deserializeJson(doc, pPayload);
 
@@ -44,12 +54,17 @@ void Robot::parseInformation(char* pPayload) {
   Serial.print(this->_information.data);
   Serial.print(" }");
   Serial.println("\n");
-
+  
 
   // TODO: action à faire...
 }
 
 void Robot::parseResponseOrder(char* pPayload) {
+  if(!this->_retainResponseOrderAlreadyRecieved || pPayload == "-") {
+    this->_retainResponseOrderAlreadyRecieved = true;
+    return;
+  }
+  
   DynamicJsonDocument doc(1024);
   deserializeJson(doc, pPayload);
   
@@ -67,11 +82,16 @@ void Robot::parseResponseOrder(char* pPayload) {
   Serial.print(this->_responseOrder.order_id);
   Serial.print(" }");
   Serial.println("\n");
-  
+
   // TODO: action à faire...
 }
 
 void Robot::parseSendOrder(char* pPayload) {
+  if(!this->_retainSendOrderAlreadyRecieved || pPayload == "-") {
+    this->_retainSendOrderAlreadyRecieved = true;
+    return;
+  }
+
   DynamicJsonDocument doc(1024);
   deserializeJson(doc, pPayload);
 
@@ -89,6 +109,8 @@ void Robot::parseSendOrder(char* pPayload) {
   Serial.print(this->_sendOrder.left_wheel);
   Serial.print(", right_wheel: ");
   Serial.print(this->_sendOrder.right_wheel);
+  Serial.print(", shovel: ");
+  Serial.print(this->_sendOrder.shovel);
   Serial.print(", order_id: ");
   Serial.print(this->_sendOrder.order_id);
   Serial.print(" }");
@@ -114,7 +136,7 @@ void Robot::avancer(){
   digitalWrite(D1, HIGH);
   digitalWrite(D2, HIGH);
 
-  digitalWrite(D3, LOW);
+  digitalWrite(D3, HIGH);
   digitalWrite(D4, LOW);
 }
 
@@ -122,7 +144,7 @@ void Robot::gauche(){
   digitalWrite(D1, HIGH);
   digitalWrite(D2, HIGH);
 
-  digitalWrite(D3, LOW);
+  digitalWrite(D3, HIGH);
   digitalWrite(D4, HIGH);
 }
 
@@ -130,7 +152,7 @@ void Robot::droite(){
   digitalWrite(D1, HIGH);
   digitalWrite(D2, HIGH);
 
-  digitalWrite(D3, HIGH);
+  digitalWrite(D3, LOW);
   digitalWrite(D4, LOW);
 }
 
@@ -138,7 +160,7 @@ void Robot::arr(){
   digitalWrite(D1, HIGH);
   digitalWrite(D2, HIGH);
 
-  digitalWrite(D3, HIGH);
+  digitalWrite(D3, LOW);
   digitalWrite(D4, HIGH);
 }
 
