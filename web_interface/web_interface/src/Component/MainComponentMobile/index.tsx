@@ -24,19 +24,16 @@ const MainComponentMobile: React.FC<mainComponentMobileProps> = React.memo(({}) 
   const [isInversion, setIsInversion] = useState<boolean>(false);
 
   const handleChangeInversion = () => {
-    console.log("handle change inversion ")
     if (isInversion) setIsInversion(false);
     else setIsInversion(true);
   };
 
   const onClickButton = (value: "z" | "q" | "s" | "d" | "o" | "p" | "a") => {
-    console.log("on click button")
     setKeyPressed(value);
     sendRequest(value);
   };
 
   const sendRequest = (value: "z" | "q" | "s" | "d" | "o" | "p" | "a") => {
-    console.log("send request")
     if (value === "z") goFront(DEFAULT_INFOS_REQUEST.address, DEFAULT_INFOS_REQUEST.port, "/test");
     else if (value === "s")
       goBack(DEFAULT_INFOS_REQUEST.address, DEFAULT_INFOS_REQUEST.port, "/test");
