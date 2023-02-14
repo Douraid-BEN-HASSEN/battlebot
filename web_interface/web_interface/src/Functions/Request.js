@@ -1,19 +1,19 @@
-const sendRequest = (address, port, path, content) => {
-    if (address instanceof String || port instanceof String) {
-        return -1
-    }
+import axios from "axios"
 
-    console.log("test : ", content)
+const sendRequest = (address, port, path, content) => {
+    console.log(content)
     const requestOptions = {
         method: 'POST',
         mode: 'cors',
         headers: { 'Content-Type': 'application/json', "Access-Control-Allow-Origin": "*" },
-        body: JSON.stringify({ topic: content.topic, message: content.message })
+        body: JSON.stringify({
+            topic: 'send_order/',
+            message: JSON.stringify(content.message)
+        })
     }
-
     fetch("http://10.3.2.25:80/api/send_orders/", requestOptions).then(response => console.log(response))
-
 }
+
 
 const turnRight = (address, port, path, isInversed) => {
     sendRequest(address, port, path, {

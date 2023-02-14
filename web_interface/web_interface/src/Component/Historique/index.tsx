@@ -3,15 +3,14 @@ import { Button, Grid, List, ListItem, ListItemText } from "@mui/material";
 import { TYPE_STYLE } from "../../Constantes/Types";
 interface historiqueProps {
   datasHistory: Array<string>;
-  handleClearHistory: (action: "add" | "clear", value: string, isInversed : boolean ) => void;
+  handleClearHistory: (action: "add" | "clear", value: string, isInversed: boolean) => void;
   hasChange: boolean;
   handleChangeBoolean: () => void;
   style: TYPE_STYLE;
 }
 
 const Historique: React.FC<historiqueProps> = React.memo(
-  ({ datasHistory, handleClearHistory, hasChange, handleChangeBoolean, style  }) => {
-    
+  ({ datasHistory, handleClearHistory, hasChange, handleChangeBoolean, style }) => {
     useEffect(() => {
       handleChangeBoolean();
     }, [datasHistory, hasChange]);
@@ -34,18 +33,22 @@ const Historique: React.FC<historiqueProps> = React.memo(
             position: "relative",
             marginTop: "20px",
             overflow: "auto",
-            maxHeight: "420px" ,
+            maxHeight: "420px",
             "& ul": { padding: 0 },
           }}
         >
           {datasHistory.map((v: string, index: number) => {
             return (
               <ListItem
+                key={index}
                 style={{
                   border: "1px solid " + style.borderColor,
                   height: "50px",
                   textAlign: "center",
-                  backgroundColor: index % 2 === 0 ? style.primaryBackgroundColorList : style.secondaryBackgroundColorList,
+                  backgroundColor:
+                    index % 2 === 0
+                      ? style.primaryBackgroundColorList
+                      : style.secondaryBackgroundColorList,
                   width: "100%",
                   fontSize: "20px",
                   fontWeight: "bold",
@@ -67,14 +70,14 @@ const Historique: React.FC<historiqueProps> = React.memo(
         >
           <Button
             onClick={() => {
-              handleClearHistory("clear", "" , false);
+              handleClearHistory("clear", "", false);
             }}
             variant="contained"
             color="inherit"
             style={{
               width: "100%",
               border: style.borderWidthButton + " solid " + style.borderColorButton,
-              backgroundColor:style.backgroundColorButton
+              backgroundColor: style.backgroundColorButton,
             }}
           >
             Effacer

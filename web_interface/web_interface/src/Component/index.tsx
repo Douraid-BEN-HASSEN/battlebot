@@ -6,5 +6,16 @@ import Historique from "./Historique";
 import CurrentAction from "./CurrentAction";
 import SwitchMode from "./SwitchMode";
 import Acceuil from "./Acceuil";
+import MainComponentMobile from "./MainComponentMobile";
 
-export { Acceuil ,  SwitchMode, CurrentAction, MainComponent, Controller, Header, Footer, Historique };
+export {
+  MainComponentMobile,
+  Acceuil,
+  SwitchMode,
+  CurrentAction,
+  MainComponent,
+  Controller,
+  Header,
+  Footer,
+  Historique,
+};
