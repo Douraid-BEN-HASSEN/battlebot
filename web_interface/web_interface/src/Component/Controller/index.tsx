@@ -217,7 +217,7 @@ const Controller: React.FC<controllerProps> = React.memo(
               }}
               color={keyPressed === "o" ? "primary" : "inherit"}
             >
-              <ArrowCircleUpOutlinedIcon />
+              <ArrowCircleDownOutlinedIcon />
             </Button>
           </Box>
         </Grid>
@@ -232,7 +232,7 @@ const Controller: React.FC<controllerProps> = React.memo(
               }}
               color={keyPressed === "p" ? "primary" : "inherit"}
             >
-              <ArrowCircleDownOutlinedIcon />
+              <ArrowCircleUpOutlinedIcon />
             </Button>
           </Box>
         </Grid>
