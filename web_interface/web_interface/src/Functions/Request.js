@@ -61,6 +61,7 @@ const goBack = () => {
     })
 }
 const stopp = () => {
+    console.log("function stopp")
     sendRequest({
         topic: 'send_order', message: {
             time: 1,

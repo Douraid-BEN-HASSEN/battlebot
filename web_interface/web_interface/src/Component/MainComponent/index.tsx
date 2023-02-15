@@ -38,9 +38,14 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
       setLastAction("");
       setIsChange(true);
     } else if (action === "add") {
+      console.log(action, value, isInversed);
       if (value !== "r") {
         let tmp = datasHistory;
-        if (tmp.length === 0 || (tmp.length > 0 && tmp.at(-1) !== KEY_TO_ACTION[value])) {
+        if (
+          tmp.length === 0 ||
+          (tmp.length > 0 && tmp.at(-1) !== KEY_TO_ACTION[value]) ||
+          value === "a"
+        ) {
           if (value === "z") goFront();
           else if (value === "q") turnLeft(isInversed);
           else if (value === "d") turnRight(isInversed);
@@ -58,8 +63,11 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
   };
 
   const handleReleaseButton = (key: string) => {
-    console.log("main component => handleReleaseButton : ", key);
     if (key === "z" || key === "q" || key === "s" || key === "d" || key === "o" || key === "p") {
+      setIsChange(true);
+      let tmp = datasHistory;
+      tmp.push(KEY_TO_ACTION["a"]);
+      setDatasHistory(tmp);
       stopp();
     }
   };
