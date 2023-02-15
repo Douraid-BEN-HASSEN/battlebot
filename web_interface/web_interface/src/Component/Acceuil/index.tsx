@@ -30,8 +30,11 @@ const Acceuil: React.FC<acceuilProps> = React.memo(({}) => {
               style={{
                 border: CUSTOM_STYLE.borderWidthButton + " solid " + CUSTOM_STYLE.borderColorButton,
                 backgroundColor: CUSTOM_STYLE.backgroundColorButton,
-                width: "100%",
+                width: "90%",
                 marginTop: "25px",
+                marginLeft: "5%",
+                height: "60px",
+                fontSize: "30px",
               }}
               sx={{ borderRadius: 28 }}
               variant="contained"
@@ -46,8 +49,11 @@ const Acceuil: React.FC<acceuilProps> = React.memo(({}) => {
               style={{
                 border: CUSTOM_STYLE.borderWidthButton + " solid " + CUSTOM_STYLE.borderColorButton,
                 backgroundColor: CUSTOM_STYLE.backgroundColorButton,
-                width: "100%",
+                width: "90%",
+                marginLeft: "5%",
                 marginTop: "25px",
+                height: "60px",
+                fontSize: "30px",
               }}
               sx={{ borderRadius: 28 }}
               variant="contained"

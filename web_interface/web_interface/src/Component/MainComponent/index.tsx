@@ -72,20 +72,20 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
   };
 
   const handleTest = () => {
+    setIsChange(true);
     let tmp = datasHistory;
     tmp.push("Test lancé sur " + DEFAULT_INFOS_REQUEST.address + ":" + DEFAULT_INFOS_REQUEST.port);
     setDatasHistory(tmp);
-    setIsChange(true);
     sendRequest({
-      topic : 'send_order' , 
-      message : {
-        time : 1 , 
-        left_wheel : 0 , 
-        right_wheel : 0 , 
-        order_id : 1 , 
-        shovel : -2
-      }
-    })
+      topic: "send_order",
+      message: {
+        time: 1,
+        left_wheel: 0,
+        right_wheel: 0,
+        order_id: 1,
+        shovel: -2,
+      },
+    });
   };
 
   return (
@@ -99,7 +99,12 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
         backgroundColor: CUSTOM_STYLE.mainBackgroundColor,
       }}
     >
-      <Header showHelp={showHelp} infosRequest={DEFAULT_INFOS_REQUEST} lastAction={lastAction} mode={mode} />
+      <Header
+        showHelp={showHelp}
+        infosRequest={DEFAULT_INFOS_REQUEST}
+        lastAction={lastAction}
+        mode={mode}
+      />
       <Grid container spacing={2} style={{ width: "98%", marginLeft: "1%" }}>
         <Grid item xs={mode === "basique" ? 12 : 6}>
           <Grid item xs={12}>
@@ -141,12 +146,7 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
           )}
         </Grid>
       </Grid>
-      {mode === "avance" && (
-        <Footer
-          handleTest={handleTest}
-          values={DEFAULT_INFOS_REQUEST}
-        />
-      )}
+      {mode === "avance" && <Footer handleTest={handleTest} values={DEFAULT_INFOS_REQUEST} />}
     </div>
   );
 });
