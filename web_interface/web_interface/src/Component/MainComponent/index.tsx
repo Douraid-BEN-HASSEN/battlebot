@@ -32,6 +32,7 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
   const [powerValue, setPowerValue] = useState<number>(50);
 
   const updateHistory = (action: "add" | "clear", value: string, isInversed: boolean) => {
+    console.log("main compoennt => updateHistory");
     if (action === "clear") {
       setDatasHistory([]);
       setLastAction("");
@@ -41,10 +42,8 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
         let tmp = datasHistory;
         if (tmp.length === 0 || (tmp.length > 0 && tmp.at(-1) !== KEY_TO_ACTION[value])) {
           if (value === "z") goFront();
-          else if (value === "q")
-            turnLeft(isInversed);
-          else if (value === "d")
-            turnRight( isInversed);
+          else if (value === "q") turnLeft(isInversed);
+          else if (value === "d") turnRight(isInversed);
           else if (value === "s") goBack();
           else if (value === "a") stopp();
           else if (value === "o") downShovel();
@@ -52,12 +51,14 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
           tmp.push(KEY_TO_ACTION[value]);
           setDatasHistory(tmp);
           setLastAction(KEY_TO_ACTION[value].split(":")[1]);
+        } else {
         }
       }
     }
   };
 
   const handleReleaseButton = (key: string) => {
+    console.log("main component => handleReleaseButton : ", key);
     if (key === "z" || key === "q" || key === "s" || key === "d" || key === "o" || key === "p") {
       stopp();
     }

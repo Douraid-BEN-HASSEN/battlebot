@@ -1,5 +1,5 @@
-    const sendRequest = (content) => {
-    console.log(content)
+const sendRequest = (content) => {
+    console.log("send request")
 
     const requestOptions = {
         method: 'POST',

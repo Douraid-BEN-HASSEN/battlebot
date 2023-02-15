@@ -28,6 +28,7 @@ declare global {
 const Controller: React.FC<controllerProps> = React.memo(
   ({ handleAddHistory, handleClickShowHelp, mode, handleChangePower, handleReleaseButton }) => {
     const handleUserKeyPress = useMemoizedFn((event: React.KeyboardEvent<HTMLInputElement>) => {
+      console.log("controller => handleUserKeyPress");
       const { key } = event;
       if (
         key === "z" ||
@@ -47,6 +48,7 @@ const Controller: React.FC<controllerProps> = React.memo(
     });
 
     const handleUserKeyRelease = (event: React.KeyboardEvent<HTMLInputElement>) => {
+      console.log("controller => handleUserKeyRelease");
       handleReleaseButton(event.key);
     };
 
@@ -63,6 +65,7 @@ const Controller: React.FC<controllerProps> = React.memo(
     const [isInversion, setIsInversion] = useState<boolean>(false);
     const [keyPressed, setKeyPressed] = useState<"" | "z" | "q" | "s" | "d" | "o" | "p" | "a">("");
     const [powerValue, setPowerValue] = useState<number>(50);
+
     return (
       <Grid
         container

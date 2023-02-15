@@ -15,7 +15,6 @@ import {
   upShovel,
   downShovel,
 } from "../../Functions/Request";
-import { DEFAULT_INFOS_REQUEST } from "../../Constantes/Values";
 
 interface mainComponentMobileProps {}
 
