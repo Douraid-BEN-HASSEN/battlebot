@@ -179,12 +179,12 @@ void Robot::pelleS(){
 
 void Robot::pelleH(){
   digitalWrite(D5, HIGH);
-  digitalWrite(D6, LOW);
+  digitalWrite(D6, HIGH);
 }
 
 void Robot::pelleB(){
-  digitalWrite(D5, LOW);
-  digitalWrite(D6, HIGH);
+  digitalWrite(D5, HIGH);
+  digitalWrite(D6, LOW);
 }
 
 void Robot::reverseCmd() {
