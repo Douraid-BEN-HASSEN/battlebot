@@ -26,7 +26,6 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
   const [datasHistory, setDatasHistory] = useState<Array<string>>([]);
   const [showHelp, setShowHelp] = useState<boolean>(false);
   const [isChange, setIsChange] = useState<boolean>(false);
-  const [infosRequest, setInfosRequest] = useState<TYPE_INFOS_REQUEST>(DEFAULT_INFOS_REQUEST);
   const [lastAction, setLastAction] = useState<string>("");
   const [mode, setMode] = useState<"basique" | "avance">("avance");
   const [powerValue, setPowerValue] = useState<number>(50);
@@ -72,13 +71,9 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
     }
   };
 
-  const handleChangeInfosRequest = (values: TYPE_INFOS_REQUEST) => {
-    setInfosRequest(values);
-  };
-
   const handleTest = () => {
     let tmp = datasHistory;
-    tmp.push("Test lancé sur " + infosRequest.address + ":" + infosRequest.port);
+    tmp.push("Test lancé sur " + DEFAULT_INFOS_REQUEST.address + ":" + DEFAULT_INFOS_REQUEST.port);
     setDatasHistory(tmp);
     setIsChange(true);
   };
@@ -94,7 +89,7 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
         backgroundColor: CUSTOM_STYLE.mainBackgroundColor,
       }}
     >
-      <Header showHelp={showHelp} infosRequest={infosRequest} lastAction={lastAction} mode={mode} />
+      <Header showHelp={showHelp} infosRequest={DEFAULT_INFOS_REQUEST} lastAction={lastAction} mode={mode} />
       <Grid container spacing={2} style={{ width: "98%", marginLeft: "1%" }}>
         <Grid item xs={mode === "basique" ? 12 : 6}>
           <Grid item xs={12}>
@@ -142,8 +137,7 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
       {mode === "avance" && (
         <Footer
           handleTest={handleTest}
-          values={infosRequest}
-          handleChange={handleChangeInfosRequest}
+          values={DEFAULT_INFOS_REQUEST}
         />
       )}
     </div>
