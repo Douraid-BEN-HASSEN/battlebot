@@ -210,7 +210,7 @@ const MainComponentMobile: React.FC<mainComponentMobileProps> = React.memo(({}) 
               color={keyPressed === "o" ? "primary" : "inherit"}
               onClick={() => onClickButton("o")}
             >
-              <ArrowCircleUpOutlinedIcon />
+              <ArrowCircleDownOutlinedIcon />
             </Button>
           </Box>
         </Grid>
@@ -226,7 +226,7 @@ const MainComponentMobile: React.FC<mainComponentMobileProps> = React.memo(({}) 
               }}
               color={keyPressed === "p" ? "primary" : "inherit"}
             >
-              <ArrowCircleDownOutlinedIcon />
+              <ArrowCircleUpOutlinedIcon />
             </Button>
           </Box>
         </Grid>

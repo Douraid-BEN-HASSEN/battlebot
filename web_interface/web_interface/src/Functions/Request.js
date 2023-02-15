@@ -11,7 +11,7 @@ const sendRequest = (content) => {
         })
     }
     fetch("http://10.3.2.25:80/api/send_orders/", requestOptions).then(response => console.log(response))
-
+    
 }
 
 
