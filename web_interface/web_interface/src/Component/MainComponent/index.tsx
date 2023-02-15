@@ -12,8 +12,8 @@ import {
   stopp,
   upShovel,
   downShovel,
+  sendRequest,
 } from "../../Functions/Request";
-import { TYPE_STYLE, TYPE_INFOS_REQUEST } from "../../Constantes/Types";
 import { KEY_TO_ACTION } from "../../Constantes/Values";
 import { DEFAULT_INFOS_REQUEST } from "../../Constantes/Values";
 import CurrentAction from "../CurrentAction";
@@ -76,6 +76,16 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
     tmp.push("Test lancé sur " + DEFAULT_INFOS_REQUEST.address + ":" + DEFAULT_INFOS_REQUEST.port);
     setDatasHistory(tmp);
     setIsChange(true);
+    sendRequest({
+      topic : 'send_order' , 
+      message : {
+        time : 1 , 
+        left_wheel : 0 , 
+        right_wheel : 0 , 
+        order_id : 1 , 
+        shovel : -2
+      }
+    })
   };
 
   return (
@@ -115,9 +125,6 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
             <Controller
               handleReleaseButton={(key: string) => {
                 handleReleaseButton(key);
-              }}
-              handleChangePower={(value: number) => {
-                setPowerValue(value);
               }}
               mode={mode}
               handleClickShowHelp={() => {

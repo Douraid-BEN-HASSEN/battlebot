@@ -12,7 +12,6 @@ import { CUSTOM_STYLE } from "../../Constantes/Style";
 
 interface controllerProps {
   mode: "basique" | "avance";
-  handleChangePower: (value: number) => void;
   handleReleaseButton: (key: string) => void;
   handleAddHistory: (action: "add" | "clear", value: string, isInversed: boolean) => void;
   handleClickShowHelp: () => void;
@@ -26,7 +25,7 @@ declare global {
 }
 
 const Controller: React.FC<controllerProps> = React.memo(
-  ({ handleAddHistory, handleClickShowHelp, mode, handleChangePower, handleReleaseButton }) => {
+  ({ handleAddHistory, handleClickShowHelp, mode,  handleReleaseButton }) => {
     const handleUserKeyPress = useMemoizedFn((event: React.KeyboardEvent<HTMLInputElement>) => {
       console.log("controller => handleUserKeyPress");
       const { key } = event;
@@ -237,35 +236,7 @@ const Controller: React.FC<controllerProps> = React.memo(
           </Box>
         </Grid>
 
-        <Grid item xs={12} style={{ marginTop: "25px" }}>
-          <Box
-            display="flex"
-            justifyContent={"center"}
-            alignItems="center"
-            style={{
-              color: CUSTOM_STYLE.fontColor,
-              fontWeight: "bold",
-            }}
-          >
-            PUISSANCE : {powerValue}
-          </Box>
-        </Grid>
-        <Grid item xs={12} style={{ marginTop: "25px" }}>
-          <Box display="flex" justifyContent={"center"} alignItems="center">
-            <Slider
-              min={0}
-              max={100}
-              step={1}
-              defaultValue={powerValue}
-              valueLabelDisplay="auto"
-              //value={powerValue}
-              onChange={(value: any) => {
-                setPowerValue(value.target.value);
-                handleChangePower(value.target.value);
-              }}
-            />
-          </Box>
-        </Grid>
+
       </Grid>
     );
   }

@@ -10,7 +10,7 @@ const sendRequest = (content) => {
             message: JSON.stringify(content.message)
         })
     }
-    fetch("http://10.3.2.25:80/api/send_orders/", requestOptions).then(response => console.log(response))
+    fetch("http://10.3.2.25:80/api/send_orders/", requestOptions).then(response => console.log(response) )
     
 }
 
