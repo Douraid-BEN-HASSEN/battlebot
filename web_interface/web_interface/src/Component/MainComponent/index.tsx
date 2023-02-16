@@ -28,7 +28,6 @@ const MainComponent: React.FC = React.memo(() => {
   const [mode, setMode] = useState<"basique" | "avance">("avance");
 
   const updateActionsList = (action: "add" | "clear", value: string, isInversed: boolean) => {
-    console.log("main compoennt => updateHistory");
     if (action === "clear") {
       setDatasHistory([]);
       setLastAction("");
@@ -59,7 +58,7 @@ const MainComponent: React.FC = React.memo(() => {
   };
 
   const handleReleaseButton = (key: string) => {
-    if (key === "z" || key === "q" || key === "s" || key === "d" || key === "o" || key === "p") {
+    if ( key === "z" || key === "q" || key === "s" || key === "d" || key === "o" || key === "p") {
       setIsChange(true);
       let tmp = datasHistory;
       tmp.push(KEY_TO_ACTION["a"]);

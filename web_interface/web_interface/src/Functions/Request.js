@@ -1,3 +1,5 @@
+import { DEFAULT_INFOS_REQUEST } from "../Constantes/Values"
+
 const sendRequest = (content) => {
     console.log("send request")
 
@@ -10,8 +12,8 @@ const sendRequest = (content) => {
             message: JSON.stringify(content.message)
         })
     }
-    fetch("http://10.3.2.25:80/api/send_orders/", requestOptions).then(response => console.log(response) )
-    
+    //fetch("http://10.3.2.25:80/api/send_orders/", requestOptions).then(response => console.log(response) )
+    fetch("http://" + DEFAULT_INFOS_REQUEST.address + ":" + DEFAULT_INFOS_REQUEST.port + "/api/send_orders/", requestOptions).then(response => console.log(response))
 }
 
 
