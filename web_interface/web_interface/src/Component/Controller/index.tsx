@@ -8,7 +8,8 @@ import HelpIcon from "@mui/icons-material/Help";
 import { useMemoizedFn } from "ahooks";
 import { CUSTOM_STYLE } from "../../Constantes/Style";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
-import klaxon from "../../Assets/Klaxon.mp3"
+import klaxon from "../../Assets/Klaxon.mp3";
+import drift from "../../Assets/Drift.mp3";
 import useSound from "use-sound";
 
 interface controllerProps {
@@ -27,12 +28,16 @@ declare global {
 
 const Controller: React.FC<controllerProps> = React.memo(
   ({ handleAddHistory, handleClickShowHelp, mode, handleReleaseButton }) => {
-
-    const [playSound] = useSound(klaxon);
+    const [playSoundKlaxon] = useSound(klaxon);
+    const [playSoundDrift] = useSound(drift);
 
     const handlePressKlaxon = () => {
-      playSound()
-    }
+      playSoundKlaxon();
+    };
+
+    const handlePressDrift = () => {
+      playSoundDrift();
+    };
 
     const handleUserKeyPress = useMemoizedFn((event: React.KeyboardEvent<HTMLInputElement>) => {
       console.log("controller => handleUserKeyPress");
@@ -51,8 +56,10 @@ const Controller: React.FC<controllerProps> = React.memo(
       } else if (key === "r") {
         if (isInversion) setIsInversion(false);
         else setIsInversion(true);
-      } else if (key === "k"){
+      } else if (key === "k") {
         handlePressKlaxon();
+      } else if (key === "l") {
+        handlePressDrift();
       }
     });
 
