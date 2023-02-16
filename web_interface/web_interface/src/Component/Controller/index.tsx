@@ -1,11 +1,9 @@
-import { Grid, Box, Button, Slider } from "@mui/material";
+import { Grid, Box, Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { Circle } from "@mui/icons-material";
 import ArrowCircleDownOutlinedIcon from "@mui/icons-material/ArrowCircleDownOutlined";
 import ArrowCircleLeftOutlinedIcon from "@mui/icons-material/ArrowCircleLeftOutlined";
 import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOutlined";
 import ArrowCircleUpOutlinedIcon from "@mui/icons-material/ArrowCircleUpOutlined";
-import { TYPE_STYLE } from "../../Constantes/Types";
 import HelpIcon from "@mui/icons-material/Help";
 import { useMemoizedFn } from "ahooks";
 import { CUSTOM_STYLE } from "../../Constantes/Style";
@@ -25,7 +23,7 @@ declare global {
 }
 
 const Controller: React.FC<controllerProps> = React.memo(
-  ({ handleAddHistory, handleClickShowHelp, mode,  handleReleaseButton }) => {
+  ({ handleAddHistory, handleClickShowHelp, mode, handleReleaseButton }) => {
     const handleUserKeyPress = useMemoizedFn((event: React.KeyboardEvent<HTMLInputElement>) => {
       console.log("controller => handleUserKeyPress");
       const { key } = event;
@@ -54,16 +52,17 @@ const Controller: React.FC<controllerProps> = React.memo(
     useEffect(() => {
       window.addEventListener("keydown", handleUserKeyPress);
       return () => window.removeEventListener("keydown", handleUserKeyPress);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
       window.addEventListener("keyup", handleUserKeyRelease);
       return () => window.removeEventListener("keyup", handleUserKeyRelease);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const [isInversion, setIsInversion] = useState<boolean>(false);
     const [keyPressed, setKeyPressed] = useState<"" | "z" | "q" | "s" | "d" | "o" | "p" | "a">("");
-    const [powerValue, setPowerValue] = useState<number>(50);
 
     return (
       <Grid
@@ -235,8 +234,6 @@ const Controller: React.FC<controllerProps> = React.memo(
             </Button>
           </Box>
         </Grid>
-
-
       </Grid>
     );
   }

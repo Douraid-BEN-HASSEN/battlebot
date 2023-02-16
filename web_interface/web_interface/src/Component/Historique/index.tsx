@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Button, Grid, List, ListItem, ListItemText } from "@mui/material";
-import { TYPE_STYLE } from "../../Constantes/Types";
 import { CUSTOM_STYLE } from "../../Constantes/Style";
 interface historiqueProps {
   datasHistory: Array<string>;
@@ -13,6 +12,7 @@ const Historique: React.FC<historiqueProps> = React.memo(
   ({ datasHistory, handleClearHistory, hasChange, handleChangeBoolean }) => {
     useEffect(() => {
       handleChangeBoolean();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [datasHistory, hasChange]);
 
     return (

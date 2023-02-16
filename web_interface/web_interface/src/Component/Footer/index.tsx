@@ -1,17 +1,14 @@
 import { Toolbar, Grid, AppBar, Button, TextField } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useState } from "react";
+import React from "react";
 import { CUSTOM_STYLE } from "../../Constantes/Style";
-import { TYPE_INFOS_REQUEST } from "../../Constantes/Types";
+import { DEFAULT_INFOS_REQUEST } from "../../Constantes/Values";
 
 interface footerProps {
-  values: TYPE_INFOS_REQUEST;
   handleTest: () => void;
 }
 
-const Footer: React.FC<footerProps> = React.memo(({  values, handleTest }) => {
-  const [addresse, setAddresse] = useState<string>(values.address);
-  const [port, setPort] = useState<number>(values.port);
+const Footer: React.FC<footerProps> = React.memo(({  handleTest }) => {
 
   return (
     <Box sx={{ flewGrow: 1 }} style={{ position: "fixed", left: "0", bottom: "0", width: "100%" }}>
@@ -28,27 +25,21 @@ const Footer: React.FC<footerProps> = React.memo(({  values, handleTest }) => {
             <Grid item xs={6} style={{ fontWeight: "bold" }}>
               <Box display="flex" justifyContent="center" alignItems="center">
                 <TextField
-                  value={addresse}
+                  value={DEFAULT_INFOS_REQUEST.address}
                   disabled={true}
                   style={{ width: "100%", backgroundColor: CUSTOM_STYLE.backgroundColorButton }}
                   label="Adresse IP"
-                  onChange={(event: any) => {
-                    setAddresse(event.target.value);
-                  }}
                 />
               </Box>
             </Grid>
             <Grid item xs={3} style={{ fontWeight: "bold" }}>
               <Box display="flex" justifyContent="center" alignItems="center">
                 <TextField
-                  value={port}
+                  value={DEFAULT_INFOS_REQUEST.port}
                   disabled={true}
                   style={{ width: "100%", backgroundColor: CUSTOM_STYLE.backgroundColorButton }}
                   label="Port"
                   type={"number"}
-                  onChange={(event: any) => {
-                    setPort(event.target.value);
-                  }}
                 />
               </Box>
             </Grid>

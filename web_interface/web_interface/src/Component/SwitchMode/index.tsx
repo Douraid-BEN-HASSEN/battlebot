@@ -1,8 +1,6 @@
 import { Button, Grid } from "@mui/material";
 import React, { useState } from "react";
 import { CUSTOM_STYLE } from "../../Constantes/Style";
-import { TYPE_STYLE } from "../../Constantes/Types";
-
 interface switchModeProps {
   handleChangeMode: (mode: "avance" | "basique") => void;
 }

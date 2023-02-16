@@ -16,9 +16,8 @@ import {
   downShovel,
 } from "../../Functions/Request";
 
-interface mainComponentMobileProps {}
 
-const MainComponentMobile: React.FC<mainComponentMobileProps> = React.memo(({}) => {
+const MainComponentMobile: React.FC = React.memo(() => {
   const [keyPressed, setKeyPressed] = useState<"" | "z" | "q" | "s" | "d" | "o" | "p" | "a">("");
   const [isInversion, setIsInversion] = useState<boolean>(false);
 
@@ -55,7 +54,6 @@ const MainComponentMobile: React.FC<mainComponentMobileProps> = React.memo(({}) 
     >
       <Header
         showHelp={false}
-        infosRequest={{ address: "", port: 0 }}
         lastAction={""}
         mode={"avance"}
       />

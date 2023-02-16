@@ -2,10 +2,9 @@ import { Grid, Button } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
 import { CUSTOM_STYLE } from "../../Constantes/Style";
-import { Header } from "../";
-interface acceuilProps {}
+import { Header } from "../../Component";
 
-const Acceuil: React.FC<acceuilProps> = React.memo(({}) => {
+const Acceuil: React.FC = React.memo(() => {
   return (
     <div
       style={{
@@ -19,7 +18,6 @@ const Acceuil: React.FC<acceuilProps> = React.memo(({}) => {
     >
       <Header
         showHelp={false}
-        infosRequest={{ address: "", port: 0 }}
         lastAction={""}
         mode={"avance"}
       />

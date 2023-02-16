@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, {  useState } from "react";
 import Controller from "../Controller";
 import Header from "../Header";
 import { Grid } from "@mui/material";
@@ -20,17 +20,14 @@ import CurrentAction from "../CurrentAction";
 import SwitchMode from "../SwitchMode";
 import { CUSTOM_STYLE } from "../../Constantes/Style";
 
-interface mainComponentProps {}
-
-const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
+const MainComponent: React.FC = React.memo(() => {
   const [datasHistory, setDatasHistory] = useState<Array<string>>([]);
   const [showHelp, setShowHelp] = useState<boolean>(false);
   const [isChange, setIsChange] = useState<boolean>(false);
   const [lastAction, setLastAction] = useState<string>("");
   const [mode, setMode] = useState<"basique" | "avance">("avance");
-  const [powerValue, setPowerValue] = useState<number>(50);
 
-  const updateHistory = (action: "add" | "clear", value: string, isInversed: boolean) => {
+  const updateActionsList = (action: "add" | "clear", value: string, isInversed: boolean) => {
     console.log("main compoennt => updateHistory");
     if (action === "clear") {
       setDatasHistory([]);
@@ -71,7 +68,7 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
     }
   };
 
-  const handleTest = () => {
+  const handleTestConnection = () => {
     setIsChange(true);
     let tmp = datasHistory;
     tmp.push("Test lancé sur " + DEFAULT_INFOS_REQUEST.address + ":" + DEFAULT_INFOS_REQUEST.port);
@@ -101,7 +98,6 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
     >
       <Header
         showHelp={showHelp}
-        infosRequest={DEFAULT_INFOS_REQUEST}
         lastAction={lastAction}
         mode={mode}
       />
@@ -118,7 +114,7 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
             <Grid item xs={12}>
               <Historique
                 datasHistory={datasHistory}
-                handleClearHistory={updateHistory}
+                handleClearHistory={updateActionsList}
                 hasChange={isChange}
                 handleChangeBoolean={() => setIsChange(false)}
               />
@@ -136,7 +132,7 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
                 if (showHelp) setShowHelp(false);
                 else setShowHelp(true);
               }}
-              handleAddHistory={updateHistory}
+              handleAddHistory={updateActionsList}
             />
           </Grid>
           {mode === "avance" && (
@@ -146,7 +142,7 @@ const MainComponent: React.FC<mainComponentProps> = React.memo(({}) => {
           )}
         </Grid>
       </Grid>
-      {mode === "avance" && <Footer handleTest={handleTest} values={DEFAULT_INFOS_REQUEST} />}
+      {mode === "avance" && <Footer handleTest={handleTestConnection} />}
     </div>
   );
 });

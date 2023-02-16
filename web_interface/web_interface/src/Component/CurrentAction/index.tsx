@@ -1,5 +1,4 @@
 import React from "react";
-import { TYPE_STYLE } from "../../Constantes/Types";
 import { Grid, Box } from "@mui/material";
 import { CUSTOM_STYLE } from "../../Constantes/Style";
 
