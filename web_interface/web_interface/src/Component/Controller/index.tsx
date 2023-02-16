@@ -11,6 +11,7 @@ import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import klaxon from "../../Assets/Klaxon.mp3";
 import drift from "../../Assets/Drift.mp3";
 import useSound from "use-sound";
+import speed from "../../Assets/Speed.mp3";
 
 interface controllerProps {
   mode: "basique" | "avance";
@@ -30,6 +31,7 @@ const Controller: React.FC<controllerProps> = React.memo(
   ({ handleAddHistory, handleClickShowHelp, mode, handleReleaseButton }) => {
     const [playSoundKlaxon] = useSound(klaxon);
     const [playSoundDrift] = useSound(drift);
+    const [playSoundSpeed] = useSound(speed);
 
     const handlePressKlaxon = () => {
       playSoundKlaxon();
@@ -37,6 +39,10 @@ const Controller: React.FC<controllerProps> = React.memo(
 
     const handlePressDrift = () => {
       playSoundDrift();
+    };
+
+    const handlePressSpeed = () => {
+      playSoundSpeed();
     };
 
     const handleUserKeyPress = useMemoizedFn((event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -60,6 +66,8 @@ const Controller: React.FC<controllerProps> = React.memo(
         handlePressKlaxon();
       } else if (key === "l") {
         handlePressDrift();
+      } else if (key === "m") {
+        handlePressSpeed();
       }
     });
 

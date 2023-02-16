@@ -8,8 +8,7 @@ interface footerProps {
   handleTest: () => void;
 }
 
-const Footer: React.FC<footerProps> = React.memo(({  handleTest }) => {
-
+const Footer: React.FC<footerProps> = React.memo(({ handleTest }) => {
   return (
     <Box sx={{ flewGrow: 1 }} style={{ position: "fixed", left: "0", bottom: "0", width: "100%" }}>
       <AppBar
@@ -28,7 +27,6 @@ const Footer: React.FC<footerProps> = React.memo(({  handleTest }) => {
                   value={DEFAULT_INFOS_REQUEST.address}
                   disabled={true}
                   style={{ width: "100%", backgroundColor: CUSTOM_STYLE.backgroundColorButton }}
-                  label="Adresse IP"
                 />
               </Box>
             </Grid>
@@ -38,29 +36,31 @@ const Footer: React.FC<footerProps> = React.memo(({  handleTest }) => {
                   value={DEFAULT_INFOS_REQUEST.port}
                   disabled={true}
                   style={{ width: "100%", backgroundColor: CUSTOM_STYLE.backgroundColorButton }}
-                  label="Port"
                   type={"number"}
                 />
               </Box>
             </Grid>
             <Grid item xs={3} style={{ fontWeight: "bold" }}>
-              <Grid item xs={12} style={{ fontWeight: "bold", marginTop: "5px" }}>
-                <Box display="flex" justifyContent="center" alignItems="center">
-                  <Button
-                    onClick={handleTest}
-                    color="inherit"
-                    variant="contained"
-                    style={{
-                      width: "95%",
-                      color: CUSTOM_STYLE.fontColor,
-                      fontWeight: "bold",
-                      backgroundColor: CUSTOM_STYLE.backgroundColorButton,
-                    }}
-                  >
-                    Tester
-                  </Button>
-                </Box>
-              </Grid>
+              <Box display="flex" justifyContent="center" alignItems="center">
+                <Button
+                  size='large'
+                  onClick={handleTest}
+                  color="inherit"
+                  variant="contained"
+                  style={{
+                    width: "95%",
+                    color: CUSTOM_STYLE.fontColor,
+                    fontWeight: "bold",
+                    borderRadius:'1px',
+                    backgroundColor: CUSTOM_STYLE.backgroundColorButton,
+                  }}
+                  sx={{
+                    height:'56px'
+                  }}
+                >
+                  Tester
+                </Button>
+              </Box>
             </Grid>
           </Grid>
         </Toolbar>
