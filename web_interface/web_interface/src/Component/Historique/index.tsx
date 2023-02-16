@@ -33,7 +33,7 @@ const Historique: React.FC<historiqueProps> = React.memo(
             position: "relative",
             marginTop: "20px",
             overflow: "auto",
-            maxHeight: "420px",
+            maxHeight: "480px",
             "& ul": { padding: 0 },
           }}
         >
