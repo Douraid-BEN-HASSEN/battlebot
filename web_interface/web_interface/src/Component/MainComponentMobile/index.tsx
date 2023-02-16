@@ -6,6 +6,7 @@ import ArrowCircleLeftOutlinedIcon from "@mui/icons-material/ArrowCircleLeftOutl
 import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOutlined";
 import ArrowCircleUpOutlinedIcon from "@mui/icons-material/ArrowCircleUpOutlined";
 import { Grid, Box, Button } from "@mui/material";
+import klaxon from "../../Assets/Klaxon.mp3";
 import {
   goBack,
   goFront,
@@ -15,11 +16,18 @@ import {
   upShovel,
   downShovel,
 } from "../../Functions/Request";
-
+import VolumeUpIcon from "@mui/icons-material/VolumeUp";
+import useSound from "use-sound";
 
 const MainComponentMobile: React.FC = React.memo(() => {
   const [keyPressed, setKeyPressed] = useState<"" | "z" | "q" | "s" | "d" | "o" | "p" | "a">("");
   const [isInversion, setIsInversion] = useState<boolean>(false);
+
+  const [playSound] = useSound(klaxon);
+
+  const handlePressKlaxon = () => {
+    playSound();
+  };
 
   const handleChangeInversion = () => {
     if (isInversion) setIsInversion(false);
@@ -52,11 +60,7 @@ const MainComponentMobile: React.FC = React.memo(() => {
         backgroundColor: CUSTOM_STYLE.mainBackgroundColor,
       }}
     >
-      <Header
-        showHelp={false}
-        lastAction={""}
-        mode={"avance"}
-      />
+      <Header showHelp={false} lastAction={""} mode={"avance"} />
       <Grid
         container
         spacing={0}
@@ -93,7 +97,7 @@ const MainComponentMobile: React.FC = React.memo(() => {
           <Box display="flex" justifyContent="center" alignItems="center"></Box>
         </Grid>
 
-        <Grid item xs={4}>
+        <Grid item xs={4} style={{ marginTop: "10px", marginBottom: "10px" }}>
           <Box display="flex" justifyContent="center" alignItems="center">
             <Button
               onClick={() => onClickButton("q")}
@@ -109,10 +113,23 @@ const MainComponentMobile: React.FC = React.memo(() => {
             </Button>
           </Box>
         </Grid>
-        <Grid item xs={4}>
-          <Box display="flex" justifyContent="center" alignItems="center"></Box>
+        <Grid item xs={4} style={{ marginTop: "10px", marginBottom: "10px" }}>
+          <Box display="flex" justifyContent="center" alignItems="center">
+            <Button
+              onClick={handlePressKlaxon}
+              style={{
+                border: CUSTOM_STYLE.borderWidthButton + " solid " + CUSTOM_STYLE.borderColorButton,
+                backgroundColor: CUSTOM_STYLE.backgroundColorButton,
+              }}
+              sx={{ borderRadius: 28 }}
+              variant="contained"
+              color="inherit"
+            >
+              <VolumeUpIcon />
+            </Button>
+          </Box>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={4} style={{ marginTop: "10px", marginBottom: "10px" }}>
           <Box display="flex" justifyContent="center" alignItems="center">
             <Button
               onClick={() => onClickButton("d")}

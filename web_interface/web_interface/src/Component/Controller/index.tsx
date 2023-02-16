@@ -7,6 +7,9 @@ import ArrowCircleUpOutlinedIcon from "@mui/icons-material/ArrowCircleUpOutlined
 import HelpIcon from "@mui/icons-material/Help";
 import { useMemoizedFn } from "ahooks";
 import { CUSTOM_STYLE } from "../../Constantes/Style";
+import VolumeUpIcon from "@mui/icons-material/VolumeUp";
+import klaxon from "../../Assets/Klaxon.mp3"
+import useSound from "use-sound";
 
 interface controllerProps {
   mode: "basique" | "avance";
@@ -24,6 +27,13 @@ declare global {
 
 const Controller: React.FC<controllerProps> = React.memo(
   ({ handleAddHistory, handleClickShowHelp, mode, handleReleaseButton }) => {
+
+    const [playSound] = useSound(klaxon);
+
+    const handlePressKlaxon = () => {
+      playSound()
+    }
+
     const handleUserKeyPress = useMemoizedFn((event: React.KeyboardEvent<HTMLInputElement>) => {
       console.log("controller => handleUserKeyPress");
       const { key } = event;
@@ -41,6 +51,8 @@ const Controller: React.FC<controllerProps> = React.memo(
       } else if (key === "r") {
         if (isInversion) setIsInversion(false);
         else setIsInversion(true);
+      } else if (key === "k"){
+        handlePressKlaxon();
       }
     });
 
@@ -106,7 +118,7 @@ const Controller: React.FC<controllerProps> = React.memo(
           <Box display="flex" justifyContent="center" alignItems="center"></Box>
         </Grid>
 
-        <Grid item xs={4}>
+        <Grid item xs={4} style={{ marginTop: "10px", marginBottom: "10px" }}>
           <Box display="flex" justifyContent="center" alignItems="center">
             <Button
               style={{
@@ -121,10 +133,22 @@ const Controller: React.FC<controllerProps> = React.memo(
             </Button>
           </Box>
         </Grid>
-        <Grid item xs={4}>
-          <Box display="flex" justifyContent="center" alignItems="center"></Box>
+        <Grid item xs={4} style={{ marginTop: "10px", marginBottom: "10px" }}>
+          <Box display="flex" justifyContent="center" alignItems="center">
+            <Button
+              style={{
+                border: CUSTOM_STYLE.borderWidthButton + " solid " + CUSTOM_STYLE.borderColorButton,
+                backgroundColor: CUSTOM_STYLE.backgroundColorButton,
+              }}
+              sx={{ borderRadius: 28 }}
+              variant="contained"
+              color="inherit"
+            >
+              <VolumeUpIcon />
+            </Button>
+          </Box>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={4} style={{ marginTop: "10px", marginBottom: "10px" }}>
           <Box display="flex" justifyContent="center" alignItems="center">
             <Button
               style={{
